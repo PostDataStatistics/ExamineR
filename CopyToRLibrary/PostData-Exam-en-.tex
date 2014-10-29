@@ -1,0 +1,99 @@
+% !Mode:: "Tex:UTF-8"
+\documentclass[10pt,a4paper]{article}
+
+%% packages
+\usepackage{verbatim,Sweave,url}
+\usepackage{amsmath, amsthm, amssymb}
+\newcommand{\idioma}{USenglish}
+\usepackage[\idioma]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[usenames]{color}
+\definecolor{Gris025}{gray}{0.75}
+
+\usepackage[paper size={170mm, 235mm},left=20mm,right=20mm,top=15mm,bottom=15mm,nohead]{geometry}
+%% new environments
+\newenvironment{question}{\item}{}
+\newenvironment{solution}{\comment}{\endcomment}
+\newenvironment{answerlist}{\renewcommand{\labelenumi}{(\alph{enumi})}\begin{enumerate}}{\end{enumerate}}
+
+%% paragraphs
+\setlength{\parskip}{0.7ex plus0.1ex minus0.1ex}
+\setlength{\parindent}{0em}
+
+%% fonts: Helvetica
+\renewcommand{\sfdefault}{phv}
+\IfFileExists{sfmath.sty}{
+  \RequirePackage{sfmath}
+  \renewcommand{\rmdefault}{phv}
+}{}
+
+%\newcommand{\extext}[1]{\phantom{\large #1}}
+%\newcommand{\exmchoice}[5]{%
+%  \mbox{(a) \,\, \framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#1}} \hspace*{2mm}}%
+%  \mbox{(b) \,\, \framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#2}} \hspace*{2mm}}%
+%  \mbox{(c) \,\, \framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#3}} \hspace*{2mm}}%
+%  \mbox{(d) \,\, \framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#4}} \hspace*{2mm}}%
+%  \mbox{(e) \,\, \framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#5}} \hspace*{2mm}}%
+%}
+%\newcommand{\exnum}[9]{%
+%  \mbox{\framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#1}}}%
+%  \mbox{\framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#2}}}%
+%  \mbox{\framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#3}}}%
+%  \mbox{\framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#4}}}%
+%  \mbox{\framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#5}}}%
+%  \mbox{\framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#6}}}%
+%  \mbox{ \makebox[3mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-2mm} .}}%
+%  \mbox{\framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#7}}}%
+%  \mbox{\framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#8}}}%
+%  \mbox{\framebox[8mm]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#9}}}%
+%}
+%\newcommand{\exstring}[1]{%
+%  \mbox{\framebox[0.9\textwidth][l]{\rule[-1mm]{0mm}{5mm} \hspace*{-1.6mm} \extext{#1}} \hspace*{2mm}}%
+%}
+
+%% new commands
+\makeatletter
+\newcommand{\ID}[1]{\def\@ID{#1}}
+\newcommand{\Date}[1]{\def\@Date{#1}}
+\ID{}
+\Date{YYYY-MM-DD}
+
+%% \exinput{header}
+
+%\newcommand{\myID}{\@ID}
+%\newcommand{\myDate}{\@Date}
+\makeatother
+
+%% headings
+%\markboth{\textnormal{\bf \large Statistics Exam: \myID}}%
+%{\textnormal{\bf \large Statistics Exam: \myID}}
+\pagestyle{empty}
+
+\usepackage[pageanchor=true]{hyperref}
+
+%\usepackage{comment}
+%\excludecomment{English}
+
+
+
+\begin{document}
+
+%% title page
+\thispagestyle{empty}
+
+\paragraph{PostData Statistics\\[2mm]
+{Quizzes}\hspace{1cm} Created with the R {\tt exams} package}
+\noindent\hrule
+
+\vspace{0.5cm}
+
+
+\begin{enumerate}
+
+%% \exinput{exercises}
+
+\end{enumerate}
+
+
+\end{document}

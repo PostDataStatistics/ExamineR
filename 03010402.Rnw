@@ -34,8 +34,8 @@ listFracts=function(x){strsplit(attr(x,"fracs"),"/")}
 (denomProbs=sapply(listFractProbs,extractDenom))
 
 
-(a = sample(-20:20, 1))
-(b = sample(-20:20, 1))
+(a = sample(c(-1,1), 1) * sample(2:20, 1))
+(b = sample(c(-1,1), 1) * sample(2:20, 1))
 
 (symbol = ifelse(b>0, "+", "-"))
 
@@ -56,27 +56,27 @@ sigmaY = abs(a) * sigmaX
 
 (valuesString = paste0(valuesX, collapse=", "))
 (probString = paste0(numerProbs, rep("/", n), denomProbs, collapse=", "))
-(qString01 = paste0(symbol,b, collapse=""))
+(qString01 = paste0(symbol,abs(b), collapse=""))
 
 
 if(language=='en'){
   question=paste0(
-    "The discrete random variable $X$ takes these values:\\[",
+    "The discrete random variable $X$ takes these values:\\begin{center}",
     valuesString,
-    "\\] with these probabilities: \\[",
+    "\\end{center} with these probabilities: \\begin{center}",
     probString,
-    ".\\] Find the {\\bf standard deviation of the random variable} \\[Y=",a,"\\cdot X",qString01,".\\] Use  ",
+    ".\\end{center} Find the {\\bf standard deviation of the random variable} \\[Y=",a,"\\cdot X",qString01,".\\] Use  ",
     signifDig, " significant digits in your answer."
     )
   
   answer=paste0("The answer is ", sol)
 }else if(language=='es'){
   question=paste0(
-    "La variable aleatoria discreta $X$ toma estos valores:\\[",
+    "La variable aleatoria discreta $X$ toma estos valores:\\begin{center}",
     valuesString,
-    "\\] con estas probabilidades: \\[",
+    "\\end{center} con estas probabilidades: \\begin{center}",
     probString,
-    ".\\] Calcula la {\\bf desviaci\\'on t\\'{\\i}pica de la variable aleatoria discreta definida mediante} \\[Y=",a,"\\cdot X",qString01,".\\] Usa  ",
+    ".\\end{center} Calcula la {\\bf desviaci\\'on t\\'{\\i}pica de la variable aleatoria discreta definida mediante} \\[Y=",a,"\\cdot X",qString01,".\\] Usa  ",
     signifDig, " cifras significativas en tu respuesta."
     )
   

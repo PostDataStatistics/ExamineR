@@ -1,0 +1,62 @@
+<<echo=FALSE, results=hide>>=
+  ## DATA GENERATION
+  
+  library(MASS)
+
+signifDig = 4
+
+(mu= signif(runif(1, min = -50, max = 50), digits = 3))
+
+(sigma2 = signif(runif(1, min = 0, max = 20), digits = 3) ) 
+
+(muX2 = mu^2 + sigma2 ) 
+
+
+## QUESTION/ANSWER GENERATION
+
+(sol = sigma2)
+(sol = signif(sol, 4))
+
+
+## QUESTION STATEMENT GENERATION
+
+if(language=='en'){
+  question=paste0(
+    "The random variable $X$ has mean  $\\mu_X= $",mu,". The random variable $Y = X^2$ has mean 
+    $\\mu_Y= $",muX2,". Find the variance $\\sigma^2_X$ of $X$. 
+    Use  ",signifDig, " significant digits in your answer."
+  )
+  
+  answer=paste0("The answer is ", sol)
+}else if(language=='es'){
+  question=paste0(
+    "La variable aleatoria $X$ tiene media $\\mu_X=$ ",mu,". La variable aleatoria $Y = X^2$ tiene media
+    $\\mu_Y=$ ",muX2,". Calcula la varianza $\\sigma^2_X$ de $X$. 
+    Escribe tu respuesta con ", signifDig, " cifras significativas."
+  )
+  
+  answer=paste0("La respuesta es ", sol)
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

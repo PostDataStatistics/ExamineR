@@ -40,16 +40,16 @@ listFracts=function(x){strsplit(attr(x,"fracs"),"/")}
 
 (valuesString = paste0(values, collapse=", "))
 (probString = paste0(numerProbs, rep("/", n), denomProbs, collapse=", "))
-(questionString = paste0("P(X\\leq ", k, ")"))
+(questionString = paste0("P(X\\leq ", values[k], ")"))
 
 
 if(language=='en'){
   question=paste0(
-    "The discrete random variable $X$ takes these values:\\[",
+    "The discrete random variable $X$ takes these values:\\n",
     valuesString,
-    "\\] with these probabilities: \\[",
+    "\\\\ with these probabilities: \\\\",
     probString,
-    ".\\] Find the probability $"  ,
+    ".\\n Find the probability $"  ,
     questionString,
     "$. Use  ",
     signifDig, " significant digits in your answer."
@@ -58,11 +58,11 @@ if(language=='en'){
   answer=paste0("The answer is ", sol)
 }else if(language=='es'){
   question=paste0(
-    "La variable aleatoria discreta $X$ toma estos valores:\\[",
+    "La variable aleatoria discreta $X$ toma estos valores:\\begin{center}",
     valuesString,
-    "\\] con estas probabilidades: \\[",
+    "\\end{center} con estas probabilidades: \\begin{center}",
     probString,
-    ".\\] Calcula la probabilidad $"  ,
+    ".\\end{center} Calcula la probabilidad $"  ,
     questionString,
     "$. Redondea el resultado con ",
     signifDig, " cifras significativas."

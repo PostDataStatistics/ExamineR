@@ -9,7 +9,7 @@ signifDig <- 4
 
 (k=sample(2:(n-1),1)) 
 
-(values=sort(sample(-15:15,n)))
+(valuesX=sort(sample(-15:15,n)))
 (probs=sample(1:15,n))
 (d=sum(probs))
 (fr.a=fractions(probs/d))
@@ -35,24 +35,28 @@ listFracts=function(x){strsplit(attr(x,"fracs"),"/")}
 
 
 (a = sample(c(-1,1), 1) * sample(2:20, 1))
-(b = sample(c(-1,1), 1) * sample(1:20, 1))
+(b = sample(c(-1,1), 1) * sample(2:20, 1))
 
 (symbol = ifelse(b>0, "+", "-"))
 
-(muX = sum(values * probs)/d)
+(muX = sum(valuesX * probs)/d)
 
 (muY = a * muX + b)
 
-(sigma2 = sum((values - muX) ^2 *(probs/d)))
+(sigma2X = sum((valuesX - muX) ^2 *(probs/d)))
 
-sigma = sqrt(sigma2)
+sigmaX = sqrt(sigma2X)
 
-(sol = signif(muY ,4))
+sigma2Y = a^2 * sigma2X
+
+sigmaY = abs(a) * sigmaX
+
+(sol = signif(sigma2Y ,4))
 
 
 ## QUESTION STATEMENT GENERATION
 
-(valuesString = paste0(values, collapse=", "))
+(valuesString = paste0(valuesX, collapse=", "))
 (probString = paste0(numerProbs, rep("/", n), denomProbs, collapse=", "))
 (qString01 = paste0(symbol,abs(b), collapse=""))
 
@@ -63,7 +67,7 @@ if(language=='en'){
     valuesString,
     "\\end{center} with these probabilities: \\begin{center}",
     probString,
-    ".\\end{center} Find the mean of {\\bf the random variable defined by} \\[Y=",a,"\\cdot X",qString01,".\\] Use  ",
+    ".\\end{center} Find the {\\bf variance of the random variable} \\[Y=",a,"\\cdot X",qString01,".\\] Use  ",
     signifDig, " significant digits in your answer."
     )
   
@@ -74,7 +78,7 @@ if(language=='en'){
     valuesString,
     "\\end{center} con estas probabilidades: \\begin{center}",
     probString,
-    ".\\end{center} Calcula la media de {\\bf la variable aleatoria discreta definida mediante} \\[Y=",a,"\\cdot X",qString01,".\\] Usa  ",
+    ".\\end{center} Calcula la {\\bf varianza de la variable aleatoria discreta definida mediante} \\[Y=",a,"\\cdot X",qString01,".\\] Usa  ",
     signifDig, " cifras significativas en tu respuesta."
     )
   

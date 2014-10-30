@@ -7,7 +7,7 @@ signifDig <- 4
 
 (n=6)
 
-(k=sample(2:(n-1),1)) 
+(k=sample(2:(n-1),1))
 
 (values=sort(sample(-15:15,n)))
 (probs=sample(1:15,n))
@@ -46,25 +46,25 @@ listFracts=function(x){strsplit(attr(x,"fracs"),"/")}
 
 if(language=='en'){
   question=paste0(
-    "The discrete random variable $X$ takes these values:\\[",
+    "The discrete random variable $X$ takes these values:\\begin{center}",
     valuesString,
-    "\\] with these probabilities: \\[",
+    "\\end{center} with these probabilities: \\begin{center}",
     probString,
-    ".\\] The mean of $X$ is ", mu,". Find the value of $a$ (it is an integer). Use  ",
+    ".\\end{center} The mean of $X$ is ", mu,". Find the value of $a$ (it is an integer). Use  ",
     signifDig, " significant digits in your answer."
     )
-  
+
   answer=paste0("The answer is ", sol)
 }else if(language=='es'){
   question=paste0(
-    "La variable aleatoria discreta $X$ toma estos valores:\\[",
+    "La variable aleatoria discreta $X$ toma estos valores:\\begin{center}",
     valuesString,
-    "\\] con estas probabilidades: \\[",
+    "\\end{center} con estas probabilidades: \\begin{center}",
     probString,
-    ".\\] La media de $X$ es ", mu,". Calcula el valor de $a$. Redondea el resultado con ",
+    ".\\end{center} La media de $X$ es ", mu,". Calcula el valor de $a$. Redondea el resultado con ",
     signifDig, " cifras significativas."
     )
-  
+
   answer=paste0("La respuesta es ", sol)
 }
 

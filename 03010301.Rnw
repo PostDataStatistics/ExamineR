@@ -49,22 +49,22 @@ sigma2 = sum((values - mu) ^2 *(probs/d))
 
 if(language=='en'){
   question=paste0(
-    "The discrete random variable $X$ takes these values:\\[",
+    "The discrete random variable $X$ takes these values:\\begin{center}",
     valuesString,
-    "\\] with these probabilities: \\[",
+    "\\end{center} with these probabilities: \\begin{center}",
     probString,
-    ".\\] Find the \\{\\bf variance\\} of $X$. Use  ",
+    ".\\end{center} Find the \\{\\bf variance\\} of $X$. Use  ",
     signifDig, " significant digits in your answer."
     )
   
   answer=paste0("The answer is ", sol)
 }else if(language=='es'){
   question=paste0(
-    "La variable aleatoria discreta $X$ toma estos valores:\\[",
+    "La variable aleatoria discreta $X$ toma estos valores:\\begin{center}",
     valuesString,
-    "\\] con estas probabilidades: \\[",
+    "\\end{center} con estas probabilidades: \\begin{center}",
     probString,
-    ".\\] Calcula la {\\bf varianza}  de $X$. Redondea el resultado con ",
+    ".\\end{center} Calcula la {\\bf varianza}  de $X$. Redondea el resultado con ",
     signifDig, " cifras significativas."
     )
   

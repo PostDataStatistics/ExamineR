@@ -1,0 +1,61 @@
+<<echo=FALSE, results=hide>>=
+  ## DATA GENERATION
+  
+library(MASS)
+
+signifDig = 4
+
+(k = sample(2*(2:15), 1))
+
+
+(f = function(x){(k / 2) * sin(k * x)})
+
+
+c = 0
+
+(d = sample((k+1):(k +5), 1))
+
+
+#(sol  =  integrate(f,lower=0, upper=pi/d)$value)
+(sol = sin((pi * k) / (2 * d))^2) #precomputed
+
+(sol = signif(sol, 4))
+
+
+
+## QUESTION
+
+if(language=='en'){
+  question=paste0("The density function $f(x)$ of the continuous random variable $X$ is equal to $$", k%/%2, "\\cdot\\sin(", k,"\\cdot x)$$ if $$0\\leq x\\leq \\frac{\\pi}{", k, "}$$ and is equal to $0$ otherwise (you don't need to check that $f$ is a density function. Find the probability $$P(0<X<\\frac{\\pi}{", d,"})$$ for the random variable $X$ defined by $f$. Use  ", signifDig," significant digits in your answer."  )
+  
+  answer=paste0("The answer is ", sol)
+  
+}else if(language=='es'){
+  question=paste0("La funci\\'on de densidad $f(x)$ de la variable aleatria continua $X$ es igual a $$", k%/%2, "\\cdot\\sin(", k,"\\cdot x)$$ si $$0\\leq x\\leq \\frac{\\pi}{", k, "}$$  y es igual a $0$ en otro caso  (no es necesario que compruebes que $f$ es una funci\\'on de densidad).  Calcula la probabilidad $$P(0<X<\\frac{\\pi}{", d,"})$$ para la variable aleatoria $X$ definida por $f$. Usa  ", signifDig, " cifras significativas en tu respuesta.")  
+  
+  (answer=paste0("La respuesta es ", sol))
+  
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

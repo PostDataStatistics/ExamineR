@@ -1,3 +1,9 @@
+####################################################
+# www.postdata-statistics.com
+# POSTDATA. Introduction to Statistics.
+# Quiz questions using the R exams package.
+####################################################
+
 <<echo=FALSE, results=hide>>=
 
 ## Hypothesis test for Mean, X ~ N(0,1), sample size n<30 

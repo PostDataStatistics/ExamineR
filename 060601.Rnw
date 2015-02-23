@@ -1,0 +1,124 @@
+<<echo=FALSE, results=hide>>=
+
+## Hypothesis test for difference of Means, assumming known variances, sample sizes n1>30 and n2>30
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+## DATA GENERATION
+library(MASS)
+
+signifDig = 4
+
+
+
+
+
+(n1=sample(31:100,1))
+(n2=sample(31:100,1))
+
+(cl=sample(c(0.9,0.95,0.99),1))
+(alfa=1-cl)
+
+sol=0
+n=1
+b=2
+while(is.na(sol)|(abs(sol)<0.00001)|(abs(sol)>0.999)|(b>n)){
+
+  (xbar=signif(sample(seq(-50,50,length.out=1000),1), digits=3))
+(s=signif(sample(seq(0.1,10,length.out=50),1), digits=3))
+(n=sample(31:100,1))
+k=n-1
+(cl=sample(c(0.9,0.95,0.99),1))
+(alfa=1-cl)
+
+    TestType=1 # 1 for H1 mu > mu0, 2 for H1 mu < mu0, 3 for H1 mu = mu0
+  
+    if(TestType==1){
+      symbol=sanitizeLatexS("\\geq")
+      (mu0=signif(xbar-runif(1,min=1,max=4)*(s/sqrt(n)),digits=3))
+      (Statistic=(xbar-mu0)/(s/sqrt(n)))  
+      (Pvalue=1-pnorm(Statistic,mean=0,sd=1))
+    }
+    if(TestType==2){
+      symbol=sanitizeLatexS("\\leq")
+      (mu0=signif(xbar+runif(1,min=1,max=4)*(s/sqrt(n)),digits=3))
+      (Statistic=(xbar-mu0)/(s/sqrt(n)))  
+      (Pvalue=pnorm(Statistic,mean=0,sd=1))
+    }
+    if(TestType==3){
+      symbol="="
+      (mu0=signif(xbar+sample(c(-1,1),1)*runif(1,min=1,max=4)*(s/sqrt(n)),digits=3))
+      (Statistic=(xbar-mu0)/(s/sqrt(n)))        
+      if(xbar>mu0)(Pvalue=2*(1-pnorm(Statistic,mean=0,sd=1)))
+      else(Pvalue=2*(pnorm(Statistic,mean=0,sd=1)))
+    }
+  
+    
+  sol = signif(Pvalue, digits=4)
+}
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(sol, 4))
+
+
+## QUESTION STATEMENT GENERATION
+
+#(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
+
+if(language=='en'){
+question=paste0("$X$ is a normal random variable (and the variance of $X$ is unknown). 
+                A random sample of size $n=", n,"$, produces a sample mean 
+                 $\\bar{X}=", xbar, "$ and sample standard deviation 
+              $s=", s,"$. 
+              Test the null hypothesis:
+              $$H_0:\\,\\mu_X  ", symbol, " \\mu_0,$$ 
+where $\\mu_0=", mu0,"$. Find the p-value.
+Use 4 significant digits."
+                )
+  
+  answer=paste0(" The value of the test-statistics is $\\frac{\\bar X-\\mu_0}{\\frac{", s,"}{\\sqrt{", n,"}}}=
+                ",signif( Statistic,digits=4),"$. The solution is $s =", sol,"$.")
+  
+}else if(language=='es'){
+  question=paste0("La variable aleatoria $X$ es normal (y se desconoce su varianza). 
+                Se ha obtenido una muestra de tama\\~no $n=", n,"$, 
+                con media muestral $\\bar{X}=", xbar, "$ 
+              y cuasidesviaci\\'on  t\\'ipica muestral $s=", s,"$. 
+              Se desea contrastar la hipotesis nula:
+              $$H_0:\\,\\mu_X  ", symbol, " \\mu_0$$
+siendo $\\mu_0=", mu0,"$. Hallar el p-valor de este contraste.
+Utiliza 4 cifras significativas en tu respuesta."
+ )
+  
+  answer=paste0(" El estad\\'istico es $\\frac{\\bar X-\\mu_0}{\\frac{", s,"}{\\sqrt{", n,"}}}=
+                ",signif( Statistic,digits=4),"$.  La soluci\\'on  es  $s =", sol,"$.")
+  
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

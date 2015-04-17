@@ -3,16 +3,15 @@
   
 library(MASS)
 
-signifDig = 4 
+signifDig = 4  
 
-# P(X = a) for X a binomial distribution of type B(n, p).
+# Give p\in (0,1), calculate x;  P(X < x) = q, for t a t-Student distribution with n degrees of freedom
 
 sol=1
 while((sol<0.00001)|(sol>0.9999)){
-  n <- sample(5:8, 1)
-  p <- sample(3:7,1)/10
-  a <- sample(2:4,1)
-  sol = signif(dbinom(a, n, p), digits=4)
+  n =sample(5:15, 1)
+  q=sample(1:9,1)/10
+  sol = qt(q, df = n)
 }
 
 ## QUESTION/ANSWER GENERATION
@@ -25,12 +24,13 @@ while((sol<0.00001)|(sol>0.9999)){
 #(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
 
 if(language=='en'){
-  question=paste0("$X$ is a binomial random variable of type $B(", n, ", ", p,").$ Find the probability $$P(X=", a," ).$$ Use  ", signifDig, " significant digits in your answer.")
+  question=paste0("$T$ is a t-Student random variable with ", n, " degrees of freedom. Find value x such that 
+                  $$P(T < x )= ", q,".$$ Use  ", signifDig, " significant digits in your answer.")
   
   answer=paste0("The answer is ", sol)
   
 }else if(language=='es'){
-    question=paste0("La variable aleatoria $X$ es binomial, de tipo $B(", n, ", ", p,")$. Calcula la probabilidad $$P(X =", a, ").$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
+    question=paste0("La variable aleatoria $T$ es una t de Student con ", n, " grados de libertad. Calcula el valor x tal que  $$P(T < x )= ", q,".$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
   
   answer=paste0("La respuesta es ", sol)
   

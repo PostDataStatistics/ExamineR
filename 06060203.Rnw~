@@ -1,6 +1,6 @@
 <<echo=FALSE, results=hide>>=
 
-## Hypothesis test for sample means difference, X1 ~ N(0,1), X2 ~ N(0,1) sample sizes n1>30 n2>30, unknown variances
+## Hypothesis test for sample means difference, X1 ~ N(0,1), X2 ~ N(0,1) sample sizes n1>30 n2>30
 
 
 # Sanitizes variables for displaying within LaTeX via Sexpr

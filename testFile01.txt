@@ -1,3 +1,0 @@
-This is just a test file, for the sole purpose of github practice.
-
-This line has been added to the file for further practice.

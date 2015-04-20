@@ -105,7 +105,7 @@ This is a repository of statistics questions designed to be used with the [R pac
     * 04040103 $P(a<X)$
 * **040402 t Student inverse probability problem**
     * 04040201 $P(x<X)=q$
-    * 04040202 $P(x>X)=q$
+    * 04040202 $P(x>X)=q$ 
 
 
 #### 0405 Chi cuadrado

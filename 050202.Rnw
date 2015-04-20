@@ -1,12 +1,12 @@
 <<echo=FALSE, results=hide>>=
 ## DATA GENERATION
-## Confidence interval (top) for the mean, normal population, unknown variance, sample size < 30
+## Confidence interval (top) for the mean, normal population, unknown variance, sample size>30
 
 signifDig = 4  
 
 (xbar=signif(sample(seq(-50,50,length.out=1000),1), digits=3))
 (s=signif(sample(seq(0.1,10,length.out=50),1), digits=3))
-(n=sample(5:27,1))
+(n=sample(5:250,1))
 (nc=sample(c(0.9,0.95,0.99),1))
 (alfa=1-nc)
 
@@ -14,10 +14,10 @@ sol=0
 while((abs(sol)<0.00001)|(abs(sol)>999)){
   
   # calculate the critical value
-  (t_kalfa2= qt(1-alfa/2,df=(n-1)))
+  (z_alfa2= qnorm(1-alfa/2))
   
   # calculate the halfway of the confidence interval
-  halfway=t_kalfa2*s/sqrt(n)
+  halfway=z_alfa2*sigma/sqrt(n)
   
   # the confidence interval is
   #bottom

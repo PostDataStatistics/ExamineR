@@ -1,0 +1,71 @@
+<<echo=FALSE, results=hide>>=
+## DATA GENERATION
+## Coloured balls is a box
+
+library(MASS)
+signifDig = 4  
+
+# Set probabilities
+n=0
+while(n<8){
+    redNum = c(sample(2:10,1))
+    whiteNum = c(sample(2:10,1))
+    blueNum = c(sample(2:10,1))
+    n=redNum+blueNum+whiteNum
+    }
+
+
+
+## QUESTION/ANSWER GENERATION
+(solNumer=(redNum+whiteNum))
+(sol=signif(solNumer/n,signifDig))
+
+
+
+## QUESTION STATEMENT GENERATION
+if(language=='en'){
+  question=paste0("A box contains $",redNum,"$ red balls, $",blueNum,"$ blue balls and $",whiteNum,"$ white balls. 
+A ball is removed; calculate the probability that the ball is red or white. 
+Use ",signifDig," significant digits.
+")
+  
+  answer=paste0("The answer is ", sol)
+  
+}else if(language=='es'){
+    question=paste0("Una urna contiene $",redNum,"$ bolas rojas, $",blueNum,"$ bolas azules y $",whiteNum,"$ bolas blancas. 
+
+Calcula la probabilidad de que la bola extra\\'ida sea roja o blanca.
+
+Utiliza ",signifDig," cifras significativas en tu respuesta.
+")
+  
+
+  
+  answer=paste0("La respuesta es $\\frac{",solNumer,"}{",n,"}$=", sol)
+
+
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}
+

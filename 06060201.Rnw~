@@ -1,6 +1,6 @@
 <<echo=FALSE, results=hide>>=
 
-## Hypothesis test for sample means difference, X1 ~ N(0,1), X2 ~ N(0,1) sample sizes n1>30 n2>30, unknown variances
+## Hypothesis test for sample means difference, X1 ~ N(0,1), X2 ~ N(0,1) sample sizes n1>30 n2>30
 
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
@@ -22,7 +22,7 @@ signifDig = 4
 sol=0
 while((abs(sol)<0.00001)|(abs(sol)>999)){
   
-    TestType=3 # Ha: 1 to test mu1 > mu2, 2 to test mu1 < mu2, 3 to test mu1 = mu2
+    TestType=1 # Ha: 1 to test mu1 > mu2, 2 to test mu1 < mu2, 3 to test mu1 = mu2
     
     if(TestType==1){
       symbol=sanitizeLatexS("\\leq")
@@ -65,7 +65,8 @@ if(language=='en'){
 question=paste0("$X_1$ and $X_2$ are a normal random variables. 
                 Two random samples of sizes $n_1=", n1,"$ and $n_2=", n2,"$ produce, respectively, 
                 two sample means $$\\bar{X}_1=", xbar1,",\\qquad \\bar{X}_2=", xbar2,"$$ and  sample variances   
-                $$ s_1^2=", signif(s1^2,digits=signifDig), ",\\qquad s_2^2=", signif(s2^2,digits=signifDig), "$$  
+                $$ s_1^2=", signif(s1^2,digits=signifDig), ",\\qquad s_2^2=", 
+                signif(s2^2,digits=signifDig), "$$  
               Test the null hypothesis:
              $$H_0:\\mu_1 ", symbol, " \\mu_2$$
 Find the p-value. Use 4 significant digits."

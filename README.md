@@ -1,9 +1,16 @@
-# ExamineR #
+
 
 This is a repository of statistics questions designed to be used with the [R package exams](http://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCEQFjAA&url=http%3A%2F%2Fcran.r-project.org%2Fpackage%3Dexams&ei=s_RQVPK-GZLwaMOjgeAH&usg=AFQjCNE9Ptk-koSUDxnL3UFCcTYLvL2C4w&sig2=MiRLL0PGEwYkJEgKZvRgqA&bvm=bv.78597519,d.d2s).
 
 ## Thesaurus
+### 00 Rounding numbers
+ * 101010 Round a number to k significant digits
+
 ### 01 Descriptive statistics
+ * 01010101 Mean
+ * 01010301 Median
+ * 01020101 Variance (population)
+ * 01020201 Stardard deviation (population)
 
 ### 02 Probability
 
@@ -200,7 +207,11 @@ This is a repository of statistics questions designed to be used with the [R pac
 * 060802 $H_a:\, \sigma_1 < \sigma_2$
 * 060803 $H_a:\, \sigma_1 \neq \sigma_2$
   
-### 07 Linear regression
+### 10 Linear regression
+
+### 11 Chi square test
+
+### 12 One way Anova
 
 
  

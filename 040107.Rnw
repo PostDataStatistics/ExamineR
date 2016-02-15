@@ -1,5 +1,15 @@
 <<echo=FALSE, results=hide>>=
-  ## DATA GENERATION
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## DATA GENERATION
+
+# binomial, P(X>=a)
   
 library(MASS)
 

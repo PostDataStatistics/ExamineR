@@ -1,0 +1,68 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+# P(F < b) for F a Fisher-Snedecor distribution with n1 and n2 degrees of freedom.
+
+## DATA GENERATION
+  
+library(MASS)
+
+signifDig = 4  
+
+sol=1
+while((sol<0.00001)|(sol>0.9999)){
+  n1 =sample(5:15,1)
+  n2 =sample(5:15,1)
+  b=sample(4:7,1)/2
+  sol = pf(b, df1 = n1, df2=n2)
+}
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(sol, 4))
+
+
+## QUESTION STATEMENT GENERATION
+
+#(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
+
+if(language=='en'){
+  question=paste0("$F$ is a Fisher Snedecor random variable with ",n1," and ",n2,"  degrees of freedom. Find the probability $$P(F < ", b," ).$$ Use  ", signifDig, " significant digits in your answer.")
+  
+  answer=paste0("The answer is ", sol)
+  
+}else if(language=='es'){
+    question=paste0("$F$ es una variable aleatoria que sigue una distribuci\\'on de Fisher-Snedecor ", n1," y  ", n2,"  grados de libertad. Calcula la probabilidad $$P(F < ", b," ).$$  Escribe tu respuesta con ", signifDig, " cifras significativas." )
+  
+  answer=paste0("La respuesta es ", sol)
+  
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

@@ -1,15 +1,19 @@
 <<echo=FALSE, results=hide>>=
 
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
 ## Hypothesis test for sample variances (two populations), X1 and X2 normal variables 
-
-
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
 # Adds slashes to LaTeX special characters, which results in single-slash in tex output
 sanitizeLatexS <- function(str) {
   gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
 }
-
 
 ## DATA GENERATION
 
@@ -72,7 +76,7 @@ if(language=='en'){
                   $n_1=", n1,"$ and $n_2=", n2,"$ that produce, respectively, 
                  sample standard deviations  $s_1=", s1, ",\\, s_2=", s2,"$.  
                   Test the null hypothesis:
-                  $$H_0: s_1 ", symbol, " s_2 $$
+                  $$H_0: \\sigma_1 ", symbol, " \\sigma_2 $$
                   Find the p-value. Use 4 significant digits."
                 )
   
@@ -86,7 +90,7 @@ if(language=='en'){
     Se han obtenido sendas muestras de tama\\~nos $n_1=", n1,"$ y $n_2=", n2,"$, respectivemente, 
     con cuasidesviaciones t\\'ipicas (muestrales) $s_1=", s1, ",\\, s_2=", s2,"$.  
     Se desea contrastar la hip\\'otesis nula:
-             $$H_0: s_1 ", symbol, " s_2$$
+             $$H_0: \\sigma_1 ", symbol, " \\sigma_2$$
 Hallar el p-valor de este contraste.
 Utiliza 4 cifras significativas en tu respuesta."
  )

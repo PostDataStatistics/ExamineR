@@ -1,4 +1,12 @@
 <<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
 ## DATA GENERATION
 ## Given P(AuB), calculate the probability of the complementary event of AnB
 
@@ -34,7 +42,7 @@ if(language=='en'){
 \\[
 P(A)=\\left(\\frac{",numPA,"}{",denPA,"}\\right) \\qquad
 P(B)=\\left(\\frac{",numPB,"}{",denPB,"}\\right) \\qquad
-P(A\\cup B)=\\left(\\frac{",numPAB,"}{",denPAB,"}\\right)
+P(A\\cup B)=\\left(\\frac{",numPAUB,"}{",denPAUB,"}\\right)
 \\]
 Calculate the probability of the {\\bf complementary} event of $A\\cap B$ with ",signifDig," significant digits.
                   ")
@@ -46,7 +54,7 @@ Calculate the probability of the {\\bf complementary} event of $A\\cap B$ with "
 \\[
 P(A)=\\left(\\frac{",numPA,"}{",denPA,"}\\right) \\qquad
 P(B)=\\left(\\frac{",numPB,"}{",denPB,"}\\right) \\qquad
-P(A\\cup B)=\\left(\\frac{",numPAB,"}{",denPAB,"}\\right)
+P(A\\cup B)=\\left(\\frac{",numPAUB,"}{",denPAUB,"}\\right)
 \\]
 Calcula la probabilidad del evento {\\bf complementario} de $A\\cap B$. Utiliza ",signifDig," cifras significativas en tu respuesta.
 ")

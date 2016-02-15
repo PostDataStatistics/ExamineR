@@ -1,9 +1,3 @@
-####################################################
-# www.postdata-statistics.com
-# ExamineR
-################################################################
-
-
 <<echo=FALSE, results=hide>>=
 
 ## Hypothesis test for sample proportion, X ~ N(0,1), sample size n>30 

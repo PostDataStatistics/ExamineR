@@ -1,7 +1,13 @@
 <<echo=FALSE, results=hide>>=
 
-## Hypothesis test for sample means difference, X1 ~ N(0,1), X2 ~ N(0,1) sample sizes n1>30 n2>30, unknown variances
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
 
+## Hypothesis test for sample means difference, X1 ~ N(0,1), X2 ~ N(0,1) sample sizes n1>30 n2>30, unknown variances
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
 # Adds slashes to LaTeX special characters, which results in single-slash in tex output
@@ -11,7 +17,6 @@ sanitizeLatexS <- function(str) {
 
 
 ## DATA GENERATION
-
 library(MASS)
 signifDig = 4
 

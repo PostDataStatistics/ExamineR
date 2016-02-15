@@ -1,14 +1,13 @@
-####################################################
-# www.postdata-statistics.com
-# POSTDATA. Introduction to Statistics.
-# Quiz questions using the R exams package.
-####################################################
-
 <<echo=FALSE, results=hide>>=
 
-## Hypothesis test for Mean, X ~ N(0,1), sample size n<30 
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
 
-  ## DATA GENERATION
+## Hypothesis test for Mean, X ~ N(0,1), sample size n<30 
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
 # Adds slashes to LaTeX special characters, which results in single-slash in tex output
@@ -17,8 +16,8 @@ sanitizeLatexS <- function(str) {
 }
 
 
+## DATA GENERATION
 library(MASS)
-
 signifDig = 4
 
 sol=0

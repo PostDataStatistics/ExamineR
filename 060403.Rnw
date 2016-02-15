@@ -1,5 +1,12 @@
 <<echo=FALSE, results=hide>>=
 
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
 ## Hypothesis test for sample variance, X ~ N(0,1), sample size n>30 
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
@@ -7,7 +14,6 @@
 sanitizeLatexS <- function(str) {
   gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
 }
-
 
 ## DATA GENERATION
 

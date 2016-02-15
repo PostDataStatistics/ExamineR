@@ -1,4 +1,12 @@
 <<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
 ## DATA GENERATION
 ##  French roulette
 
@@ -29,7 +37,7 @@ Utiliza ",signifDig," cifras significativas en tu respuesta.
   
 
   
-  answer=paste0("La respuesta es $\\frac{",n+1,"}{37}$=", sol)
+  answer=paste0("La respuesta es $\\frac{",36-n,"}{37}$=", sol)
 
 
 }

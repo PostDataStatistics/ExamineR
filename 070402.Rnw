@@ -1,0 +1,124 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Linear regression: do residuals follow a normal distribution (it does NOT follow it)?
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+## DATA GENERATION
+numcol = 5 
+n = numcol*10
+
+beta1 = sample(c(-4:1,1:4)/4, size = 1)
+beta0 = sample(c(-4:1,1:4), size = 1)
+
+x = sample(c(11, 13, 15, 17, 19), size = n, replace = TRUE)
+
+sigma = sample(c(.3, .4), size = 1)
+
+y=c()
+for(i in 1:(n)){
+y = c(y, beta1*x[i]+beta0 + rbeta(1, shape1 = 1.5, shape2 = .25))     
+     # y = c(y, beta1*x[i]+beta0 + rexp(n = 1, rate = 1))
+}
+
+# y = beta1*x+beta0 + rnorm(n = n, mean = 0, sd = sigma)
+
+
+dataX = matrix(x,ncol=numcol,nrow=10,byrow=T)
+dataY = matrix(y,ncol=numcol,nrow=10,byrow=T)
+
+
+
+
+
+## QUESTION/ANSWER GENERATION
+
+
+
+if(language=='en'){
+  question=paste0(" "
+                )
+  
+  answer=paste0(" ")
+
+}else if(language=='es'){
+  question=paste0(
+    "Considera las $n=", n,"$  medidas simultaneas de las  variables aleatorias $x$ e $y$ almacenadas en las tablas, m\\'as abajo (cada par de valores (x,y) ocupa celdas hom\\'ologas en cada tabla). 
+    
+    Decide si se cumple la condici\\'on de normalidad de los res\\'iduos para que aplicar las t\\'ecnicas de regresi\\'on lineal tenga sentido."
+ )
+
+  answer=paste0(" Observa que las gr\\'aficas de la primera fila 
+                sugieren que los res\\'iduos NO siguen una distribuci\\'on normal y que no hay homocedasticidad: 
+                los puntos tiene forma de S (m\\'as o menos pronunciada) a la derecha y la diferencia entre 
+                las columnas a la izquierda. 
+                Los datos de este ejercicio han sido generados para que as\\'i sea aunque  
+                debido que se generan al azar, estos rasgos pueden estar m\\'as o menos acentuados.")
+
+
+}
+
+cat(question)
+
+
+@ 
+  \begin{question}
+<<echo=False, results=tex>>=
+  cat(paste(question,collapse=""))
+@
+
+\vspace{.1cm}
+
+Medidas de la variable $x$
+
+\vspace{.1cm}
+
+<<echo=False, results=tex>>=
+library(knitr)
+kable(dataX, digits=2, format = "latex")
+@
+
+\vspace{.1cm}
+
+Medidas de la variable $y$
+
+\vspace{.1cm}
+
+<<echo=False, results=tex>>=
+library(knitr)
+kable(dataY, digits=2, format = "latex")
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex>>=
+  cat(paste(answer,collapse=""))
+@
+
+\vspace{.2cm}
+
+<<echo=FALSE, fig=TRUE>>=
+par(mfrow = c(2,2), mar = c(5,2,3,1))
+plot(lm(y~x))
+par(mfrow = c(1,1))
+@
+
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.0001}

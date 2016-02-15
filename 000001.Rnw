@@ -1,0 +1,71 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## DATA GENERATION
+## working with significant figures. Round numbers between 0 and 10 with between 3 up to 5 digits
+
+library(MASS)
+signifDig = 4  
+
+# Set value to be rounded
+
+n.dig <- sample(6:10, size = 1)
+n.sigf <- sample(3:5, size = 1)
+options(digits=n.dig)
+n = runif(n = 1, min = 0, max = 10)
+
+## QUESTION/ANSWER GENERATION
+
+sol = signif(x = n, digits = n.sigf) 
+
+
+## QUESTION STATEMENT GENERATION
+
+if(language=='en'){
+  question=paste0("Round the number 
+\\[
+",n,"
+\\]
+to ",n.sigf," significant figures.")
+  
+  answer=paste0("The answer is ", sol)
+  
+}else if(language=='es'){
+  question=paste0("Redondea el n\\'umero 
+\\[
+",n,"
+\\]
+a ",n.sigf," cifras significativas.")
+  
+  answer=paste0("La respuesta es ", sol)  
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}
+

@@ -1,5 +1,12 @@
 <<echo=FALSE, results=hide>>=
 
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
 ## Hypothesis test for sample means difference, X1 ~ N(0,1), X2{N(0,1)} sample size n<30, 
 ## unknown sigma1, sigma2 and assume sigma1 <> sigma2 
 
@@ -23,34 +30,37 @@ signifDig = 4
 sol=0
 while((abs(sol)<0.00001)|(abs(sol)>999)){
   
-    TestType=2 # Ha: 1 to test mu1 > mu2, 2 to test mu1 < mu2, 3 to test mu1 = mu2
+    TestType = 2 # Ha: 1 to test mu1 > mu2, 2 to test mu1 < mu2, 3 to test mu1 = mu2
     
     if(TestType==1){
       symbol=sanitizeLatexS("\\leq")
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
       (xbar2=signif(xbar1-abs(rnorm(1,mean=1, sd=3)),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
-      (s2=signif(s1*sample(c(runif(1,0.7,0.8),runif(1,1.2,1.4)),1),digits=signifDig))
-      (Statistic=( xbar1 - xbar2 ) / sqrt( (((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))*((1/n1) + (1/n2) )) )
-      (pValue=1-pt(Statistic,df=n1+n2-2))
+      (s2=signif(s1*sample(c(runif(1,0.3,0.4),runif(1,1.6,1.9)),1),digits=signifDig))
+      (Statistic = (xbar1 - xbar2) / sqrt(s1^2 / n1 + s2^2 / n2) )
+      (k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
+      (pValue = 1-pt(Statistic, df = k))
     }
     if(TestType==2){
           symbol=sanitizeLatexS("\\geq")
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
       (xbar2=signif(xbar1+abs(rnorm(1,mean=1, sd=3)),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
-      (s2=signif(s1*sample(c(runif(1,0.7,0.8),runif(1,1.2,1.4)),1),digits=signifDig))
-      (Statistic=( xbar1 - xbar2 ) / sqrt( (((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))*((1/n1) + (1/n2)) ) )
-      (pValue=pt(Statistic,df=n1+n2-2))
+      (s2=signif(s1*sample(c(runif(1,0.3,0.4),runif(1,1.6,1.9)),1),digits=signifDig))
+      (Statistic = (xbar1 - xbar2) / sqrt(s1^2 / n1 + s2^2 / n2) )
+       (k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
+      (pValue=pt(Statistic, df = k))
     }
     if(TestType==3){
      symbol="="
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
        (xbar2=signif(xbar1+rnorm(1,mean=1, sd=3),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
-      (s2=signif(s1*sample(c(runif(1,0.7,0.8),runif(1,1.2,1.4)),1),digits=signifDig))
-      (Statistic=( xbar1 - xbar2 ) / sqrt( (((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))*((1/n1) + (1/n2)) ) )
-      (pValue=2*(1-pt(abs(Statistic),df=n1+n2-2)))
+      (s2=signif(s1*sample(c(runif(1,0.3,0.4),runif(1,1.6,1.9)),1),digits=signifDig))
+      (Statistic = (xbar1 - xbar2) / sqrt(s1^2 / n1 + s2^2 / n2) )
+      (k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
+      (pValue=2*(1-pt(abs(Statistic),df=k)))
     }
     
   sol = signif(pValue, digits=signifDig)

@@ -1,6 +1,12 @@
-
-
 <<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
 ## Hypothesis test for Mean, X ~ N(0,1), sample size n>30 
 
 # Sanitizes variables for displaying within LaTeX via Sexpr

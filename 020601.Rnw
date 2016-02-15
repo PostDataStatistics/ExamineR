@@ -1,4 +1,12 @@
 <<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
 ## DATA GENERATION
 ##  Bayes Theorem
 
@@ -35,10 +43,11 @@ while(is.na(sol)|(abs(sol)<0.00001)|(abs(sol)>0.999)){
 
 
 
-write(fracInt2latex(numProb1,denomProb1),file=randomName[1])
+# write(fracInt2latex(numProb1,denomProb1), file=randomName[1])
+# write(fracInt2latex(numProb2,denomProb2), file=randomName[2])
 
-write(fracInt2latex(numProb2,denomProb2),file=randomName[2])
-
+randomName1 = fracInt2latex(numProb1,denomProb1)
+randomName2 = fracInt2latex(numProb2,denomProb2)
 
 ## QUESTION STATEMENT GENERATION
 if(language=='en'){
@@ -50,10 +59,10 @@ if(language=='en'){
 \\end{itemize}
 The probability of each event $B_i$ is, respectively
 
-\\[\\left(\\input{",randomName[1],"}\\right)\\]
+\\[\\left(",randomName1,"\\right)\\]
 
 and the conditional probalities $P(A|B_1),\\ldots,P(A|B_{",n,"})$ are 
-\\[\\left(\\input{",randomName[2],"}\\right)\\]
+\\[\\left(\\input{",randomName2,"}\\right)\\]
 Calculate the probability $P(B_{",event,"}|A)$ with ",signifDig," significant digits.
                   ")
   
@@ -68,11 +77,11 @@ Calculate the probability $P(B_{",event,"}|A)$ with ",signifDig," significant di
 \\end{itemize}
 Adem\'as las probabilidades $P(B_1),\\ldots,P(B_{",n,"})$ son:
 \\[\\left(
-\\input{",randomName[1],"}
+",randomName1,"
 \\right)\\]
 Mientras que las probabilidades condicionadas $p(A|B_1),\\ldots,p(A|B_{",n,"})$ son:
 \\[\\left(
-\\input{",randomName[2],"}
+",randomName2,"
 \\right)\\]
 Calcula la probabilidad $P(B_{",event,"}|A)$. Utiliza ",signifDig," cifras significativas en tu respuesta.
   ")

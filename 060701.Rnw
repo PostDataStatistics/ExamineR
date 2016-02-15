@@ -1,8 +1,13 @@
 <<echo=FALSE, results=hide>>=
 
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
 ## Hypothesis test for sample proportions difference (two populations) sample size n1>30, n2>30 
-
-
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
 # Adds slashes to LaTeX special characters, which results in single-slash in tex output
@@ -31,21 +36,27 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
        symbol=sanitizeLatexS("\\leq")
       (phat1=signif(runif(1,min=0.3,max=0.7), digits=2))
       (phat2=signif(phat1-runif(1,min=0.01,max=phat1/2), digits=2))
-      (statistic=( phat1 - phat2 ) / sqrt((1/n1+1/n2)*(n1*phat1+n2*phat2)/(n1+n2)) )
+      (pSample = (n1 * phat1 + n2 * phat2) / (n1 + n2) ) 
+      (qSample = 1- pSample)
+      (statistic=( phat1 - phat2 ) / sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) )
       (pValue=1-pnorm(statistic,mean=0,sd=1))
     }
     if(TestType==2){
       symbol=sanitizeLatexS("\\geq")
       (phat1=signif(runif(1,min=0.3,max=0.7), digits=2))
       (phat2=signif(phat1+runif(1,min=0.01,max=phat1/2), digits=2))
-      (statistic=( phat1 - phat2 ) / sqrt((1/n1+1/n2)*(n1*phat1+n2*phat2)/(n1+n2)) )
+      (pSample = (n1 * phat1 + n2 * phat2) / (n1 + n2) ) 
+      (qSample = 1- pSample)
+      (statistic=( phat1 - phat2 ) / sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) )
       (pValue=pnorm(statistic,mean=0,sd=1))
     }
     if(TestType==3){
        symbol="="
       (phat1=signif(runif(1,min=0.3,max=0.7), digits=2))
       (phat2=signif(phat1+sample(c(-1,1),1)*runif(1,min=0.01,max=phat1/2), digits=2))
-      (statistic=( phat1 - phat2 ) / sqrt((1/n1+1/n2)*(n1*phat1+n2*phat2)/(n1+n2)) )
+      (pSample = (n1 * phat1 + n2 * phat2) / (n1 + n2) ) 
+      (qSample = 1- pSample)
+      (statistic=( phat1 - phat2 ) / sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) )
       (pValue=2*(1-pnorm(abs(statistic),mean=0,sd=1)))
     }
 

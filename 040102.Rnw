@@ -1,6 +1,17 @@
 <<echo=FALSE, results=hide>>=
-  ## DATA GENERATION
-  
+
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+# binomial, P(a<X<b)
+
+## DATA GENERATION
+
 library(MASS)
 
 signifDig = 4

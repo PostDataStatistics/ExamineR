@@ -1,9 +1,16 @@
 <<echo=FALSE, results=hide>>=
-## DATA GENERATION
+
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
 ## Confidence interval (bottom) for the stander deviation, normal population
 
-
-
+## DATA GENERATION
 
 signifDig = 4  
 

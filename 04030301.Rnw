@@ -1,18 +1,26 @@
 <<echo=FALSE, results=hide>>=
-  ## DATA GENERATION
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+# Give X~N(mu, sigma), Z~N(0,1) and z such that P(z<Z)=q, calculate x such that  P(x < X) = q.
+
+## DATA GENERATION
   
 library(MASS)
 
 signifDig = 4  
-
-# Give X~N(mu, sigma), Z~N(0,1) and z such that P(z<Z)=q, calculate x such that  P(x < X) = q.
 
 sol=1
 while((sol<0.00001)|(sol>0.9999)){
   mu <- sample(-5:5, 1)
   sigma <- sample(1:10,1)/10
   p=sample(1:9,1)/10
-  z=qnorm(q,0,1)
+  z= signif( qnorm(p,0,1), digits = signifDig)
   sol = z*sigma+mu
 }
 

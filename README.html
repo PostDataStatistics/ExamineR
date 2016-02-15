@@ -61,108 +61,180 @@ img {
 
 
 
-<div id="examiner" class="section level1">
-<h1>ExamineR</h1>
 <p>This is a repository of statistics questions designed to be used with the <a href="http://www.google.es/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0CCEQFjAA&amp;url=http%3A%2F%2Fcran.r-project.org%2Fpackage%3Dexams&amp;ei=s_RQVPK-GZLwaMOjgeAH&amp;usg=AFQjCNE9Ptk-koSUDxnL3UFCcTYLvL2C4w&amp;sig2=MiRLL0PGEwYkJEgKZvRgqA&amp;bvm=bv.78597519,d.d2s">R package exams</a>.</p>
+<div id="how-does-it-work" class="section level2">
+<h2>How does it work?</h2>
+<p>We assume that you have, at least, an updated <a href="https://cran.r-project.org/">distribution of R</a> installed in your computer. If you are new in <code>R</code>, probably you would like to install also the interface <a href="https://www.rstudio.com/">RStudio</a>.</p>
+<p>If this is your first time, you can start to download the file “just a test” (see below), which contains the necessary files for you compile three versions of the same test. It will serve as a template and can easily adapt it to your needs. More detailed information on quiestion types and quiz structure can be found <a href="tutorial">here</a> (only in Spanish). Complete information on the exams package is available <a href="https://cran.r-project.org/web/packages/exams/vignettes/exams.pdf">here</a> (but we think it’s best to start with the easiest).</p>
+<div id="generate-an-exam" class="section level3">
+<h3>Generate an exam</h3>
+<p>Just a quik look? Download the zip file <code>ExamineR-just-a-try.zip</code> (in this repo), unzip, open and run <code>exampleR.R</code> in the R terminal or RSturio (read the file before running). Essentially, you are doing the following:</p>
+<ul>
+<li>You need to at the same folder
+<ul>
+<li>The desired questions</li>
+<li>The quizzes and answers templates (customize them, if needed!)</li>
+<li>The <code>ExamineR-exam-generator.R</code> file</li>
+</ul></li>
+<li>Open the file <code>ExamineR-exam-generator.R</code> and follow the instructions</li>
+<li>Consider to include a <code>set.seed()</code> sentence as, otherwise, each compilation will produce a “different” exam</li>
+</ul>
+</div>
+</div>
 <div id="thesaurus" class="section level2">
 <h2>Thesaurus</h2>
+<ul>
+<li>Lenguage: en - English, es - Spanish</li>
+<li>Question type: num - numeric, mult - multiple choice</li>
+</ul>
+<div id="rounding-numbers" class="section level3">
+<h3>00 Rounding numbers</h3>
+<ul>
+<li>000001 Round a number between 0 and 10 to 3-5 significant digits (en - es - num)</li>
+<li>000002 Round a number between 0.01 and 1 to 3-5 significant digits (en - es - num)</li>
+<li>000003 Round a number between 100 and 100000 to 3-5 significant digits (en - es - num)</li>
+<li>000004 Round a large number to 3-6 significant digits (en - es - num)</li>
+</ul>
+</div>
 <div id="descriptive-statistics" class="section level3">
 <h3>01 Descriptive statistics</h3>
+<div id="central-values" class="section level4">
+<h4>0101 Central values</h4>
+<ul>
+<li>01010101 Mean (en - es - num)</li>
+<li>01010301 Median (en - es - num)</li>
+</ul>
+</div>
+<div id="dispersal" class="section level4">
+<h4>0102 Dispersal</h4>
+<ul>
+<li>01020101 Population variance (en - es - num)</li>
+<li>01020201 Population stardard deviation (en - es - num)</li>
+<li>01020301 Sample variance (en - es - num)</li>
+<li>01020401 Sample stardard deviation (en - es - num)</li>
+</ul>
+</div>
+<div id="graphics" class="section level4">
+<h4>0103 Graphics</h4>
+<ul>
+<li>010301 Pie and bar graphs - not yet</li>
+<li>010302 Histograms - not yet</li>
+<li>010303 Boxplots - not yet</li>
+<li>010304 Catchall
+<ul>
+<li>01020401 Given a boxplot, identify the corresponding histogram</li>
+<li>01020402 Given a histogram, identify the corresponding boxplot</li>
+</ul></li>
+</ul>
+</div>
 </div>
 <div id="probability" class="section level3">
 <h3>02 Probability</h3>
+<div id="properties" class="section level4">
+<h4>0200 Properties</h4>
 <ul>
-<li><strong>02000 Properties</strong>
-<ul>
-<li>020001 Given <span class="math">\(P(A)\)</span>, <span class="math">\(P(B)\)</span> and <span class="math">\(P(A\cap B)\)</span>, calculate <span class="math">\(P(A\cup B)\)</span></li>
-<li>020002 Given <span class="math">\(P(A)\)</span>, <span class="math">\(P(B)\)</span> and <span class="math">\(P(A\cup B)\)</span>, calculate <span class="math">\(P(A\cap B)\)</span></li>
-<li>020003 Given <span class="math">\(P(A)\)</span>, <span class="math">\(P(B)\)</span> and <span class="math">\(P(A\cup B)\)</span>, calculate <span class="math">\(P((A\cap B)^c)\)</span></li>
-<li>020004 Given <span class="math">\(P(A)\)</span>, <span class="math">\(P(B)\)</span> and <span class="math">\(P(A\cap B)\)</span>, calculate <span class="math">\(P((A\cup B)^c)\)</span></li>
-</ul></li>
-<li><strong>0201 Laplace’s rule</strong>
-<ul>
-<li>020101 Coloured balls 1</li>
-<li>020102 Coloured balls 2</li>
-<li>020103 French roulette 1</li>
-<li>020104 French roulette 2</li>
-</ul></li>
-<li><strong>0202 Conditional probability</strong>
-<ul>
-<li>020201 Independent events</li>
-<li>020202 Definition of conditioned probability</li>
-<li>020203 Two-ways table</li>
-</ul></li>
-<li><p><strong>0204 Combinatorial</strong></p></li>
-<li><p><strong>0205 Total probability</strong></p></li>
-<li><strong>0206 Bayes Theorem</strong>
-<ul>
-<li>020601 Basic</li>
-<li>020602 factory workers</li>
-<li>020603 Diagnostic test</li>
-</ul></li>
+<li>020001 Given <span class="math">\(P(A)\)</span>, <span class="math">\(P(B)\)</span> and <span class="math">\(P(A\cap B)\)</span>, calculate <span class="math">\(P(A\cup B)\)</span> (en - es - num)</li>
+<li>020002 Given <span class="math">\(P(A)\)</span>, <span class="math">\(P(B)\)</span> and <span class="math">\(P(A\cup B)\)</span>, calculate <span class="math">\(P(A\cap B)\)</span> (en - es - num)</li>
+<li>020003 Given <span class="math">\(P(A)\)</span>, <span class="math">\(P(B)\)</span> and <span class="math">\(P(A\cup B)\)</span>, calculate <span class="math">\(P((A\cap B)^c)\)</span> (en - es - num)</li>
+<li>020004 Given <span class="math">\(P(A)\)</span>, <span class="math">\(P(B)\)</span> and <span class="math">\(P(A\cap B)\)</span>, calculate <span class="math">\(P((A\cup B)^c)\)</span> (en - es - num)</li>
 </ul>
+</div>
+<div id="laplaces-rule" class="section level4">
+<h4>0201 Laplace’s rule</h4>
+<ul>
+<li>020101 Coloured balls 1 (en - es - num)</li>
+<li>020102 Coloured balls 2 (en - es - num)</li>
+<li>020103 French roulette 1 (en - es - num)</li>
+<li>020104 French roulette 2 (en - es - num)</li>
+</ul>
+</div>
+<div id="conditional-probability" class="section level4">
+<h4>0202 Conditional probability</h4>
+<ul>
+<li>020201 Independent events (en - es - num)</li>
+<li>020202 Definition of conditioned probability (en - es - num)</li>
+<li>020203 Two-ways table (en - es - num)</li>
+</ul>
+</div>
+<div id="combinatorial" class="section level4">
+<h4>0204 Combinatorial</h4>
+</div>
+<div id="total-propability-theorem" class="section level4">
+<h4>0205 Total propability theorem</h4>
+<ul>
+<li>Not yet</li>
+</ul>
+</div>
+<div id="bayes-theorem" class="section level4">
+<h4>0206 Bayes theorem</h4>
+<ul>
+<li>020601 Basic (en - es - num)</li>
+<li>020602 factory workers (en - es - num)</li>
+<li>020603 Diagnostic test - not yet</li>
+</ul>
+</div>
 </div>
 <div id="random-variables-general-theory" class="section level3">
 <h3>03 Random variables, general theory</h3>
 <div id="general-discrete-random-variables" class="section level4">
 <h4>0301 General discrete random variables</h4>
 <ul>
-<li><strong>030101-Density</strong>
+<li>030101-Density
 <ul>
 <li></li>
 </ul></li>
-<li><strong>030102 Mean</strong>
+<li>030102 Mean
 <ul>
-<li>03010201 Calculate mean from a table</li>
-<li>03010202 Given the mean, complete a table</li>
-<li>03010203 Fear game</li>
+<li>03010201 Calculate mean from a table (en - es - num)</li>
+<li>03010202 Given the mean, complete the mass function table (en - es - num)</li>
+<li>03010203 Fear game (en - es - num)</li>
 </ul></li>
-<li><strong>030103 Variance and standard deviation</strong>
+<li>030103 Variance and standard deviation
 <ul>
-<li>03010301 Variance discrete random variable</li>
-<li>03010302 Standard deviation continuous random variable</li>
+<li>03010301 Variance discrete random variable (en - es - num)</li>
+<li>03010302 Standard deviation continuous random variable (en - es - num)</li>
 </ul></li>
-<li><strong>030104 affine combinations of discrete random variables</strong>
+<li>030104 affine combinations of discrete random variables
 <ul>
-<li>03010401 Mean</li>
-<li>03010402 Standard deviation</li>
-<li>03010403 Variance</li>
-<li>03010404 Mean of the sum of random variables</li>
-<li>03010405 Variance of the sum of random variables</li>
+<li>03010401 Mean (en - es - num)</li>
+<li>03010402 Standard deviation (en - es - num)</li>
+<li>03010403 Variance (en - es - num)</li>
+<li>03010404 Mean of the sum of random variables (en - es - num)</li>
+<li>03010405 Variance of the sum of random variables (en - es - num)</li>
 </ul></li>
-<li><strong>030105-Identidad media del cuadrado</strong>
+<li>030105 Mean Square identity
 <ul>
-<li>03010501 Dada media y varianza</li>
-<li>03010502 Dada media y media cuadrado</li>
+<li>03010501 Known mean and variance (en - es - num)</li>
+<li>03010502 Known mean and mean square (en - es - num)</li>
 </ul></li>
-<li><strong>030106 Distribution function</strong>
+<li>030106 Distribution function
 <ul>
-<li>03010601 <span class="math">\(P(k_1 &lt; X \leq k_2)\)</span></li>
+<li>03010601 <span class="math">\(P(k_1 &lt; X \leq k_2)\)</span> (en - es - num)</li>
 </ul></li>
 </ul>
 </div>
 <div id="general-continuous-random-variables" class="section level4">
 <h4>0302 General continuous random variables</h4>
 <ul>
-<li><strong>030201 Density</strong>
+<li>030201 Density
 <ul>
-<li>03020101 Chose <span class="math">\(k\)</span> so that an (affine-like) function is a density function</li>
-<li>03020105 Chose <span class="math">\(k\)</span> so that an (trigonometric) function is a density function</li>
+<li>03020101 Chose <span class="math">\(k\)</span> so that an (affine-like) function is a density function (en - es - num)</li>
+<li>03020105 Chose <span class="math">\(k\)</span> so that an (trigonometric) function is a density function (en - es - num)</li>
 </ul></li>
-<li><strong>030202 Mean</strong>
+<li>030202 Mean
 <ul>
-<li>03020201 Mean, affine-like density function function</li>
-<li>03020205 Mean, trigonometric density function function</li>
+<li>03020201 Mean, affine-like density function function (en - es - num)</li>
+<li>03020205 Mean, trigonometric density function function (en - es - num)</li>
 </ul></li>
-<li><strong>030203 Variance and standard deviation</strong>
+<li>030203 Variance and standard deviation
 <ul>
-<li>03020301 Variance, affine-like density function function.</li>
-<li>03020305 Standard deviation, trigonometric density function function</li>
+<li>03020301 Variance, affine-like density function function (en - es - num)</li>
+<li>03020305 Standard deviation, trigonometric density function function (en - es - num)</li>
 </ul></li>
-<li><strong>030204 Probabilities</strong>
+<li>030204 Probabilities
 <ul>
-<li>03020401 Probability of an interval, affine-like density function function.</li>
-<li>03020405 Probability of an interval, trigonometric density function function</li>
+<li>03020401 Probability of an interval, affine-like density function function (en - es - num)</li>
+<li>03020405 Probability of an interval, trigonometric density function function (en - es - num)</li>
 </ul></li>
 </ul>
 </div>
@@ -172,13 +244,13 @@ img {
 <div id="binomial" class="section level4">
 <h4>0401 Binomial</h4>
 <ul>
-<li>040101 <span class="math">\(P(X=x)\)</span></li>
-<li>040102<span class="math">\(P(a&lt;X&lt;b)\)</span></li>
-<li>040103P(a=&lt;X&lt;b)</li>
-<li>040104 P(a&lt;X=&lt;b)</li>
-<li>040105 P(a=&lt;X=&lt;b)</li>
-<li>040106 P(X&gt;a)</li>
-<li>040107 P(X&gt;=a)</li>
+<li>040101 <span class="math">\(P(X=x)\)</span> (en - es - num)</li>
+<li>040102 <span class="math">\(P(a&lt;X&lt;b)\)</span> (en - es - num)</li>
+<li>040103 <span class="math">\(P(a\leq X&lt;b)\)</span> (en - es - num)</li>
+<li>040104 <span class="math">\(P(a&lt;X=&lt;b)\)</span> (en - es - num)</li>
+<li>040105 <span class="math">\(P(a\leq X\leq b)\)</span> (en - es - num)</li>
+<li>040106 <span class="math">\(P(X&gt;a)\)</span> (en - es - num)</li>
+<li>040107 <span class="math">\(P(X\geq a)\)</span> (en - es - num)</li>
 </ul>
 </div>
 <div id="poisson" class="section level4">
@@ -187,72 +259,72 @@ img {
 <div id="normal" class="section level4">
 <h4>0403 Normal</h4>
 <ul>
-<li><strong>040301 Normal Direct probability problem</strong>
+<li>040301 Normal Direct probability problem
 <ul>
-<li>04030101 Prob puntual</li>
-<li>04030102 <span class="math">\(P(a&lt;X&lt;b)\)</span></li>
-<li>04030103 <span class="math">\(P(X&lt;b)\)</span></li>
-<li>04030104 <span class="math">\(P(a&lt;X)\)</span></li>
-<li>04030105 <span class="math">\(P(a\leq X&lt;b)\)</span></li>
-<li>04030106 <span class="math">\(P(a&lt;X\leq b)\)</span></li>
-<li>04030107 <span class="math">\(P(a\leq X\leq b)\)</span></li>
+<li>04030101 <span class="math">\(P(X=x)\)</span> (en - es - num)</li>
+<li>04030102 <span class="math">\(P(a&lt;X&lt;b)\)</span> (en - es - num)</li>
+<li>04030103 <span class="math">\(P(X&lt;b)\)</span> (en - es - num)</li>
+<li>04030104 <span class="math">\(P(a&lt;X)\)</span> (en - es - num)</li>
+<li>04030105 <span class="math">\(P(a\leq X&lt;b)\)</span> (en - es - num)</li>
+<li>04030106 <span class="math">\(P(a&lt;X\leq b)\)</span> (en - es - num)</li>
+<li>04030107 <span class="math">\(P(a\leq X\leq b)\)</span> (en - es - num)</li>
 </ul></li>
-<li><strong>040302 Normal Inverse probability problem</strong>
+<li>040302 Normal Inverse probability problem (quantiles or critic value)
 <ul>
-<li>04030201 <span class="math">\(P(x&lt;X)=q\)</span></li>
-<li>04030202 <span class="math">\(P(x&gt;X)=q\)</span></li>
+<li>04030201 <span class="math">\(P(x&lt;X)=q\)</span> (en - es - num)</li>
+<li>04030202 <span class="math">\(P(x&gt;X)=q\)</span> (en - es - num)</li>
 </ul></li>
-<li><strong>040303 Tipificacion</strong>
+<li>040303 Tipificacion
 <ul>
-<li>04030301 Find <span class="math">\(z\)</span> such that <span class="math">\(P(z&lt;Z)=P(x&lt;X)\)</span> for <span class="math">\(Z\sim N(0,1)\)</span> and <span class="math">\(X\sim N(\mu, \sigma)\)</span></li>
+<li>04030301 Find <span class="math">\(z\)</span> such that <span class="math">\(P(z&lt;Z)=P(x&lt;X)\)</span> for <span class="math">\(Z\sim N(0,1)\)</span> and <span class="math">\(X\sim N(\mu, \sigma)\)</span> (en - es - num)</li>
 </ul></li>
 </ul>
 </div>
 <div id="t-de-student" class="section level4">
 <h4>0404 t de Student</h4>
 <ul>
-<li><strong>040401 t Student direct probability problem</strong>
+<li>040401 t Student direct probability problem
 <ul>
-<li>04040101 <span class="math">\(P(a&lt;X&lt;b)\)</span></li>
-<li>04040102 <span class="math">\(P(X&lt;b)\)</span></li>
-<li>04040103 <span class="math">\(P(a&lt;X)\)</span></li>
+<li>04040101 <span class="math">\(P(a&lt;X&lt;b)\)</span> (en - es - num)</li>
+<li>04040102 <span class="math">\(P(X&lt;b)\)</span> (en - es - num)</li>
+<li>04040103 <span class="math">\(P(a&lt;X)\)</span> (en - es - num)</li>
 </ul></li>
-<li><strong>040402 t Student inverse probability problem</strong>
+<li>040402 t Student inverse probability problem
 <ul>
-<li>04040201 <span class="math">\(P(x&lt;X)=q\)</span></li>
-<li>04040202 <span class="math">\(P(x&gt;X)=q\)</span></li>
+<li>04040201 <span class="math">\(P(x&lt;X)=q\)</span> (en - es - num)</li>
+<li>04040202 <span class="math">\(P(x&gt;X)=q\)</span> (en - es - num)</li>
 </ul></li>
 </ul>
 </div>
 <div id="chi-cuadrado" class="section level4">
 <h4>0405 Chi cuadrado</h4>
 <ul>
-<li><strong>040501 Chi cuadrado Direct probability problem</strong>
+<li>040501 Chi cuadrado Direct probability problem
 <ul>
-<li>04050101 <span class="math">\(P(a&lt;X&lt;b)\)</span></li>
-<li>04050102 <span class="math">\(P(X&lt;b)\)</span></li>
-<li>04050103 <span class="math">\(P(a&lt;X)\)</span></li>
+<li>04050101 <span class="math">\(P(a&lt;X&lt;b)\)</span> (en - es - num)</li>
+<li>04050102 <span class="math">\(P(X&lt;b)\)</span> (en - es - num)</li>
+<li>04050103 <span class="math">\(P(a&lt;X)\)</span> (en - es - num)</li>
 </ul></li>
-<li><strong>040502 Chi cuadrado Inverse probability problem</strong>
+<li>040502 Chi cuadrado Inverse probability problem
 <ul>
-<li>04050201 <span class="math">\(P(x&lt;X)=q\)</span></li>
-<li>04050202 <span class="math">\(P(x&gt;X)=q\)</span></li>
+<li>04050201 <span class="math">\(P(x&lt;X)=q\)</span> (en - es - num)</li>
+<li>04050202 <span class="math">\(P(x&gt;X)=q\)</span> (en - es - num)</li>
 </ul></li>
 </ul>
 </div>
 <div id="f-fisher" class="section level4">
 <h4>0406 F Fisher</h4>
 <ul>
-<li><strong>040601 Chi cuadrado Direct probability problem</strong>
+<li>040601 Chi cuadrado Direct probability problem
 <ul>
-<li>04060101 <span class="math">\(P(a&lt;X&lt;b)\)</span></li>
-<li>04060102 <span class="math">\(P(X&lt;b)\)</span></li>
-<li>04060103 <span class="math">\(P(a&lt;X)\)</span></li>
+<li>04060101 <span class="math">\(P(a&lt;X&lt;b)\)</span> (en - es - num)</li>
+<li>04060102 <span class="math">\(P(X&lt;b)\)</span> (en - es - num)</li>
+<li>04060103 <span class="math">\(P(a&lt;X)\)</span> (en - es - num)</li>
 </ul></li>
-<li><strong>040602 Chi cuadrado Inverse probability problem</strong>
+<li>040602 Chi cuadrado Inverse probability problem
 <ul>
-<li>04060201 <span class="math">\(P(x&lt;X)=q\)</span></li>
-<li>04060202 <span class="math">\(P(x&gt;X)=q\)</span></li>
+<li>04060201 <span class="math">\(P(x&lt;X)=q\)</span> (en - es - num)</li>
+<li>04060202 <span class="math">\(P(x&gt;X)=q\)</span> (en - es - num)</li>
 </ul></li>
 </ul>
 </div>
@@ -262,70 +334,74 @@ img {
 </div>
 <div id="confidence-intervals" class="section level3">
 <h3>05 Confidence intervals</h3>
+<div id="mean-normal-random-variable-known-variance" class="section level4">
+<h4>0501 Mean, normal random variable, known variance</h4>
 <ul>
-<li><strong>0501 Mean, normal random variable, known variance</strong></li>
-<li>050101 Interval bottom
-<ul>
-<li>050102 Interval top</li>
-</ul></li>
-<li><strong>0502 Mean, normal random variable, n&gt;30</strong>
-<ul>
-<li>050201 Interval bottom</li>
-<li>050202 Interval top</li>
-</ul></li>
-<li><strong>0503 Mean, normal random variable, n&lt;30</strong>
-<ul>
-<li>050301 Interval bottom</li>
-<li>050302 Interval top</li>
-</ul></li>
-<li><strong>0504 Proportion, normal random variable, n&gt;30</strong>
-<ul>
-<li>050401 Interval bottom</li>
-<li>050402 Interval top</li>
-</ul></li>
-<li><strong>0505 Standard deviation, normal random variable</strong>
-<ul>
-<li>050501 Interval bottom</li>
-<li>050502 Interval top</li>
-</ul></li>
-<li>0506</li>
-<li>0507</li>
-<li>0508</li>
-<li>0509</li>
+<li>050101 Interval bottom (en - es - num)</li>
+<li>050102 Interval top (en - es - num)</li>
 </ul>
 </div>
-<div id="test-hypothesis" class="section level3">
-<h3>06 Test hypothesis</h3>
 <div id="mean-normal-random-variable-n30" class="section level4">
-<h4>0601 Mean, normal random variable, n&gt;30</h4>
+<h4>0502 Mean, normal random variable, n&gt;30</h4>
 <ul>
-<li>060101 <span class="math">\(H_a:\, \mu &gt; \mu_0\)</span></li>
-<li>060102 <span class="math">\(H_a:\, \mu &lt; \mu_0\)</span></li>
-<li>060103 <span class="math">\(H_a:\, \mu \neq \mu_0\)</span></li>
+<li>050201 Interval bottom (en - es - num)</li>
+<li>050202 Interval top (en - es - num)</li>
 </ul>
 </div>
 <div id="mean-normal-random-variable-n30-1" class="section level4">
-<h4>0602 Mean, normal random variable, n&lt;30</h4>
+<h4>0503 Mean, normal random variable, n&lt;30</h4>
 <ul>
-<li>060201 <span class="math">\(H_a:\, \mu &gt; \mu_0\)</span></li>
-<li>060202 <span class="math">\(H_a:\, \mu &lt; \mu_0\)</span></li>
-<li>060203 <span class="math">\(H_a:\, \mu \neq \mu_0\)</span></li>
+<li>050301 Interval bottom (en - es - num)</li>
+<li>050302 Interval top (en - es - num)</li>
 </ul>
 </div>
 <div id="proportion-normal-random-variable-n30" class="section level4">
+<h4>0504 Proportion, normal random variable, n&gt;30</h4>
+<ul>
+<li>050401 Interval bottom (en - es - num)</li>
+<li>050402 Interval top (en - es - num)</li>
+</ul>
+</div>
+<div id="standard-deviation-normal-random-variable" class="section level4">
+<h4>0505 Standard deviation, normal random variable</h4>
+<ul>
+<li>050501 Interval bottom (en - es - num)</li>
+<li>050502 Interval top (en - es - num)</li>
+</ul>
+</div>
+</div>
+<div id="test-hypothesis" class="section level3">
+<h3>06 Test hypothesis</h3>
+<div id="mean-normal-random-variable-n30-2" class="section level4">
+<h4>0601 Mean, normal random variable, n&gt;30</h4>
+<ul>
+<li>060101 <span class="math">\(H_a:\, \mu &gt; \mu_0\)</span> (en - es - num)</li>
+<li>060102 <span class="math">\(H_a:\, \mu &lt; \mu_0\)</span> (en - es - num)</li>
+<li>060103 <span class="math">\(H_a:\, \mu \neq \mu_0\)</span> (en - es - num)</li>
+</ul>
+</div>
+<div id="mean-normal-random-variable-n30-3" class="section level4">
+<h4>0602 Mean, normal random variable, n&lt;30</h4>
+<ul>
+<li>060201 <span class="math">\(H_a:\, \mu &gt; \mu_0\)</span> (en - es - num)</li>
+<li>060202 <span class="math">\(H_a:\, \mu &lt; \mu_0\)</span> (en - es - num)</li>
+<li>060203 <span class="math">\(H_a:\, \mu \neq \mu_0\)</span> (en - es - num)</li>
+</ul>
+</div>
+<div id="proportion-normal-random-variable-n30-1" class="section level4">
 <h4>0603 Proportion, normal random variable, n&gt;30</h4>
 <ul>
-<li>060301 <span class="math">\(H_a:\, p &gt; p_0\)</span></li>
-<li>060302 <span class="math">\(H_a:\, p &lt; p_0\)</span></li>
-<li>060303 <span class="math">\(H_a:\, p \neq p_0\)</span></li>
+<li>060301 <span class="math">\(H_a:\, p &gt; p_0\)</span> (en - es - num)</li>
+<li>060302 <span class="math">\(H_a:\, p &lt; p_0\)</span> (en - es - num)</li>
+<li>060303 <span class="math">\(H_a:\, p \neq p_0\)</span> (en - es - num)</li>
 </ul>
 </div>
 <div id="variance-normal-random-variable." class="section level4">
 <h4>0604 Variance, normal random variable.</h4>
 <ul>
-<li>060401 <span class="math">\(H_a:\, \sigma &gt; \sigma_0\)</span></li>
-<li>060402 <span class="math">\(H_a:\, \sigma &lt; \sigma_0\)</span></li>
-<li>060403 <span class="math">\(H_a:\, \sigma \neq \sigma_0\)</span></li>
+<li>060401 <span class="math">\(H_a:\, \sigma &gt; \sigma_0\)</span> (en - es - num)</li>
+<li>060402 <span class="math">\(H_a:\, \sigma &lt; \sigma_0\)</span> (en - es - num)</li>
+<li>060403 <span class="math">\(H_a:\, \sigma \neq \sigma_0\)</span> (en - es - num)</li>
 </ul>
 </div>
 <div id="mean-poisson" class="section level4">
@@ -334,47 +410,113 @@ img {
 <div id="difference-of-means" class="section level4">
 <h4>0606 Difference of means</h4>
 <ul>
-<li>060601 Known variances</li>
+<li>060601 Known variances
+<ul>
+<li>06060101 Known variances <span class="math">\(H_a:\, \mu_1 &gt; \mu_2\)</span> (en - es - num)</li>
+<li>06060102 Known variances <span class="math">\(H_a:\, \mu_1 &lt; \mu_2\)</span> (en - es - num)</li>
+<li>06060103 Known variances <span class="math">\(H_a:\, \mu_1 = \mu_2\)</span> (en - es - num)<br /></li>
+</ul></li>
 <li>060602 Unknown variances, large samples
 <ul>
-<li>06060201 <span class="math">\(H_a:\, \mu_1 &gt; \mu_2\)</span></li>
-<li>06060202 <span class="math">\(H_a:\, \mu_1 &lt; \mu_2\)</span></li>
-<li>06060203 <span class="math">\(H_a:\, \mu_1 \neq \mu_2\)</span></li>
+<li>06060201 <span class="math">\(H_a:\, \mu_1 &gt; \mu_2\)</span> (en - es - num)</li>
+<li>06060202 <span class="math">\(H_a:\, \mu_1 &lt; \mu_2\)</span> (en - es - num)</li>
+<li>06060203 <span class="math">\(H_a:\, \mu_1 \neq \mu_2\)</span> (en - es - num)</li>
 </ul></li>
 <li>060603 Unknown equal variances, small samples
 <ul>
-<li>06060301 <span class="math">\(H_a:\, \mu_1 &gt; \mu_2\)</span></li>
-<li>06060302 <span class="math">\(H_a:\, \mu_1 &lt; \mu_2\)</span></li>
-<li>06060303 <span class="math">\(H_a:\, \mu_1 \neq \mu_2\)</span></li>
+<li>06060301 <span class="math">\(H_a:\, \mu_1 &gt; \mu_2\)</span> (en - es - num)</li>
+<li>06060302 <span class="math">\(H_a:\, \mu_1 &lt; \mu_2\)</span> (en - es - num)</li>
+<li>06060303 <span class="math">\(H_a:\, \mu_1 \neq \mu_2\)</span> (en - es - num)</li>
 </ul></li>
 <li>060604 Unknown different variances, small samples
 <ul>
-<li>06060401 <span class="math">\(H_a:\, \mu_1 &gt; \mu_2\)</span></li>
-<li>06060402 <span class="math">\(H_a:\, \mu_1 &lt; \mu_2\)</span></li>
-<li>06060403 <span class="math">\(H_a:\, \mu_1 \neq \mu_2\)</span></li>
+<li>06060401 <span class="math">\(H_a:\, \mu_1 &gt; \mu_2\)</span> (en - es - num)</li>
+<li>06060402 <span class="math">\(H_a:\, \mu_1 &lt; \mu_2\)</span> (en - es - num)</li>
+<li>06060403 <span class="math">\(H_a:\, \mu_1 \neq \mu_2\)</span> (en - es - num)</li>
 </ul></li>
 </ul>
 </div>
 <div id="difference-of-proportions" class="section level4">
 <h4>0607 Difference of proportions</h4>
 <ul>
-<li>060701 <span class="math">\(H_a:\, p_1 &gt; p_2\)</span></li>
-<li>060702 <span class="math">\(H_a:\, p_1 &lt; p_2\)</span></li>
-<li>060703 <span class="math">\(H_a:\, p_1 \neq p_2\)</span></li>
+<li>060701 <span class="math">\(H_a:\, p_1 &gt; p_2\)</span> (en - es - num)</li>
+<li>060702 <span class="math">\(H_a:\, p_1 &lt; p_2\)</span> (en - es - num)</li>
+<li>060703 <span class="math">\(H_a:\, p_1 \neq p_2\)</span> (en - es - num)</li>
 </ul>
 </div>
 <div id="quotient-of-variances" class="section level4">
 <h4>0608 Quotient of variances</h4>
 <ul>
-<li>060801 <span class="math">\(H_a:\, \sigma_1 &gt; \sigma_2\)</span></li>
-<li>060802 <span class="math">\(H_a:\, \sigma_1 &lt; \sigma_2\)</span></li>
-<li>060803 <span class="math">\(H_a:\, \sigma_1 \neq \sigma_2\)</span></li>
+<li>060801 <span class="math">\(H_a:\, \sigma_1 &gt; \sigma_2\)</span> (en - es - num)</li>
+<li>060802 <span class="math">\(H_a:\, \sigma_1 &lt; \sigma_2\)</span> (en - es - num)</li>
+<li>060803 <span class="math">\(H_a:\, \sigma_1 \neq \sigma_2\)</span> (en - es - num)</li>
 </ul>
 </div>
 </div>
-<div id="linear-regression" class="section level3">
-<h3>07 Linear regression</h3>
+<div id="linear-regression-y-b_0b_1-x" class="section level3">
+<h3>07 Linear regression <span class="math">\(y = b_0+b_1 x\)</span></h3>
+<div id="coefficients" class="section level4">
+<h4>0701 Coefficients</h4>
+<ul>
+<li>070101 Calculate b0 from data in a trable (es - num)</li>
+<li>070102 Calculate b1 from data in a trable (es - num)</li>
+</ul>
 </div>
+<div id="predicted-values-and-residuals" class="section level4">
+<h4>0702 Predicted values and residuals</h4>
+<ul>
+<li>070201 Given x_i, calculate the predicted value (es - num)</li>
+<li>070202 Calculate a residual (es - num)</li>
+</ul>
+</div>
+<div id="inference" class="section level4">
+<h4>0703 Inference</h4>
+<ul>
+<li>070301 Confidence interval for the intercep, lower limit (es - num)</li>
+<li>070302 Confidence interval for the intercep, upper limit (es - num)</li>
+<li>070303 Confidence interval for the slope, lower limit (es - num)</li>
+<li>070304 Confidence interval for the slope, upper limit (es - num)</li>
+<li>070305 Test hypothesis H0: beta1 = 0 (es - num)</li>
+</ul>
+</div>
+<div id="hypotheses-for-linear-regresion" class="section level4">
+<h4>0704 Hypotheses for linear regresion</h4>
+<ul>
+<li>070401 do residuals follow a normal distribution? (es - num)</li>
+<li>070401 do residuals follow a normal distribution (it does NOT follow it)? (es - num)</li>
+</ul>
+</div>
+</div>
+<div id="chi-square-test" class="section level3">
+<h3>08 Chi square test</h3>
+<div id="independency-test" class="section level4">
+<h4>0801 Independency test</h4>
+<ul>
+<li>08010101 calculate a expected value, table 2 x 2 (es - num)</li>
+<li>08010102 calculate a expected value, table 3 x 4 (es - num)</li>
+<li>08010201 p-value, table 2 x 2 (es - num)</li>
+<li>08010202 p-value, table 3 x 4 (es - num)</li>
+</ul>
+</div>
+<div id="homogeneity-test" class="section level4">
+<h4>0802 Homogeneity test</h4>
+<ul>
+<li>08020101 calculate a expected value, table 2 x 2 (es - num)</li>
+<li>08020201 p-value, table 2 x 2 (es - num)</li>
+</ul>
+</div>
+</div>
+<div id="one-way-anova" class="section level3">
+<h3>09 One way Anova</h3>
+<ul>
+<li>09010101 5 treatments, is the test significant? (es - num)</li>
+<li>09010201 5 treatments, do the samples belong to a normal population? (yes) (es - num)</li>
+<li>09010202 5 treatments, do the samples belong to a normal population? (no) (es - num)</li>
+<li>09010203 5 treatments, homocedasticity? (yes) (es - num)</li>
+<li>09010204 5 treatments, homocedasticity? (no) (es - num)</li>
+<li>09010301 5 treatments, Bonferroni, pair comparison (es - num)</li>
+<li>09010301 5 treatments, order the means (es - num)</li>
+</ul>
 </div>
 </div>
 

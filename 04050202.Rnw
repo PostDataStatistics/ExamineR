@@ -1,17 +1,25 @@
 <<echo=FALSE, results=hide>>=
-  ## DATA GENERATION
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+# Give p\in (0,1), calculate x;  P(X > x) = q, for X a chi square distribution with n degrees of freedom
+
+## DATA GENERATION
   
 library(MASS)
 
 signifDig = 4  
 
-# Give p\in (0,1), calculate x;  P(X > x) = q, for X a chi square distribution with n degrees of freedom
-
 sol=1
 while((sol<0.00001)|(sol>0.9999)){
   n =sample(5:15, 1)
   q=sample(1:9,1)/10
-  sol = 1-qchisq(q, df = n)
+  sol = qchisq(q, df = n, lower.tail=FALSE)
 }
 
 ## QUESTION/ANSWER GENERATION
@@ -25,12 +33,12 @@ while((sol<0.00001)|(sol>0.9999)){
 
 if(language=='en'){
   question=paste0("$X$ is a chi square random variable with ", n, " degrees of freedom. Find value x such that 
-                  $$P(X > x )= ", q,".$$ Use  ", signifDig, " significant digits in your answer.")
+                  $$P(x > X )= ", q,".$$ Use  ", signifDig, " significant digits in your answer.")
   
   answer=paste0("The answer is ", sol)
   
 }else if(language=='es'){
-    question=paste0("La variable aleatoria $X$ es una chi cuadrado con ", n, " grados de libertad. Calcula el valor x tal que  $$P(X > x )= ", q,".$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
+    question=paste0("La variable aleatoria $X$ es una chi cuadrado con ", n, " grados de libertad. Calcula el valor x tal que  $$P(x > X )= ", q,".$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
   
   answer=paste0("La respuesta es ", sol)
   

@@ -1,0 +1,180 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Anova: normal samples 5 treatments, 
+## Homocedasticity
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+
+## DATA GENERATION
+
+# function to get normal data
+normal = function(size, mean1, sd1){
+     data = c()
+     while(length(data)< size){
+      x = rnorm(1, mean = mean1, sd = sd1)
+      if( (mean1-3*sd1 < x) & (mean1+3*sd1 > x)){
+           data = c(data,x)
+      }
+     }
+return(data)
+}
+ntreat = 4
+ndata = 25
+treatments = c()
+
+for(i in 1:ntreat ){
+     treatments = c(treatments, paste("treat", i, sep = ""))
+}
+
+means = normal(ntreat, 100, 5)
+
+sds = c(.3, .3, .3, .3, .3)
+
+for(i in 1:ntreat ){
+     x = normal(ndata, means[i], sds[i])
+     assign(paste("treat", i, sep = ""), x )
+}
+
+(the_table_df <- data.frame(treat1, treat2, treat3, treat4))
+
+
+
+
+(levels=names(the_table_df))
+
+(niveles=names(the_table_df))
+
+numCol=ncol(the_table_df)
+
+
+Respuesta=c()
+Tratamiento=c()
+for(i in 1:numCol){
+  localizarNA=!is.na(the_table_df[,i]) 
+  columnaSinNA=the_table_df[localizarNA,i]
+  Respuesta=c(Respuesta,columnaSinNA)
+  numFilas=length(columnaSinNA)
+  replicasNivel=rep(niveles[i],numFilas)
+  Tratamiento=c(Tratamiento,replicasNivel)
+} 
+
+
+datos = data.frame(Tratamiento, Respuesta)
+dim(datos)
+colFactor = 1
+
+# Renombramos las columnas del data.frame
+if(colFactor==1){
+  colnames(datos) = c("Tratamiento","Respuesta")
+}else{
+  colnames(datos) = c("Respuesta","Tratamiento")
+}
+colnames(datos)
+
+# Etiquetas de los niveles del factor.
+
+(niveles=levels(datos$Tratamiento))
+
+# El numero total de observaciones.
+
+(N=nrow(datos))
+
+# Calculamos el numero de niveles del factor
+
+(k=length(niveles))
+
+# Y traducimos los niveles en numeros para facilitar su manejo.
+numeroNivel = as.numeric(datos$Tratamiento)
+
+
+#######################################
+# ANOVA
+# Using lm and anova funcions
+#########################################
+
+datos.lm = lm(datos$Respuesta ~ datos$Tratamiento)
+
+
+
+## QUESTION/ANSWER GENERATION
+
+if(language=='en'){
+  question=paste0(" "
+                )
+  
+  answer=paste0(" ")
+
+}else if(language=='es'){
+  question=paste0(
+    "Se consideran ", ntreat," muestras independientes de ", ndata," individuos cada una. 
+    A cada una de ellas se le administra un tratamiento diferente, y se mide el valor 
+    de la variable respuesta. Los datos son los que aparecen en la tabla. 
+    
+    Decide si se cumple la condicion de homocedasticidad (varianza iguales en todas las muestras)"
+ )
+
+   answer=paste0("Observa que las figuras de arriba (primer fila) sugieren que hay 
+                 homocedasticidad. 
+                 De hecho, las muestras provienen de poblaciones normales con varianzas iguales
+                 aunque, como datos han sido generados al azar  
+                 (y hay pocos datos en cada muetra), 
+                 puede que observes ligeras desviaciones en esta condicion. Puede que en la figura de la izquierda  
+                 la dispersion en alguna de las variables parezca mayor que en otras; si esto es debido a 
+                 pocas observaciones (puntos) es, de nuevo, imputable al azar y no hay porqu\\'e rechazar la 
+                 homocedasticidad.")
+
+
+}
+
+cat(question)
+
+
+@ 
+  \begin{question}
+<<echo=False, results=tex>>=
+  cat(paste(question,collapse=""))
+@
+
+\vspace{.1cm}
+
+Tabla de valores
+
+\vspace{.1cm}
+
+<<echo=False, results=tex>>=
+library(knitr)
+kable(the_table_df, digits=2, format = "latex")
+@
+
+\end{question}
+
+\begin{solution}
+<<echo=False, results=tex>>=
+  cat(paste(answer,collapse=""))
+@
+
+<<echo=False, fig=TRUE>>=
+  par(mfrow = c(2,2))
+plot(datos.lm)
+  par(mfrow = c(1,1))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.0001}

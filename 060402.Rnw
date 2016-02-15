@@ -8,9 +8,7 @@ sanitizeLatexS <- function(str) {
   gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
 }
 
-
 ## DATA GENERATION
-
 library(MASS)
 signifDig = 4
 sDigits=3

@@ -1,11 +1,19 @@
 <<echo=FALSE, results=hide>>=
-  ## DATA GENERATION
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+# Give p\in (0,1), calculate x;  P(x < X) = q, for X a normal distribution of type N(mu, sigma).
+
+## DATA GENERATION
   
 library(MASS)
 
 signifDig = 4  
-
-# Give p\in (0,1), calculate x;  P(x < X) = q, for X a normal distribution of type N(mu, sigma).
 
 sol=1
 while((sol<0.00001)|(sol>0.9999)){

@@ -1,4 +1,14 @@
 <<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+# Generic discrete random variable. Calculate mean from a table 
+
 ## DATA GENERATION
 
 library(MASS)

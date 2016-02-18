@@ -10,7 +10,7 @@ If this is your first time, you can start to download the file "just a test" (se
 
 ### Generate an exam
 
-Just a quik look? Download the zip file `ExamineR-just-a-try.zip` (in this repo), unzip, open and run `exampleR.R` in the R terminal or RSturio (read the file before running). Essentially, you are doing the following:
+Just a quik look? Download [this zip file](ExamineR-just-a-try.zip), unzip it, open it and run the `ExamineR-exam-generator.R` file in the R terminal or RSturio (read the file before running). Essentially, you are doing the following:
 
   * You need to at the same folder 
      * The desired questions
@@ -19,6 +19,16 @@ Just a quik look? Download the zip file `ExamineR-just-a-try.zip` (in this repo)
   * Open the file `ExamineR-exam-generator.R` and follow the instructions
   * Consider to include a `set.seed()` sentence as, otherwise, each compilation will produce a "different" exam
 
+### StudentR: one student, one exam
+Or how to print one exam for each student with the same questions (or not) but personalized data. Just a quik look? Download Download [this zip file](SrudentR-just-a-try.zip), unzip it, open it and run `SudentR_template.R` in the R terminal or RSturio (read the file before running). Essentially:
+
+  * You need to at the same folder 
+     * The desired questions
+     * The exam ans response templates (customize them, if needed!)
+     * The `ExamGeneratoPro.R` file
+     * A `*.csv` file with the student's details: number, name, surname `ExamGenerator.R` file.
+  * Open the file `ExamGeneratorPro.R` and follow the instructions.
+  * Each student will have its own exam: the process generates also a table in *.csv format with the solutions for each exam
 
 
 ## Thesaurus
@@ -48,7 +58,7 @@ Just a quik look? Download the zip file `ExamineR-just-a-try.zip` (in this repo)
  * 010302 Histograms - not yet
  * 010303 Boxplots - not yet
  * 010304 Catchall
-      * 01020401 Given a boxplot, identify the corresponding histogram
+     * 01020401 Given a boxplot, identify the corresponding histogram
      * 01020402 Given a histogram, identify the corresponding boxplot
 
 
@@ -68,7 +78,7 @@ Just a quik look? Download the zip file `ExamineR-just-a-try.zip` (in this repo)
 
 #### 0202 Conditional probability
  * 020201 Independent events (en - es - num)
- * 020202 Definition of conditioned probability (en - es - num)
+ * 020202 Definition of conditional probability (en - es - num)
  * 020203 Two-ways table (en - es - num)
 
 #### 0204 Combinatorial
@@ -230,27 +240,27 @@ Just a quik look? Download the zip file `ExamineR-just-a-try.zip` (in this repo)
 * 060602 Unknown variances, large samples
 	* 06060201  $H_a:\, \mu_1 > \mu_2$ (en - es - num)
 	* 06060202  $H_a:\, \mu_1 < \mu_2$ (en - es - num)
-	* 06060203   $H_a:\, \mu_1 \neq \mu_2$ (en - es - num)
+	* 06060203  $H_a:\, \mu_1 \neq \mu_2$ (en - es - num)
   
 * 060603 Unknown equal variances, small samples
 	* 06060301  $H_a:\, \mu_1 > \mu_2$ (en - es - num)
 	* 06060302  $H_a:\, \mu_1 < \mu_2$ (en - es - num)
-	* 06060303   $H_a:\, \mu_1 \neq \mu_2$ (en - es - num)
+	* 06060303  $H_a:\, \mu_1 \neq \mu_2$ (en - es - num)
   
 * 060604 Unknown different variances, small samples
 	* 06060401  $H_a:\, \mu_1 > \mu_2$ (en - es - num)
 	* 06060402  $H_a:\, \mu_1 < \mu_2$ (en - es - num)
-	* 06060403   $H_a:\, \mu_1 \neq \mu_2$ (en - es - num)
+	* 06060403  $H_a:\, \mu_1 \neq \mu_2$ (en - es - num)
 
 #### 0607 Difference of proportions
 * 060701  $H_a:\, p_1 > p_2$ (en - es - num)
 * 060702  $H_a:\, p_1 < p_2$ (en - es - num)
-* 060703   $H_a:\, p_1 \neq p_2$ (en - es - num)
+* 060703  $H_a:\, p_1 \neq p_2$ (en - es - num)
 
 #### 0608 Quotient of variances
 * 060801  $H_a:\, \sigma_1 > \sigma_2$ (en - es - num)
 * 060802  $H_a:\, \sigma_1 < \sigma_2$ (en - es - num)
-* 060803   $H_a:\, \sigma_1 \neq \sigma_2$ (en - es - num)
+* 060803  $H_a:\, \sigma_1 \neq \sigma_2$ (en - es - num)
   
 ### 07 Linear regression $y = b_0+b_1 x$
 #### 0701 Coefficients

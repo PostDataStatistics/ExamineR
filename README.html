@@ -68,7 +68,7 @@ img {
 <p>If this is your first time, you can start to download the file “just a test” (see below), which contains the necessary files for you compile three versions of the same test. It will serve as a template and can easily adapt it to your needs. More detailed information on quiestion types and quiz structure can be found <a href="tutorial">here</a> (only in Spanish). Complete information on the exams package is available <a href="https://cran.r-project.org/web/packages/exams/vignettes/exams.pdf">here</a> (but we think it’s best to start with the easiest).</p>
 <div id="generate-an-exam" class="section level3">
 <h3>Generate an exam</h3>
-<p>Just a quik look? Download the zip file <code>ExamineR-just-a-try.zip</code> (in this repo), unzip, open and run <code>exampleR.R</code> in the R terminal or RSturio (read the file before running). Essentially, you are doing the following:</p>
+<p>Just a quik look? Download <a href="ExamineR-just-a-try.zip">this zip file</a>, unzip it, open it and run the <code>ExamineR-exam-generator.R</code> file in the R terminal or RSturio (read the file before running). Essentially, you are doing the following:</p>
 <ul>
 <li>You need to at the same folder
 <ul>
@@ -78,6 +78,21 @@ img {
 </ul></li>
 <li>Open the file <code>ExamineR-exam-generator.R</code> and follow the instructions</li>
 <li>Consider to include a <code>set.seed()</code> sentence as, otherwise, each compilation will produce a “different” exam</li>
+</ul>
+</div>
+<div id="studentr-one-student-one-exam" class="section level3">
+<h3>StudentR: one student, one exam</h3>
+<p>Or how to print one exam for each student with the same questions (or not) but personalized data. Just a quik look? Download Download <a href="ExamineR-just-a-try.zip">this zip file</a>, unzip it, open it and run <code>SudentR_template.R</code> in the R terminal or RSturio (read the file before running). Essentially:</p>
+<ul>
+<li>You need to at the same folder
+<ul>
+<li>The desired questions</li>
+<li>The exam ans response templates (customize them, if needed!)</li>
+<li>The <code>ExamGeneratoPro.R</code> file</li>
+<li>A <code>*.csv</code> file with the student’s details: number, name, surname <code>ExamGenerator.R</code> file.</li>
+</ul></li>
+<li>Open the file <code>ExamGeneratorPro.R</code> and follow the instructions.</li>
+<li>Each student will have its own exam: the process generates also a table in *.csv format with the solutions for each exam</li>
 </ul>
 </div>
 </div>
@@ -152,7 +167,7 @@ img {
 <h4>0202 Conditional probability</h4>
 <ul>
 <li>020201 Independent events (en - es - num)</li>
-<li>020202 Definition of conditioned probability (en - es - num)</li>
+<li>020202 Definition of conditional probability (en - es - num)</li>
 <li>020203 Two-ways table (en - es - num)</li>
 </ul>
 </div>

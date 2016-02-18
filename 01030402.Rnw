@@ -21,28 +21,29 @@ sample2=c(0,20,runif(30, 0,20), runif(35, 0,4),runif(35,16,20))
 sample3=c(0,20,runif(50, 0,20),runif(50,7,13))
 # sample4=c(0,20,runif(50, 0,20),runif(50,16,20))
 lista=list(sample1,sample2,sample3)
-sol=sample(1:4,1)
+sol=sample(1:3,1)
  
 numeroOpciones =3
 questions = character ( numeroOpciones )
 solutions = logical ( numeroOpciones )
 
- questions[1]= " Muestra 1" 
- questions[2]= " Muestra 2"  
- questions[3]= " Muestra 3"  
-# questions[4]= " Muestra 4"  
 
  for (i in 1:3){
    if (i==sol) { solutions[i]=0<1} else { solutions[i]=0>1} 
  }
 
 if(language=='en'){
-  question=paste0("Which of the following boxplots corresponds to the histogram? ")
-  
-}else if(language=='es'){
-  question=paste0("El histograma se corresponde con uno de los diagramas de caja y bigotes, 
-          \\textquestiondown con cu\\'al?")
+ question=paste0("Which of the histograms corresponds to the boxplot? ")
+ questions[1]= " Sample 1" 
+ questions[2]= " Sample 2"  
+ questions[3]= " Sample 3"  
 
+}else if(language=='es'){
+ questions[1]= " Muestra 1" 
+ questions[2]= " Muestra 2"  
+ questions[3]= " Muestra 3"  
+ question=paste0("El diagrama de caja y bigotes describe los datos que representan uno de los histogramas, 
+          \\textquestiondown con cu\\'al?")
 }
 
 cat(question)
@@ -57,10 +58,11 @@ cat(question)
 \begin{center}
 <<fig=TRUE, height=10, width=10, echo=FALSE, eps=FALSE, results=hide>>=
 par(mfrow=c(2,2))
-boxplot(unlist(lista[sol]), main="Boxplot", horizontal = TRUE)   
-hist(sample1, main="Muestra 1") 
-hist(sample2, main="Muestra 2")
-hist(sample3, main="Muestra 3")
+boxplot(unlist(lista[sol]), main="", xlab="", horizontal = TRUE)   
+hist(sample1, xlab = "", main="Sample 1") 
+hist(sample2, xlab = "", main="Sample 2")
+hist(sample3, xlab = "", main="Sample 3")
+par(mfrow=c(1,1))
 @
 \end{center}
 \end{figure}

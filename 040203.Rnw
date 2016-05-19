@@ -1,0 +1,74 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## DATA GENERATION
+
+# Poisson, P(a<=X<b)
+  
+library(MASS)
+
+signifDig = 4
+
+# P(X = a) for X a Poisson distribution of type B(n, p).
+
+sol=0
+b = 2
+n = 1
+while(is.na(sol)|(abs(sol)<0.00001)|(abs(sol)>0.999)|b>n){
+  n <- sample(5:15, 1)
+  lambda <- sample(3:7,1)
+  a <- sample(2:4,1)
+  c = a+sample(1:3,1)
+  sol = signif(ppois(c-1, lambda)-ppois(a-1, lambda), digits=4)
+}
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(sol, 4))
+
+
+## QUESTION STATEMENT GENERATION
+
+#(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
+
+if(language=='en'){
+  question=paste0("$X$ is a Poisson random variable with parameter  $\\lambda = ", lambda,"$. Find the probability $$P(", a," \\leq X < ", b,").$$ Use  ", signifDig, " significant digits in your answer."
+  )
+  
+  answer=paste0("The answer is ", sol)
+  
+}else if(language=='es'){
+  question=paste0("La variable aleatoria $X$ es Poisson, de par\\'ametro $\\lambda = ", lambda,"$. Calcula la probabilidad $$P(", a," \\leq X < ", b,").$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
+  
+  answer=paste0("La respuesta es ", sol)
+  
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

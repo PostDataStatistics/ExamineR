@@ -58,8 +58,8 @@ Or how to print one exam for each student with the same questions (or not) but p
  * 010302 Histograms - not yet
  * 010303 Boxplots - not yet
  * 010304 Catchall
-     * 01020401 Given a boxplot, identify the corresponding histogram
-     * 01020402 Given a histogram, identify the corresponding boxplot
+     * 01030401 Given a boxplot, identify the corresponding histogram
+     * 01030402 Given a histogram, identify the corresponding boxplot
 
 
 ### 02 Probability
@@ -141,6 +141,13 @@ Or how to print one exam for each student with the same questions (or not) but p
   * 040107 $P(X\geq a)$ (en - es - num)
     
 #### 0402 Poisson
+  * 040201 $P(X=x)$ (en - es - num)
+  * 040202 $P(a<X<b)$ (en - es - num)
+  * 040203 $P(a\leq X<b)$ (en - es - num)
+  * 040204 $P(a<X=<b)$ (en - es - num)
+  * 040205 $P(a\leq X\leq b)$ (en - es - num)
+  * 040206 $P(X>a)$ (en - es - num)
+  * 040207 $P(X\geq a)$ (en - es - num)
 
 #### 0403 Normal
   * 040301 Normal Direct probability problem
@@ -162,7 +169,7 @@ Or how to print one exam for each student with the same questions (or not) but p
     * 04040101 $P(a<X<b)$ (en - es - num)
     * 04040102 $P(X<b)$ (en - es - num)
     * 04040103 $P(a<X)$ (en - es - num)
-* 040402 t Student inverse probability problem
+  * 040402 t Student inverse probability problem
     * 04040201 $P(x<X)=q$ (en - es - num)
     * 04040202 $P(x>X)=q$ (en - es - num)
 
@@ -185,7 +192,16 @@ Or how to print one exam for each student with the same questions (or not) but p
     * 04060201  $P(x<X)=q$ (en - es - num)
     * 04060202  $P(x>X)=q$ (en - es - num)
 
-#### 0406 Uniforme
+#### 0407 (negative) exponential
+  * 040601  Exponential Direct probability problem
+    * 04060101 $P(a<X<b)$ (en - es - num)
+    * 04060102 $P(X<b)$ (en - es - num)
+    * 04060103 $P(a<X)$ (en - es - num)
+  * 040602 Exponential Inverse probability problem
+    * 04060201  $P(x<X)=q$ (en - es - num)
+    * 04060202  $P(x>X)=q$ (en - es - num)
+
+#### 0408 Uniform
 
 ### 05 Confidence intervals
 #### 0501 Mean, normal random variable, known variance
@@ -262,21 +278,23 @@ Or how to print one exam for each student with the same questions (or not) but p
 * 060802  $H_a:\, \sigma_1 < \sigma_2$ (en - es - num)
 * 060803  $H_a:\, \sigma_1 \neq \sigma_2$ (en - es - num)
   
-### 07 Linear regression $y = b_0+b_1 x$
+### 07 Linear regression $y = b_0+b_1 x$  (by default, samples of large size)
 #### 0701 Coefficients
  * 070101 Calculate b0 from data in a trable (es - num)
  * 070102 Calculate b1 from data in a trable (es - num)
 
 #### 0702 Predicted values and residuals
  * 070201 Given x_i, calculate the predicted value  (es - num)
+ * 07020101 Given x_i, calculate the predicted value, small samples  (es - num) 
  * 070202 Calculate a residual (es - num)
 
-#### 0703 Inference
+#### 0703 Inference 
  * 070301 Confidence interval for the intercep, lower limit (es - num)
  * 070302 Confidence interval for the intercep, upper limit (es - num)
  * 070303 Confidence interval for the slope, lower limit (es - num)
  * 070304 Confidence interval for the slope, upper limit (es - num)
  * 070305 Test hypothesis H0: beta1 = 0 (es - num)
+ * 07030501 Test hypothesis H0: beta1 = 0, small samples (es - num) 
 
 #### 0704 Hypotheses for linear regresion
 * 070401 do residuals follow a normal distribution?  (es - num)

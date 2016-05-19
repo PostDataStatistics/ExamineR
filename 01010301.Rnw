@@ -7,6 +7,8 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
+# Calculate median
+
 ## DATA GENERATION
 
 signifDig <- 4

@@ -1,6 +1,16 @@
-<< echo = FALSE , results = hide >>=
-# for (i in 1:4){a[i]=sample(c("sample1","sample2","sample3","sample4"),1,replace=FALSE)}
- 
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+# Find the boxplot that beter describes the data in one out of 3 histograms
+
+## DATA GENERATION
+
 sample1=c(0,20,runif(50, 0,20),runif(50,1,5))
 sample2=c(0,20,runif(30, 0,20), runif(35, 0,4),runif(35,16,20))
 sample3=c(0,20,runif(50, 0,20),runif(50,7,13))

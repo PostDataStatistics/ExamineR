@@ -7,25 +7,23 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-# Calculate median
+# population standard deviation
 
 ## DATA GENERATION
-
 signifDig <- 4
 
 (n <- sample(8:13, 1))
 (data <- c(sample(0:12, n, replace=TRUE)))
 
 ## QUESTION/ANSWER GENERATION
+sol <- signif(sqrt(n-1) * sd(data) / sqrt(n), digits = signifDig)
+
 (dataString = paste(data, collapse=", "))
-
-(sol <- signif(median(data), digits = signifDig))
-
 
 
 if(language=='en'){
   question=paste0(
-"Find the \\textbf{median} of this set of numbers:\\begin{center}",
+"Find the \\textbf{(population) standard deviation} of this set of numbers:\\begin{center}",
     dataString,
     ".\\end{center} Round the result  to ", signifDig, " significant digits."
   )
@@ -35,7 +33,7 @@ if(language=='en'){
   )
 }else if(language=='es'){
   question=paste0(
-    "Calcula la \\textbf{mediana} de este conjunto de n\\'umeros:\\begin{center}",
+    "Calcula la \\textbf{deviaci\\'on est\\'andar (poblacional)} de este conjunto de n\\'umeros:\\begin{center}",
     dataString,
     ".\\end{center}Redondea el resultado con ",
     signifDig, " cifras significativas."
@@ -44,6 +42,7 @@ if(language=='en'){
     sol
     )
 }
+
 @
 
 \begin{question}

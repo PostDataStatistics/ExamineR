@@ -50,8 +50,13 @@ if(language=='en'){
 
 }else if(language=='es'){
   question=paste0(
-    "Considera la tabla de contingencia que aparece abajo para dos factores, uno con 3 niveles y 
-    otro con 4. 
+    "Considera la tabla de contingencia que aparece a continuaci\\'on para dos factores, uno con 3 niveles y otro con 4
+
+    \\begin{tabular}{|c|c|c|c|}\\hline
+",the_table[1,1]," & ",the_table[1,2]," & ",the_table[1,3]," & ",the_table[1,4]," \\\\\\hline
+",the_table[2,1]," & ",the_table[2,2]," & ",the_table[2,3]," & ",the_table[2,4]," \\\\\\hline
+",the_table[3,1]," & ",the_table[3,2]," & ",the_table[3,3]," & ",the_table[3,4]," \\hline
+\\end{tabular}
     
     Contrasta la hip\\'otesis nula 
       \\[H_0:\\,\\left\\{\\text{Los dos factores son independientes} \\right\\}\\]
@@ -71,17 +76,6 @@ cat(question)
   \begin{question}
 <<echo=False, results=tex>>=
   cat(paste(question,collapse=""))
-@
-
-\vspace{.1cm}
-
-Tabla de contingencia
-
-\vspace{.1cm}
-
-<<echo=False, results=tex>>=
-library(knitr)
-kable(the_table, digits=2, format = "latex")
 @
 
 \end{question}

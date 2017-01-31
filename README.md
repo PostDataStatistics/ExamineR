@@ -34,7 +34,7 @@ Or how to print one exam for each student with the same questions (or not) but p
 ## Thesaurus
 
   * Lenguage: en - English, es - Spanish
-  * Question type: num - numeric, mult - multiple choice
+  * Question type: num - numeric, mult - multiple choice, txt - string (short answer)
 
 ### 00 Rounding numbers
  * 000001 Round a number between 0 and 10 to 3-5 significant digits (en - es - num)
@@ -74,7 +74,7 @@ Or how to print one exam for each student with the same questions (or not) but p
  * 020101 Coloured balls 1 (en - es - num)
  * 020102 Coloured balls 2 (en - es - num)
  * 020103 French roulette 1 (en - es - num)
- * 020104  French roulette 2 (en - es - num)
+ * 020104 French roulette 2 (en - es - num)
 
 #### 0202 Conditional probability
  * 020201 Independent events (en - es - num)
@@ -225,53 +225,110 @@ Or how to print one exam for each student with the same questions (or not) but p
  * 050502  Interval top (en - es - num)
 
 ### 06 Test hypothesis
+
+#### 0600 Set the null and the alternative hypotheses
+
+ * 060001: the mean  
+    * 06000101 $H_a:\, \mu > \mu_0$ (es - txt)
+    * 06000102 $H_a:\, \mu < \mu_0$ (es - txt)
+    * 06000103 $H_a:\, \mu \neq \mu_0$ (es - txt)
+
+ * 060002: the proportion  
+    * 06000201 $H_a:\, p > p_0$ (es - txt)
+    * 06000202 $H_a:\, p < p_0$ (es - txt)
+    * 06000203 $H_a:\, p \neq p_0$ (es - txt)
+
+ * 060003: the variance 
+    * 06000301 $H_a:\, \sigma > \sigma_0$ (es - txt)
+    * 06000302 $H_a:\, \sigma < \sigma_0$ (es - txt)
+    * 06000303 $H_a:\, \sigma \neq \sigma_0$ (es - txt)
+
+ * 060004: difference of means  
+    * 06000401 $H_a:$ one sided (es - txt)
+    * 06000402 $H_a:$ two sided (es - txt)    
+    
+ * 060005: difference of proportions 
+    * 06000501 $H_a:$ one sided (es - txt)
+    * 06000502 $H_a:$ two sided (es - txt)    
+
+ * 060006: ration of variances 
+    * 06000601 $H_a:$ one sided (es - txt)
+    * 06000602 $H_a:$ two sided (es - txt)    
+
+
+
 #### 0601 Mean, normal random variable, n>30  
- * 060101   $H_a:\, \mu > \mu_0$ (en - es - num)
- * 060102   $H_a:\, \mu < \mu_0$ (en - es - num)
- * 060103    $H_a:\, \mu \neq \mu_0$ (en - es - num)
+ * 060101 $H_a:\, \mu > \mu_0$, p-value (en - es - num)
+ * 060102 $H_a:\, \mu < \mu_0$, p-value (en - es - num)
+ * 060103 $H_a:\, \mu \neq \mu_0$, p-value (en - es - num)
+ * 060104 $H_a:\, \mu > \mu_0$, find the rejection region (in the problem's units) (en - es - num)
+ * 060105 $H_a:\, \mu < \mu_0$, find the rejection region (in the problem's units) (en - es - num)
+ * 060106 $H_a:\, \mu \neq \mu_0$, find the rejection region (lowerbound, in the problem's units) (en - es - num)
+ * 060107 $H_a:\, \mu \neq \mu_0$, find the rejection region (upper bound, in the problem's units) (en - es - num)
+
+
 
 #### 0602 Mean, normal random variable, n<30  
- * 060201  $H_a:\, \mu > \mu_0$ (en - es - num)
- * 060202  $H_a:\, \mu < \mu_0$ (en - es - num)
- * 060203   $H_a:\, \mu \neq \mu_0$ (en - es - num)
-  
+ * 060201  $H_a:\, \mu > \mu_0$, p-value (en - es - num)
+ * 060202  $H_a:\, \mu < \mu_0$, p-value (en - es - num)
+ * 060203   $H_a:\, \mu \neq \mu_0$, p-value (en - es - num)
+ * 060204   $H_a:\, \mu > \mu_0$, find the rejection region (in the problem's units) (en - es - num)
+ * 060205   $H_a:\, \mu < \mu_0$, find the rejection region (in the problem's units) (en - es - num)
+ * 060206    $H_a:\, \mu \neq \mu_0$, find the lower rejection region (in the problem's units) (en - es - num)
+ * 060207    $H_a:\, \mu \neq \mu_0$, find the upper rejection region  (in the problem's units) (en - es - num)
+ 
 #### 0603 Proportion, normal random variable, n>30  
- * 060301  $H_a:\, p > p_0$ (en - es - num)
- * 060302  $H_a:\, p < p_0$ (en - es - num)
- * 060303   $H_a:\, p \neq p_0$ (en - es - num)
-  
+ * 060301  $H_a:\, p > p_0$, p-value (en - es - num)
+ * 060302  $H_a:\, p < p_0$, p-value (en - es - num)
+ * 060303   $H_a:\, p \neq p_0$, p-value (en - es - num)
+ * 060304   $H_a:\, p > p_0$, find the rejection region (in the problem's units) (es - num)
+ * 060305   $H_a:\, p < p_0$, find the rejection region (in the problem's units) (es - num)
+ * 060306    $H_a:\, p \neq p_0$, find the rejection region (lower bound, in the problem's units) (es - num)
+ * 060307    $H_a:\, p \neq p_0$, find the rejection region (upper bound, in the problem's units) (es - num)
+ * 060308   $H_a:\, p > p_0$, find the lower number of successes leading to reject H0 (es - num)
+ * 060309   $H_a:\, p < p_0$, find the larger number of successes leading to reject H0 (es - num)
+ * 060310    $H_a:\, p \neq p_0$, find the lower number of successes leading to reject H0 (es - num)
+ * 060311    $H_a:\, p \neq p_0$, find the larger number of successes leading to reject H0 (es - num)
+ 
 #### 0604 Variance, normal random variable.
- * 060401   $H_a:\, \sigma > \sigma_0$ (en - es - num)
- * 060402   $H_a:\, \sigma < \sigma_0$ (en - es - num)
- * 060403   $H_a:\, \sigma \neq \sigma_0$ (en - es - num)
+ * 060401   $H_a:\, \sigma > \sigma_0$, p-value (en - es - num)
+ * 060402   $H_a:\, \sigma < \sigma_0$, p-value (en - es - num)
+ * 060403   $H_a:\, \sigma \neq \sigma_0$, p-value (en - es - num)
 
 #### 0605 Mean, Poisson
 
 
 #### 0606 Difference of means
 * 060601  Known variances
-     * 06060101  Known variances $H_a:\, \mu_1 > \mu_2$ (en - es - num)
-     * 06060102  Known variances $H_a:\, \mu_1 < \mu_2$ (en - es - num)
-     * 06060103  Known variances $H_a:\, \mu_1 = \mu_2$ (en - es - num)     
+     * 06060101  Known variances $H_a:\, \mu_1 > \mu_2$, p-value (en - es - num)
+     * 06060102  Known variances $H_a:\, \mu_1 < \mu_2$, p-value (en - es - num)
+     * 06060103  Known variances $H_a:\, \mu_1 = \mu_2$, p-value (en - es - num)     
+
 * 060602 Unknown variances, large samples
-	* 06060201  $H_a:\, \mu_1 > \mu_2$ (en - es - num)
-	* 06060202  $H_a:\, \mu_1 < \mu_2$ (en - es - num)
-	* 06060203  $H_a:\, \mu_1 \neq \mu_2$ (en - es - num)
+	* 06060201  $H_a:\, \mu_1 > \mu_2$, p-value (en - es - num)
+	* 06060202  $H_a:\, \mu_1 < \mu_2$, p-value (en - es - num)
+	* 06060203  $H_a:\, \mu_1 \neq \mu_2$, p-value (en - es - num)
+	* 06060204  $H_a:\, \mu_1 > \mu_2$, means' difference to reject $H_0$ p-value (es - num)
+	* 06060205  $H_a:\, \mu_1 < \mu_2$, means' difference to reject $H_0$ (es - num)
+	* 06060206  $H_a:\, \mu_1 \neq \mu_2$, means' difference to reject $H_0$ (es - num)
   
 * 060603 Unknown equal variances, small samples
-	* 06060301  $H_a:\, \mu_1 > \mu_2$ (en - es - num)
-	* 06060302  $H_a:\, \mu_1 < \mu_2$ (en - es - num)
-	* 06060303  $H_a:\, \mu_1 \neq \mu_2$ (en - es - num)
+	* 06060301  $H_a:\, \mu_1 > \mu_2$, p-value (en - es - num)
+	* 06060302  $H_a:\, \mu_1 < \mu_2$, p-value (en - es - num)
+	* 06060303  $H_a:\, \mu_1 \neq \mu_2$, p-value (en - es - num)
   
 * 060604 Unknown different variances, small samples
-	* 06060401  $H_a:\, \mu_1 > \mu_2$ (en - es - num)
-	* 06060402  $H_a:\, \mu_1 < \mu_2$ (en - es - num)
-	* 06060403  $H_a:\, \mu_1 \neq \mu_2$ (en - es - num)
+	* 06060401  $H_a:\, \mu_1 > \mu_2$, p-value (en - es - num)
+	* 06060402  $H_a:\, \mu_1 < \mu_2$, p-value (en - es - num)
+	* 06060403  $H_a:\, \mu_1 \neq \mu_2$, p-value (en - es - num)
 
 #### 0607 Difference of proportions
 * 060701  $H_a:\, p_1 > p_2$ (en - es - num)
 * 060702  $H_a:\, p_1 < p_2$ (en - es - num)
 * 060703  $H_a:\, p_1 \neq p_2$ (en - es - num)
+* 060704  $H_a:\, p_1 > p_2$  proportions' difference to reject $H_0$ (es - num) 
+* 060705  $H_a:\, p_1 < p_2$  proportions' difference to reject $H_0$ (es - num)
+* 060706  $H_a:\, p_1 \neq p_2$  proportions' difference to reject $H_0$ (es - num)
 
 #### 0608 Quotient of variances
 * 060801  $H_a:\, \sigma_1 > \sigma_2$ (en - es - num)

@@ -70,7 +70,7 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
 
 
 if(language=='en'){
-  question=paste0("$X_1$ and $X_2$ are a normal random variables. The interest is on the proportion of individuals of each population displaying  a given property. Therefore, we get two random samples of sizes $n_1=", n1,"$ and $n_2=", n2,"$ that produce, respectively, 
+  question=paste0("Given the random variables $X_1$ and $X_2$, the interest is on the proportion of individuals of each population displaying  a given property. Therefore, we get two random samples of sizes $n_1=", n1,"$ and $n_2=", n2,"$ that produce, respectively, 
                  sample proportions  $\\hat{p}_1=", phat1,"$ and $\\hat{p}_2=", phat2,"$.  
                   Test the null hypothesis:
                   $$H_0: p_1 ", symbol, " p_2 $$
@@ -83,8 +83,8 @@ if(language=='en'){
 
 }else if(language=='es'){
   question=paste0(
-    "Las variables aleatorias $X_1$ y $X_2$ son normales. 
-    Nos preguntamos sobre las proporciones de observaciones de cada variable que cumplen una determinada propiedad. 
+    "Dadas las variables aleatorias $X_1$ y $X_2$, 
+    nos preguntamos sobre las proporciones de observaciones de cada variable que cumplen una determinada propiedad. 
     Para ello, se han obtenido muestras de tama\\~nos $n_1=", n1,"$ y $n_2=", n2,"$, respectivemente, 
     con proporciones muestrales $\\hat{p}_1=", phat1," $ y $\\hat{p}_2=",phat2,"$. 
     Se desea contrastar la hip\\'otesis nula:

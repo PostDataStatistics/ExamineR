@@ -1,0 +1,108 @@
+<<echo=FALSE, results=hide>>=
+
+## Hypothesis test for sample proportion, X ~ N(0,1), sample size n>30 
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+
+## DATA GENERATION
+library(MASS)
+
+signifDig = 4
+
+(n=sample(seq(40, 60, by = 2),1))
+# (p0Num = sample( seq(n/2-4, n/2+4, by = 2), size = 1))
+# #(p0Num = sample( (floor(n/2)-5):(floor(n/2)+5), size = 1))
+# (p0 = p0Num/n)
+(p0 = sample(seq(4, 6, by = .5), size = 1)/10)
+(n0 = floor(n*p0))
+(alpha = sample(c(0.1, 0.05, 0.01), size = 1))
+(nhat = floor(n * (p0 + sample(c(-1, 1), size = 1) * sample(1:3, size = 1)/10 )))
+(phat = nhat/n)
+(qhat = 1 - phat)
+sol=0
+
+# while((abs(sol)<0.00001)|(abs(sol)>999)){
+  
+    TestType = 3 # 1 to test H1: mu > mu0, 2 to test H1: mu < mu0, 3 to test H1: mu = mu0
+    if(TestType==1){
+      symbol=sanitizeLatexS("\\leq")
+    }
+    if(TestType==2){
+      symbol=sanitizeLatexS("\\geq")
+    }
+    if(TestType==3){
+      symbol="="
+    }
+  
+  # }
+## QUESTION/ANSWER GENERATION
+
+(p_bound = signif(p0 - qnorm(alpha/2, lower.tail = FALSE)*sqrt(phat*qhat/n), digits=signifDig))
+
+
+## QUESTION STATEMENT GENERATION
+
+#(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
+
+if(language=='en'){
+question=paste0("To be traslated"
+                )
+  
+  answer=paste0("To be traslated")
+}else if(language=='es'){
+  question=paste0("
+Se repite un experimento de tipo Bernoull\\'i $n=", n,"$ veces y  
+ la proporci\\'on muestral de  \\'exitos es $\\hat{p}=\\frac{", nhat, "}{", n, "}$. 
+              Se quiere contrastar la hipotesis nula:
+              $$H_0:\\,p  ", symbol, " p_0$$
+donde $p_0=", p0,"$. Si se observan menos de ",n0," \\'exitos, 
+determina el mayor n\\'umero de \\'exitos que se debe observar para rechazar $H_0$. 
+"
+ )
+
+  answer=paste0("Se rechaza $H_0$ si $\\hat p$ es significativamente menor que $p_0$. 
+La teor\\'ia dice que 
+$$\\frac{\\hat p-p_0}{\\sqrt{\\frac{\\hat p \\hat q}{n}}}\\sim N(0,1)$$ 
+al destipificar se deduce que el valor umbral (el mayor valor) de la proporci\\'on muestral que permite rechazar $H_0$ en las unidades del problema es
+\\begin{equation}\\label{1} 
+p_* = p_0 - z_{", alpha, "/2} \\sqrt{\\frac{\\hat p \\hat q}{n}}
+\\end{equation}
+que es la frontera de la regi\\'on de rechazo y se puede calcular como 
+\\begin{equation}\\label{2}
+p_* = {\\tt qnorm(",alpha/2,", mean = ", p0,", sd = \\sqrt{\\frac{(",nhat,"/",n,") (",n-nhat,"/",n,") }{",n,"}}), lower.tail = TRUE)}
+\\end{equation}
+que se corresponde con $p_* * n =$", signif(p_bound * n, digits=signifDig)," \\'exitos, por lo tanto la soluci\\'on  es 
+$$ {\\tt floor(",p_bound * n,") } = ",floor(p_bound * n),"$$
+")
+
+}
+
+cat(question)
+
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}
+@

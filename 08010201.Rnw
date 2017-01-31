@@ -49,8 +49,13 @@ if(language=='en'){
 
 }else if(language=='es'){
   question=paste0(
-    "Considera la tabla de contingencia que aparece abajo para dos factores con 2 niveles cada uno. 
-    
+    "Considera la tabla de contingencia para dos factores con 2 niveles cada uno. 
+
+    \\begin{tabular}{|c|c|}\\hline
+",the_table[1,1]," & ",the_table[1,2]," \\\\\\hline
+",the_table[2,1]," & ",the_table[2,2]," \\\\\\hline
+\\end{tabular}
+
     Contrasta la hip\\'otesis nula 
       \\[H_0:\\,\\left\\{\\text{Los dos factores son independientes} \\right\\}\\]
     para un nivel de significaci\\'on $\\alpha = ", ns,"$. Para ello, calcula el p-valor 
@@ -69,17 +74,6 @@ cat(question)
   \begin{question}
 <<echo=False, results=tex>>=
   cat(paste(question,collapse=""))
-@
-
-\vspace{.1cm}
-
-Tabla de contingencia
-
-\vspace{.1cm}
-
-<<echo=False, results=tex>>=
-library(knitr)
-kable(the_table, digits=2, format = "latex")
 @
 
 \end{question}

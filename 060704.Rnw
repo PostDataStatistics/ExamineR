@@ -15,20 +15,25 @@ sanitizeLatexS <- function(str) {
   gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
 }
 
+
 ## DATA GENERATION
+
 library(MASS)
 signifDig = 4
 
 
 (n1=sample(31:100,1))
 (n2=sample(31:100,1))
-
-
+(alpha = sample(c(0.1, 0.05, 0.01), size = 1))
 
 sol=0
-while((abs(sol)<0.00001)|(abs(sol)>999)){
-  
-    TestType=2 # Ha: 1 to test p1 > p2, 2 to test p1 < p2, 3 to test p1 = p2
+
+s1 = 1
+s2 = 2
+type1 = c("mayor que", "menor que", "diferente de")    
+type2 = c(">", "<", "\\neq")    
+
+    TestType=1 # Ha: 1 to test p1 > p2, 2 to test p1 < p2, 3 to test p1 = p2
     
     if(TestType==1){
        symbol=sanitizeLatexS("\\leq")
@@ -36,8 +41,7 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
       (phat2=signif(phat1-runif(1,min=0.01,max=phat1/2), digits=2))
       (pSample = (n1 * phat1 + n2 * phat2) / (n1 + n2) ) 
       (qSample = 1- pSample)
-      (statistic=( phat1 - phat2 ) / sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) )
-      (pValue=1-pnorm(statistic,mean=0,sd=1))
+      (sol = qnorm(alpha, mean=0, sd=sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) , lower.tail = FALSE))
     }
     if(TestType==2){
       symbol=sanitizeLatexS("\\geq")
@@ -45,8 +49,7 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
       (phat2=signif(phat1+runif(1,min=0.01,max=phat1/2), digits=2))
       (pSample = (n1 * phat1 + n2 * phat2) / (n1 + n2) ) 
       (qSample = 1- pSample)
-      (statistic=( phat1 - phat2 ) / sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) )
-      (pValue=pnorm(statistic,mean=0,sd=1))
+      (sol = qnorm(alpha, mean=0, sd=sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) , lower.tail = TRUE))
     }
     if(TestType==3){
        symbol="="
@@ -54,13 +57,12 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
       (phat2=signif(phat1+sample(c(-1,1),1)*runif(1,min=0.01,max=phat1/2), digits=2))
       (pSample = (n1 * phat1 + n2 * phat2) / (n1 + n2) ) 
       (qSample = 1- pSample)
-      (statistic=( phat1 - phat2 ) / sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) )
-      (pValue=2*(1-pnorm(abs(statistic),mean=0,sd=1)))
+     (sol = qnorm(alpha/2, mean=0, sd=sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) , lower.tail = FALSE))
     }
 
     
-  sol = signif(pValue, digits=signifDig)
-}
+  sol = signif(sol, digits=signifDig)
+
 
 ## QUESTION/ANSWER GENERATION
 
@@ -68,16 +70,9 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
 
 
 if(language=='en'){
-  question=paste0("Given the random variables $X_1$ and $X_2$, the interest is on the proportion of individuals of each population displaying  a given property. Therefore, we get two random samples of sizes $n_1=", n1,"$ and $n_2=", n2,"$ that produce, respectively, 
-                 sample proportions  $\\hat{p}_1=", phat1,"$ and $\\hat{p}_2=", phat2,"$.  
-                  Test the null hypothesis:
-                  $$H_0: p_1 ", symbol, " p_2 $$
-                  Find the p-value. Use 4 significant digits."
-                )
+  question=paste0("To be traslated")
   
-  answer=paste0(" The value of the test-statistics is  
-                $=
-                ",signif( statistic,digits=4),"$.\\ The solution is p-value$ =", sol,"$.")
+  answer=paste0("To be traslated")
 
 }else if(language=='es'){
   question=paste0(
@@ -87,14 +82,44 @@ if(language=='en'){
     con proporciones muestrales $\\hat{p}_1=", phat1," $ y $\\hat{p}_2=",phat2,"$. 
     Se desea contrastar la hip\\'otesis nula:
              $$H_0: p_1 ", symbol, " p_2$$
-Hallar el p-valor de este contraste.
+En las unidades del problema y con un nivel de significaci\\'on $\\alpha=",alpha," $ \\textquestiondown en cu\\'anto deben diferir, al menos, las proporciones muestrales para rechazar $H_0$? 
 Utiliza 4 cifras significativas en tu respuesta."
  )
 
 
-  answer=paste0(" El estad\\'istico es $\\frac{\\hat p_1-\\hat p_2}{\\sqrt{\\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)\\left(\\frac{n_1\\hat{p}_1+n_2\\hat{p}_2}{n_1+n_2}\\right)
-                \\left(1-\\frac{n_1\\hat{p}_1+n_2\\hat{p}_2}{n_1+n_2}\\right)}}=
-                ",signif( statistic,digits=4),"$. \\newline La soluci\\'on  es  p-valor$ =", sol,"$.")
+  answer=paste0(" 
+Si $H_0$ es cierta, se cumple que 
+\\begin{equation}
+\\frac{\\hat p_1-\\hat p_2}
+{\\sqrt{\\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)
+\\hat p \\hat q}}
+\\sim N(0,1) \\quad \\text{donde} \\quad
+\\hat p = \\frac{n_1\\hat{p}_1+n_2\\hat{p}_2}{n_1+n_2},
+\\quad 
+\\hat q = 1-\\hat p
+\\end{equation}
+Se rechaza $H_0$ cuando $\\frac{\\hat p_1-\\hat p_2}
+{\\sqrt{\\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)
+\\hat p \\hat q}}$ sea significativamente 
+",type1[TestType]," $z_{",alpha,"}$, es decir, 
+$$
+\\hat{p}_1-\\hat{p}_2 
+",type2[TestType],"
+z_{",alpha,"}\\sqrt{\\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)
+\\hat p \\hat q} = 
+$$
+$$
+{\\tt 
+qnorm(",alpha,", mean = 0, 
+sd = \\sqrt{\\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)
+\\hat p \\hat q}, lower.tail = FALSE)=
+}
+$$
+$$
+", sol,"
+$$
+Es importante entender la \\'ultima cadena de igualdades
+ y su relaci\\'on con (1).")
 
 
 }

@@ -18,33 +18,32 @@ sanitizeLatexS <- function(str) {
 
 ## DATA GENERATION
 sol=0
-while((abs(sol)<0.00001)|(abs(sol)>999)){
 
-numcol = 5 
-n = numcol*10
+n = sample(9:11, size = 1, replace = TRUE)
 
 #x <- round(runif(n, min = 10, max = 20), digits = 1)
 beta1 = sample(c(-4:1,1:4)/4, size = 1)
 beta0 = sample(c(-4:1,1:4), size = 1)
 
 x = sample(10:20, size = n, replace = TRUE)
-
 x_i = sample(x, size = 1)
 
 y=c()
-for(i in 1:(n)){
+for(i in 1:n){
      y = c(y, beta1*x[i]+beta0 + rnorm(n = 1, mean = 0,sd = .3))
 }
+y = signif(y, digits = 2)
+lmXY = summary(lm(y ~ x))
+
+dataStringX = paste(x, collapse=", ")
+dataStringX = paste("X: ", dataStringX, sep = "")
+
+dataStringY = paste(y, collapse=", ")
+dataStringY = paste("Y: ", dataStringY, sep = "")
 
 (sol = predict(lm(y ~ x), newdata = data.frame(x=x_i)))
 
 signifDig = 4
-
-dataX = matrix(x, ncol = numcol, nrow=10,byrow=T)
-dataY = matrix(y, ncol = numcol, nrow=10,byrow=T)
-
-}
-
 
 
 ## QUESTION/ANSWER GENERATION
@@ -60,54 +59,30 @@ if(language=='en'){
 
 }else if(language=='es'){
   question=paste0(
-    "Considera las $n=", n,"$  medidas simultaneas de las  variables aleatorias $x$ e $y$ almacenadas en las tablas, m\\'as abajo (cada par de valores (x,y) ocupa celdas hom\\'ologas en cada tabla). 
-    
-    Determina el valor predicho por la recta de regresi\\'on para la variable respuesta $y$  si la variable explicativa vale $", x_i,"$. Utiliza 4 cifras significativas en tu respuesta."
+    "Considera las $n=", n,"$  medidas simultaneas de las  variables aleatorias $x$ e $y$ que aparecen abajo.  Determina el valor predicho por la recta de regresi\\'on para la variable respuesta $y$  si la variable explicativa vale $", x_i,"$. Utiliza 4 cifras significativas en tu respuesta.
+$$", dataStringX ,"$$
+$$", dataStringY ,"$$
+    "
  )
  
- answer=paste0(" La soluci\\'on es  $y($", x_i,"$)=",sol,"$.")
 
 
 }
 
 cat(question)
-
-
 @ 
-  \begin{question}
+
+
+\begin{question}
 <<echo=False, results=tex>>=
   cat(paste(question,collapse=""))
 @
+\end{question}
 
-\vspace{.1cm}
-
-Medidas de la variable $x$
-
-\vspace{.1cm}
-
-<<echo=False, results=tex>>=
-library(knitr)
-kable(dataX, digits=2, format = "latex")
-@
-
-\vspace{.1cm}
-
-Medidas de la variable $y$
-
-\vspace{.1cm}
-
-<<echo=False, results=tex>>=
-library(knitr)
-kable(dataY, digits=2, format = "latex")
-@
-
-  \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
-  cat(paste(answer,collapse=""))
-@
-  \end{solution}
+La soluci\'on es  $y(\Sexpr{x_i})=\Sexpr{sol}$.
+\end{solution}
 
 
 %% META-INFORMATION

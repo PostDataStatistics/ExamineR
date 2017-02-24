@@ -7,7 +7,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## Linear regression: calculate slope of the regression line
+## Linear regression: calculate intercep of the regression line
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
 # Adds slashes to LaTeX special characters, which results in single-slash in tex output
@@ -18,10 +18,8 @@ sanitizeLatexS <- function(str) {
 
 ## DATA GENERATION
 sol=0
-while((abs(sol)<0.00001)|(abs(sol)>999)){
 
-numcol = 5 
-n = numcol*10
+n = sample(9:11, size = 1, replace = TRUE)
 
 #x <- round(runif(n, min = 10, max = 20), digits = 1)
 beta1 = sample(c(-4:1,1:4)/4, size = 1)
@@ -30,83 +28,56 @@ beta0 = sample(c(-4:1,1:4), size = 1)
 x = sample(10:20, size = n, replace = TRUE)
 
 y=c()
-for(i in 1:(n)){
+for(i in 1:n){
      y = c(y, beta1*x[i]+beta0 + rnorm(n = 1, mean = 0,sd = .3))
 }
-
+y = signif(y, digits = 3)
 lmXY = summary(lm(y ~ x))
+
+dataStringX = paste(x, collapse=", ")
+dataStringX = paste("X: ", dataStringX, sep = "")
+
+dataStringY = paste(y, collapse=", ")
+dataStringY = paste("Y: ", dataStringY, sep = "")
 
 signifDig = 4
 
 (sol = lmXY$coefficients[2,1])
 
-dataX = matrix(x,ncol=numcol,nrow=10,byrow=T)
-dataY = matrix(y,ncol=numcol,nrow=10,byrow=T)
-
-}
-
-
-
 ## QUESTION/ANSWER GENERATION
 
-(sol = signif(sol, 4))
+sol = signif(sol, 4)
 
 
 if(language=='en'){
   question=paste0(" "
                 )
-  
   answer=paste0(" ")
 
 }else if(language=='es'){
   question=paste0(
-    "Considera las $n=", n,"$  medidas simultaneas de las  variables aleatorias $x$ e $y$ almacenadas en las tablas, m\\'as abajo (cada par de valores (x,y) ocupa celdas hom\\'ologas en cada tabla). 
+    "Considera las $n=", n,"$  medidas simultaneas de las  variables aleatorias $x$ e $y$ que aparecen a continuaci\\'on: 
+$$", dataStringX ,"$$
+$$", dataStringY ,"$$
     Determina la pendiente de la recta de regresi\\'on cuando se considera la variable $y$ como variable respuesta. Utiliza 4 cifras significativas en tu respuesta."
  )
 
- answer=paste0(" La pendiente de la recta es  $b_1=
-                ",sol,"$.")
-
-
+ 
 }
 
-cat(question)
-
-
 @ 
-  \begin{question}
+
+
+\begin{question}
 <<echo=False, results=tex>>=
   cat(paste(question,collapse=""))
 @
 
-\vspace{.1cm}
-
-Medidas de la variable $x$
-
-\vspace{.1cm}
-
-<<echo=False, results=tex>>=
-library(knitr)
-kable(dataX, digits=2, format = "latex")
-@
-
-\vspace{.1cm}
-
-Medidas de la variable $y$
-
-\vspace{.1cm}
-
-<<echo=False, results=tex>>=
-library(knitr)
-kable(dataY, digits=2, format = "latex")
-@
-  \end{question}
+\end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
-  cat(paste(answer,collapse=""))
-@
-  \end{solution}
+La pendiente es $b_1=\Sexpr{sol}$
+\end{solution}
 
 
 %% META-INFORMATION

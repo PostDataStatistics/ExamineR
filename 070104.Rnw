@@ -7,7 +7,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## Linear regression: residual of a given (x_i,y_i);  y as response variable 
+## Linear regression: calculate Pearson's coefficient
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
 # Adds slashes to LaTeX special characters, which results in single-slash in tex output
@@ -15,11 +15,11 @@ sanitizeLatexS <- function(str) {
   gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
 }
 
+
 ## DATA GENERATION
 sol=0
 
 n = sample(9:11, size = 1, replace = TRUE)
-
 #x <- round(runif(n, min = 10, max = 20), digits = 1)
 beta1 = sample(c(-4:1,1:4)/4, size = 1)
 beta0 = sample(c(-4:1,1:4), size = 1)
@@ -30,7 +30,8 @@ y=c()
 for(i in 1:n){
      y = c(y, beta1*x[i]+beta0 + rnorm(n = 1, mean = 0,sd = .3))
 }
-y = signif(y, digits = 2)
+y = signif(y, digits = 3)
+lmXY = summary(lm(y ~ x))
 
 dataStringX = paste(x, collapse=", ")
 dataStringX = paste("X: ", dataStringX, sep = "")
@@ -38,13 +39,13 @@ dataStringX = paste("X: ", dataStringX, sep = "")
 dataStringY = paste(y, collapse=", ")
 dataStringY = paste("Y: ", dataStringY, sep = "")
 
-(sol = y[i]-predict(lm(y ~ x), newdata = data.frame(x=x[i])))
+(sol = cov(x,y))
 
 
 
 ## QUESTION/ANSWER GENERATION
 
-(sol = signif(sol, signifDig))
+(sol = signif(sol, 4))
 
 
 if(language=='en'){
@@ -55,30 +56,26 @@ if(language=='en'){
 
 }else if(language=='es'){
   question=paste0(
-    "Considera las $n=", n,"$  medidas simultaneas de las  variables aleatorias $x$ e $y$ que aparecen a continuaci\\'on: 
+    "Determina la covarianza con  4 cifras significativas de las $n=", n,"$  medidas simultaneas de las  variables aleatorias $x$ e $y$ que aparecen a continuaci\\'on: 
 $$", dataStringX ,"$$
 $$", dataStringY ,"$$
-    Determina el res\\'iduo de $(x,y)=(", x[i]," , ", round(y[i], signifDig),")$. Utiliza ", signifDig," cifras significativas en tu respuesta."
+    "
  )
- 
+
 }
 
-cat(question)
-
-
 @ 
-  \begin{question}
+
+
+\begin{question}
 <<echo=False, results=tex>>=
   cat(paste(question,collapse=""))
 @
-
-  \end{question}
+\end{question}
 
 \begin{solution}
-La soluci\'on es  $\Sexpr{sol}$.
-
-  \end{solution}
-
+La covarianza es $cov(x,y)=\Sexpr{sol}$
+\end{solution}
 
 %% META-INFORMATION
 %% \extype{num}

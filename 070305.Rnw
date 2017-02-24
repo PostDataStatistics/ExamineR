@@ -16,21 +16,28 @@ sanitizeLatexS <- function(str) {
 }
 
 ## DATA GENERATION
-numcol = 5 
-n = numcol*10
+sol=0
 
-denom = sample(c(4,4000), size = 1)
-beta1 = sample(c(-4:1,1:4)/denom, size = 1)
+n = sample(9:11, size = 1, replace = TRUE)
+
+#x <- round(runif(n, min = 10, max = 20), digits = 1)
+beta1 = sample(c(-4:1,1:4)/4, size = 1)
 beta0 = sample(c(-4:1,1:4), size = 1)
 
 x = sample(10:20, size = n, replace = TRUE)
 
 y=c()
-for(i in 1:(n)){
+for(i in 1:n){
      y = c(y, beta1*x[i]+beta0 + rnorm(n = 1, mean = 0,sd = .3))
-
 }
+y = signif(y, digits = 2)
+lmXY = summary(lm(y ~ x))
 
+dataStringX = paste(x, collapse=", ")
+dataStringX = paste("X: ", dataStringX, sep = "")
+
+dataStringY = paste(y, collapse=", ")
+dataStringY = paste("Y: ", dataStringY, sep = "")
 nc = sample(c(.9, .95, .99), size = 1)
 nc1 = nc*100
 lmXY.ci <-confint(lm(y ~ x), level=nc)
@@ -40,11 +47,6 @@ lmXY = summary(lm(y ~ x))
 (ECM = EC/(n-1))
 (tt = as.double(lmXY$coefficients[2,1])/sqrt(ECM/((n-2)*var(x))))
 (pvalue = 2*pt(abs(tt), df = n-2, lower.tail = FALSE))
-
-dataX = matrix(x, ncol = numcol ,nrow=10,byrow=T)
-dataY = matrix(y, ncol = numcol ,nrow=10,byrow=T)
-
-
 
 
 
@@ -61,55 +63,29 @@ if(language=='en'){
 
 }else if(language=='es'){
   question=paste0(
-    "Considera las $n=", n,"$  medidas simultaneas de las  variables aleatorias $x$ y $y$ almacenadas en las tablas, m\\'as abajo (cada par de valores (x,y) ocupa celdas hom\\'ologas en cada tabla). 
+    "Considera las $n=", n,"$  medidas simultaneas de las  variables aleatorias $x$ e $y$ que aparecen a continuaci\\'on: 
+$$", dataStringX ,"$$
+$$", dataStringY ,"$$
     Si $y=\\beta_0+\\beta_1 x$ es la recta de regresi\\'on te\\'orica, 
     determina el p-valor del contraste 
     \\[H_0:\\,\\,\\beta_1 = 0\\]
     Utiliza 4 cifras significativas en tu respuesta."
  )
 
-  answer=paste0(" La soluci\\'on es $",sol,"$.")
-
-
 }
 
-cat(question)
-
-
 @ 
-  \begin{question}
+
+\begin{question}
 <<echo=False, results=tex>>=
   cat(paste(question,collapse=""))
 @
+\end{question}
 
-\vspace{.1cm}
-
-Medidas de la variable $x$
-
-\vspace{.1cm}
-
-<<echo=False, results=tex>>=
-library(knitr)
-kable(dataX, digits=2, format = "latex")
-@
-
-\vspace{.1cm}
-
-Medidas de la variable $y$
-
-\vspace{.1cm}
-
-<<echo=False, results=tex>>=
-library(knitr)
-kable(dataY, digits=2, format = "latex")
-@
-  \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
-  cat(paste(answer,collapse=""))
-@
-  \end{solution}
+El p-valor es \Sexpr{sol}
+\end{solution}
 
 
 %% META-INFORMATION

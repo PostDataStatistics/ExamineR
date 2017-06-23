@@ -91,8 +91,8 @@ siendo $\\mu_0=", mu0,"$. Hallar el p-valor de este contraste.
 Utiliza 4 cifras significativas en tu respuesta."
  )
   
-  answer=paste0(" El valor del estad\\'istico es $\\dfrac{\\bar X-\\mu_0}{\\frac{s}{\\sqrt{n}}}=
-                ",signif( Statistic,digits=signifDig),"$.  La soluci\\'on  es: p-valor $ =", sol,"$.")
+  answer=paste0(" El valor del estad\\'istico es 
+      $\\dfrac{\\bar X-\\mu_0}{\\frac{s}{\\sqrt{n}}}=",signif( Statistic,digits=signifDig),"$.  La soluci\\'on  es: p-valor $ =", sol,"$.")
   
 }
 
@@ -101,15 +101,18 @@ cat(question)
 @
   
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
-  cat(paste(answer,collapse=""))
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
+
+ cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 

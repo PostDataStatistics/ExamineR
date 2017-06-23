@@ -74,14 +74,16 @@ cat(question)
 
 
 \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 \end{question}
 
 
 \begin{solution}
 La soluci\'on es  $y(\Sexpr{x_i})=\Sexpr{sol}$.
+
 \end{solution}
 
 

@@ -72,7 +72,7 @@ cat(question)
 
 @ 
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
 
@@ -82,7 +82,7 @@ Medidas de la variable $x$
 
 \vspace{.1cm}
 
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
 library(knitr)
 kable(dataX, digits=2, format = "latex")
 @
@@ -93,14 +93,14 @@ Medidas de la variable $y$
 
 \vspace{.1cm}
 
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
 library(knitr)
 kable(dataY, digits=2, format = "latex")
 @
   \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
   \end{solution}

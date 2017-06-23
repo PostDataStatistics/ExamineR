@@ -43,14 +43,14 @@ if(language=='en'){
  questions[2]= " Muestra 2"  
  questions[3]= " Muestra 3"  
  question=paste0("El diagrama de caja y bigotes describe los datos que representan uno de los histogramas, 
-          \\textquestiondown con cu\\'al?")
+          \\textquestiondown  cu\\'al es?")
 }
 
 cat(question)
 
 @
 \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
 

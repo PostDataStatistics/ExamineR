@@ -74,13 +74,15 @@ $$", dataStringY ,"$$
 
 
 \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 \end{question}
 
 \begin{solution}
 El extremo INFERIOR del intervalo de confianza pedido es $\Sexpr{sol}$
+
   \end{solution}
 
 

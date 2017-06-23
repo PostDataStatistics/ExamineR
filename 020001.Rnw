@@ -57,11 +57,11 @@ Calculate $P(A\\cup B)$ with ",signifDig," significant digits.
   
 }else if(language=='es'){
     question=paste0("Los sucesos $A$ y $B$, cumplen:
-\\[
+$$
 P(A)=\\left(\\frac{",numPA,"}{",denPA,"}\\right) \\qquad
 P(B)=\\left(\\frac{",numPB,"}{",denPB,"}\\right) \\qquad
 P(A\\cap B)=\\left(\\frac{",numPAB,"}{",denPAB,"}\\right)
-\\]
+$$
 Calcula el valor de $P(A\\cup B)$. Utiliza ",signifDig," cifras significativas en tu respuesta.
 ")
   
@@ -74,15 +74,17 @@ cat(question)
 @
   
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 

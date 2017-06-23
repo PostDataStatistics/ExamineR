@@ -34,22 +34,24 @@ if(language=='en'){
   answer=paste0("To be traslated.")
 }else
      if(language=='es'){
-  question=paste0("Se quiere comprobar si las medias $",means[1],"$ y $",means[2],"$ de dos poblaciones ", type,"  entre s\\'i. Se toman sendas muestras y obtienen las medias muestrales ",barX[1]," y ",barX[2],". \\textquestiondown Cu\\'al es la hip\\'otesis ", hypothesis ,"?")
+  question=paste0("Se quiere comprobar si las medias $",means[1],"$ y $",means[2],"$ de dos poblaciones ", type,"  entre s\\'i. Se toman sendas muestras y obtienen las medias muestrales $\\bar X_1 = $",barX[1]," y $\\bar X_2 = $ ",barX[2],". \\textquestiondown Cu\\'al es la hip\\'otesis ", hypothesis ,"?")
   answer=paste0(" ", sol, ". Se rechaza $H_0$ cuando la medias muestrales $\\bar X_1=", barX1, "$ y $\\bar X_2=", barX2, "$ son significativamente diferentes entre s\\'i.")  
 }
 cat(question)
 @
   
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 %% META-INFORMATION
 %% \extype{string}

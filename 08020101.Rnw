@@ -73,7 +73,7 @@ cat(question)
 
 @ 
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
 
@@ -83,7 +83,7 @@ Valores que toma el dado
 
 \vspace{.1cm}
 
-<<echo=False, results=tex, prompt = FALSE>>=
+<<echo=False, results=tex, prompt = FALSE,strip.white=false,strip.white=false,strip.white=false>>=
 library(knitr)
 library(MASS)
 # kable(fractions(table1), digits=2, format = "latex")
@@ -96,7 +96,7 @@ Probabilidad de cada valor
 
 \vspace{.1cm}
 
-<<echo=False, results=tex, prompt = FALSE>>=
+<<echo=False, results=tex, prompt = FALSE,strip.white=false,strip.white=false,strip.white=false>>=
 library(knitr)
 library(MASS)
 # kable(fractions(table1), digits=2, format = "latex")
@@ -109,7 +109,7 @@ Tabla de valores observados
 
 \vspace{.1cm}
 
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
 library(knitr)
 kable(table2, digits=2, format = "latex")
 @
@@ -117,7 +117,7 @@ kable(table2, digits=2, format = "latex")
 \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
   \end{solution}

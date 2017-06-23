@@ -22,7 +22,6 @@ while((sol<0.00001)|(sol>0.9999)){
   mu <- sample(-5:5, 1)
   sigma <- sample(1:10,1)/10
   a <- sample(2:4,1)
-  sol = 0.000
 }
 
 ## QUESTION/ANSWER GENERATION
@@ -51,13 +50,13 @@ cat(question)
 @
   
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
   \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
   \end{solution}

@@ -29,7 +29,7 @@ signifDig = 4
 sol=0
 while((abs(sol)<0.00001)|(abs(sol)>999)){
   
-    TestType=3 # 1 para Hip. alternativa mu1-mu2 > 0, 2 para mu1-mu2 < 0, 3 para mu1-mu2 <> 0
+ TestType=3 # 1 para Hip. alternativa mu1-mu2 > 0, 2 para mu1-mu2 < 0, 3 para mu1-mu2 <> 0
     
 if(TestType==1){
       symbol=sanitizeLatexS("\\geq")
@@ -51,7 +51,6 @@ if(TestType==1){
     }
     if(TestType==3){
       symbol="="
-      (mu0=signif(xbar+sample(c(-1,1),1)*runif(1,min=1,max=4)*(s/sqrt(n)),digits=3))
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=3))
       (xbar2=signif(xbar1+rnorm(1),digits=3))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=3))
@@ -72,27 +71,24 @@ if(language=='en'){
 question=paste0(" $X_1$ and $X_2$  are normal random variables. 
 Se han obtenido muestras de tama\\~nos tama\\~no $n_1=", n1,"$ y  $n_2=", n2,"$, 
                  con medias muestrales  $\\bar{X}_1=", xbar1, "$ y $\\bar{X}_2=", xbar2, "$ y 
-                con cuasivarianzas (o varianzas muestrales) $\\sigma=", s^2, "$ $\\hat{\\sigma}_1=", s1, "$ y $\\hat{\\sigma}_2=", s2, "$. 
+                con cuasivarianzas (o varianzas muestrales) $\\hat{\\sigma}_1=", s1, "$ y $\\hat{\\sigma}_2=", s2, "$. 
               Se desea contrastar la hipotesis nula:
-              $$H_0:\\mu_{X_1}-\\mu_{X_2} ", symbol, " 0$$
-siendo $\\sigma_0=", sigma0,"$. Hallar el p-valor de este contraste.
-Utiliza 4 cifras significativas en tu respuesta."
+              $$H_0:\\mu_{X_1}-\\mu_{X_2} ", symbol, " 0$$. Hallar el p-valor de este contraste con 4 cifras significativas."
                 )
   
-  answer=paste0(" The value of the test-statistics is $\\frac{\bar X_1-\bar X_2}{\\sqrt{\frac{\\hat{s}_1^2}{n_1}+\frac{\\hat{s}_1^2}{n_1}}}=",signif( statistic,digits=4),"$. The solution is $s =", sol,"$.")
+  answer=paste0(" The value of the test-statistics is $\\frac{\\bar X_1-\\bar X_2}{\\sqrt{\\frac{\\hat{s}_1^2}{n_1}+\\frac{\\hat{s}_1^2}{n_1}}}=",signif( statistic,digits=4),"$. The solution is $ =", sol,"$.")
   
 }else if(language=='es'){
   question=paste0("Las variables aleatorias $X_1$ y $X_2$ son normales (y se desconoce sus varianzas). 
 Se han obtenido muestras de tama\\~nos tama\\~no $n_1=", n1,"$ y  $n_2=", n2,"$, 
                  con medias muestrales  $\\bar{X}_1=", xbar1, "$ y $\\bar{X}_2=", xbar2, "$ y 
-                con cuasivarianzas (o varianzas muestrales) $\\sigma=", s^2, "$ $\\hat{\\sigma}_1=", s1, "$ y $\\hat{\\sigma}_2=", s2, "$. 
+                con cuasivarianzas (o varianzas muestrales) $\\hat{\\sigma}_1=", s1, "$ y $\\hat{\\sigma}_2=", s2, "$. 
               Se desea contrastar la hipotesis nula:
-              $$H_0:\\mu_{X_1}-\\mu_{X_2} ", symbol, " 0$$
-siendo $\\sigma_0=", sigma0,"$. Hallar el p-valor de este contraste.
-Utiliza 4 cifras significativas en tu respuesta."
+              $$H_0:\\mu_{X_1}-\\mu_{X_2} ", symbol, " 0$$.
+Calcula el p-valor del contraste con 4 cifras significativas."
  )
 
-  answer=paste0(" El estad\\'istico es $\\frac{\bar X_1-\bar X_2}{\\sqrt{\frac{\\hat{s}_1^2}{n_1}+\frac{\\hat{s}_1^2}{n_1}}}=",signif( statistic,digits=4),"$.  La soluci\\'on  es  $s =", sol,"$.")
+  answer=paste0(" El estad\\'istico es $\\frac{\\bar X_1-\\bar X_2}{\\sqrt{\\frac{\\hat{s}_1^2}{n_1}+\\frac{\\hat{s}_1^2}{n_1}}}=",signif( statistic,digits=4),"$.  La soluci\\'on  es  $ =", sol,"$.")
 
 }
 
@@ -102,15 +98,17 @@ cat(question)
 @
   
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 

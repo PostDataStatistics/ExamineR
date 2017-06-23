@@ -74,7 +74,7 @@ $$", dataStringY ,"$$
 
 @ 
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
 
@@ -82,6 +82,7 @@ $$", dataStringY ,"$$
 
 \begin{solution}
 El t\'ermino independiente es $b_0=\Sexpr{sol}$.
+
 \end{solution}
 
 

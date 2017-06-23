@@ -68,41 +68,22 @@ cat(question)
 
 @ 
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 
 
-% 
-% \begin{question}
-% 
-% Se quiere estudiar la independencia de dos factores con han analizado Dada esta lista de valores:
-% 
-% <<echo=FALSE,results=tex>>=
-% print(xtable(matrizDatos), include.rownames = F, include.colnames = F) 
-% @ 
-% 
-% Construye su tabla de frecuencias {\bf acumuladas} y  
-% escribe, como respuesta, {\bf \underline{el elemento} cuya frecuencia acumulada es} \Sexpr{elegido}. 
-% \end{question}
-% 
-% \begin{solution}
-% La tabla de frecuencias se muestra abajo. Por lo tanto la soluci\'on es $\Sexpr{sol}$.\\
-% 
-% <<echo=FALSE,results=tex>>=
-% print(xtable(cbind(valores,frecuencias)), include.rownames = F, include.colnames = F) 
-% @ 
-% 
-% 
-% \end{solution}
+
 % 
 % %% META-INFORMATION
 % %% \extype{num}

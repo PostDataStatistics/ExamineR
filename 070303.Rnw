@@ -76,7 +76,7 @@ $$", dataStringY ,"$$
 
 
 \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
 \end{question}

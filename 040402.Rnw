@@ -38,7 +38,7 @@ if(language=='en'){
   answer=paste0("The answer is ", sol)
   
 }else if(language=='es'){
-    question=paste0("$T$ es una variable aleatoria que sigue una distribuci\\'on t de Student con ", n," gradosde libertad. Calcula la probabilidad $$P(T < ", b," ).$$  Escribe tu respuesta con ", signifDig, " cifras significativas." )
+    question=paste0("$T$ es una variable aleatoria que sigue una distribuci\\'on t de Student con ", n," grados de libertad. Calcula la probabilidad $$P(T < ", b," ).$$  Escribe tu respuesta con ", signifDig, " cifras significativas." )
   
   answer=paste0("La respuesta es ", sol)
   
@@ -49,15 +49,17 @@ cat(question)
 @
   
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 

@@ -68,13 +68,15 @@ $$", dataStringY ,"$$
 
 
 \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 \end{question}
 
 \begin{solution}
 La covarianza es $cov(x,y)=\Sexpr{sol}$
+
 \end{solution}
 
 %% META-INFORMATION

@@ -20,7 +20,7 @@ while((sol<0.00001)|(sol>0.9999)){
   n1 =sample(5:15, 1)
   n2 =sample(5:15, 1)
   q=sample(1:9,1)/10
-  sol = qf(1-q, df = n)
+  sol = qf(1-q, df1 = n1, df2 = n2)
 }
 
 ## QUESTION/ANSWER GENERATION
@@ -49,13 +49,13 @@ cat(question)
 @
   
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
   \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
   \end{solution}

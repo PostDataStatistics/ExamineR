@@ -45,7 +45,7 @@ if(language=='en'){
  questions[2]= " Muestra 2"  
  questions[3]= " Muestra 3" 
  question=paste0("El histograma describe lo datos que representa uno de los diagramas de caja y bigotes, 
-\\textquestiondown con cu\\'al? ")
+\\textquestiondown cu\\'al es? ")
 }
 
 cat(question)
@@ -54,12 +54,12 @@ cat(question)
 
 @
 \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
 \begin{figure}[h!]
 \begin{center}
-<<fig=TRUE, height=7, width=7, echo=FALSE, eps=FALSE, results=hide>>=
+<<fig=TRUE, height=5, width=5, echo=FALSE, eps=FALSE, results=hide>>=
 par(mfrow=c(2,2))
 hist(unlist(lista[sol]), main = "", xlab = "", xlim=c(min(solData), max(solData)))
 boxplot(sample1, xlab = "", main="Sample 1",  horizontal = TRUE) 

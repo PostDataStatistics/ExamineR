@@ -70,13 +70,15 @@ Utiliza 4 cifras significativas en tu respuesta."
 
 
 \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 \end{question}
 
 \begin{solution}
 El coeficiente de correlaci\'on  $r=\Sexpr{sol}$
+
 \end{solution}
 
 %% META-INFORMATION

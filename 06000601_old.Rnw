@@ -1,0 +1,71 @@
+<<echo=FALSE, results=hide>>=
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+## Set the null/alternative hypotheses: the variances ratio
+
+## DATA GENERATION & ANSWER GENERATION
+(type <-sample( c("es mayor que", "es menor que"), size = 1))
+(hypothesis <- sample(c("nula", "alternativa"), size = 1))
+
+sigmas = c("\\sigma^2_1", "\\sigma^2_2")
+signifDig = 4
+hatS1 = signif(runif(n = 1, min = 2, max = 8), digits = signifDig)
+hatS2 = hatS1
+
+if((hypothesis == "nula") & (type == "es mayor que")){ 
+     while(abs(hatS2 - hatS1) < 2){hatS2 = signif(hatS1 - abs(rnorm(n = 1, mean = 0, sd = 5)), digits = signifDig)} 
+     sol = paste("$H_0:\\, \\sigma^2_1 \\leq \\sigma^2_2$")
+}
+
+if((hypothesis == "nula") & (type == "es menor que")){ 
+     while(abs(hatS2 - hatS1) < 2){hatS2 = signif(hatS1 + abs(rnorm(n = 1, mean = 0, sd = 5)), digits = signifDig)} 
+     sol = paste("$H_0:\\, \\sigma^2_1 \\geq \\sigma^2_2$")
+}
+
+if((hypothesis == "alternativa") & (type == "es mayor que")){ 
+     while(abs(hatS2 - hatS1) < 2){hatS2 = signif(hatS1 - abs(rnorm(n = 1, mean = 0, sd = 5)), digits = signifDig)} 
+     sol = paste("$H_1:\\, \\sigma^2_1 > \\sigma^2_2$")
+}
+
+if((hypothesis == "alternativa") & (type == "es menor que")){ 
+     while(abs(hatS2 - hatS1) < 2){hatS2 = signif(hatS1 + abs(rnorm(n = 1, mean = 0, sd = 5)), digits = signifDig)} 
+     sol = paste("$H_1:\\, \\sigma^2_1 < \\sigma^2_2$")
+}
+
+hatS = c(hatS1, hatS2)
+
+## QUESTION STATEMENT GENERATION
+if(language=='en'){
+  question=paste0("To be traslated.")
+  answer=paste0("To be traslated.")
+}else
+     if(language=='es'){
+  question=paste0("Se mide la misma variable en dos poblaciones independientes, y se quiere comprobar si la varianza en la primera $",sigmas[1],"$ ", type,"  la varianza $",sigmas[2],"$ de la segunda. Se toman sendas muestras y obtienen las cuasivarianzas ",hatS[1]," y ",hatS[2],". En estas condiciones, \\textquestiondown cu\\'al es la hip\\'otesis ", hypothesis ,"?")
+  answer=paste0("La respuesta es ", sol, " y se contrasta a partir de los valores muestrales $\\hat s^2_1 = $",hatS[1]," y $\\hat s^2_2 = $",hatS[2],"")  
+}
+cat(question)
+@
+  
+  \begin{question}
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+
+  \end{solution}
+%% META-INFORMATION
+%% \extype{string}
+%% \exstring{\Sexpr{sol}}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+

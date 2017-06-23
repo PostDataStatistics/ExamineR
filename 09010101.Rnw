@@ -151,7 +151,7 @@ cat(question)
 
 @ 
   \begin{question}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(question,collapse=""))
 @
 
@@ -161,7 +161,7 @@ Tabla de valores
 
 \vspace{.1cm}
 
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
 library(knitr)
 kable(the_table_df, digits=2, format = "latex")
 @
@@ -169,7 +169,7 @@ kable(the_table_df, digits=2, format = "latex")
 \end{question}
 
 \begin{solution}
-<<echo=False, results=tex>>=
+<<echo=False, results=tex,strip.white=false,strip.white=false,strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
   \end{solution}

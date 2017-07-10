@@ -1,0 +1,110 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Anova: normal samples
+## 5 treatments
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+## DATA GENERATION
+
+# function to get NO normal data
+anormal = function(size, shp1, shp2){
+     data = rbeta(size, shape1 = shp1, shape2 = shp2)
+     return(data)
+}
+ntreat = 4
+ndata = 25
+treatments = c()
+
+for(i in 1:ntreat ){
+     treatments = c(treatments, paste("treat", i, sep = ""))
+}
+
+
+for(i in 1:ntreat ){
+     x = anormal(ndata, shp1 = 1.5, shp2 = .5)
+     assign(paste("treat", i, sep = ""), x )
+}
+
+(the_table_df <- data.frame(treat1, treat2, treat3, treat4))
+
+## QUESTION/ANSWER GENERATION
+
+if(language=='en'){
+  question=paste0(" "
+                )
+  
+  answer=paste0(" ")
+
+}else if(language=='es'){
+  question=paste0(
+    "Se cosideran ", ntreat," muestras independientes de ", ndata," individuos cada una. 
+    A cada una de ellas se le administra un tratamiento diferente, y se mide el valor 
+    de la variable respuesta. Los datos son los que aparecen en la tabla. 
+    
+    Decide si las muestras provienen o no de poblaciones normales (calcula los histogramas)"
+ )
+
+   answer=paste0("Las muestras NO provienen de poblaciones normales. 
+                 Los datos han sido generados de ese modo")
+
+
+}
+
+cat(question)
+
+
+@ 
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+\vspace{.1cm}
+
+Tabla de valores
+
+\vspace{.1cm}
+
+<<echo=False, results=tex, strip.white=false>>=
+library(knitr)
+kable(the_table_df, digits=2, format = "latex")
+@
+
+\end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+
+
+\vspace{.2cm}
+
+<<echo=False, fig=TRUE>>=
+  par(mfrow = c(2,2))
+     hist(treat1)
+     hist(treat2)
+     hist(treat3)
+     hist(treat4)
+  par(mfrow = c(1,1))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.0001}

@@ -1,0 +1,57 @@
+<<echo=FALSE, results=hide>>=
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+## Set the null/alternative hypotheses: the proportion
+
+## DATA GENERATION & ANSWER GENERATION
+(type <-sample( c("es mayor que", "es m\\'as grande que", "vale al menos"), size = 1))
+(hypothesis <- sample(c("nula", "alternativa"), size = 1))
+# (hypothesis <- sample(c("$H\\_0$"), size = 1))
+
+signifDig = 4
+p0 = sample(seq(.3, .7, by = .2), size = 1)
+phat = p0
+
+if(hypothesis == "nula"){ 
+     phat = p0 + sample(seq(.1, .3, by = .05), size = 1)
+     sol = paste("$H_0:\\, p \\leq", p0 ,"$")
+}
+
+if(hypothesis == "alternativa"){ 
+     phat = p0 + sample(seq(.1, .3, by = .05), size = 1)
+     sol = paste("$H_1:\\, p >", p0 ,"$")
+}
+
+## QUESTION STATEMENT GENERATION
+if(language=='en'){
+  question=paste0("To be traslated.")
+  answer=paste0("To be traslated.")
+}else
+     if(language=='es'){
+  question=paste0("Se quiere comprobar si la proporci\\'on de individuos                   que presentan cierta caracter\\'istica", type,"  ", p0 ,".  Se toma una muestra y se calcula  la proporci\\'on muestral, que vale ",phat,". \\textquestiondown Cu\\'al es la  hip\\'otesis ", hypothesis ,"?")
+  answer=paste0("La respuesta es ", sol, "")  
+}
+cat(question)
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+%% META-INFORMATION
+%% \extype{string}
+%% \exstring{\Sexpr{sol}}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+

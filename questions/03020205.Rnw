@@ -1,0 +1,68 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## DATA GENERATION
+
+# Generic continous random variable, mean, trigonometric-rational-like density function function 
+
+library(MASS)
+
+signifDig = 4
+
+(k = sample(2*(2:15), 1))
+
+
+(f = function(x){(k / 2) * sin(k * x)})
+
+
+aux_f = function(x){x * f(x)}
+
+#(sol  =  signif(integrate(aux_f,lower = 0, upper = pi/k)$value,digits = 4))
+
+(sol  =  signif(pi / (2 * k), digits = 4))
+
+(sol = signif(sol, 4))
+
+
+## QUESTION
+
+if(language=='en'){
+  question=paste0("The density function $f(x)$ of the continuous random variable $X$ is equal to $$", k%/%2, "\\cdot\\sin(", k,"\\cdot x)$$ if $$", 0, "\\leq x\\leq \\frac{\\pi}{", k, "} $$ and is equal to $0$ otherwise. (you don't need to check that $f$ is a density function. Find the mean $\\mu_X$. Use  ", signifDig, " significant digits in your answer.")
+  
+  answer=paste0("The answer is ", sol)
+  
+}else if(language=='es'){
+  question=paste0("La funci\\'on de densidad $f(x)$ de la variable aleatria continua $X$ es igual a $$",  k%/%2, "\\cdot\\sin(", k,"\\cdot x)$$ si $$ 0\\leq x\\leq \\frac{\\pi}{", k, "}$$ y es igual a $0$ en otro caso.  (no es necesario que compruebes que $f$ es una funci\\'on de densidad). Calcula la media $\\mu_X$ de la variable aleatoria $X$. Usa  ", signifDig, " cifras significativas en tu respuesta.")
+  
+  answer=paste0("La respuesta es ", sol)
+  
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

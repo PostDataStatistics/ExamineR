@@ -1,0 +1,182 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Anova: significant test
+## 5 treatments
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+## DATA GENERATION
+
+# function to get normal data
+normal = function(size, mean1, sd1){
+     data = c()
+     while(length(data)< size){
+      x = rnorm(1, mean = mean1, sd = sd1)
+      if( (mean1-3*sd1 < x) & (mean1+3*sd1 > x)){
+           data = c(data,x)
+      }
+     }
+return(data)
+}
+ntreat = 5
+ndata = 25
+treatments = c()
+
+for(i in 1:ntreat ){
+     treatments = c(treatments, paste("treat", i, sep = ""))
+}
+
+means = normal(ntreat, 100, 5)
+for(i in 1:ntreat ){
+     x = normal(ndata, means[i], 5)
+     assign(paste("treat", i, sep = ""), x )
+}
+
+
+(the_table_df <- data.frame(treat1, treat2, treat3, treat4, treat5))
+
+(levels=names(the_table_df))
+
+(niveles=names(the_table_df))
+
+numCol=ncol(the_table_df)
+
+
+Respuesta=c()
+Tratamiento=c()
+for(i in 1:numCol){
+  localizarNA=!is.na(the_table_df[,i]) 
+  columnaSinNA=the_table_df[localizarNA,i]
+  Respuesta=c(Respuesta,columnaSinNA)
+  numFilas=length(columnaSinNA)
+  replicasNivel=rep(niveles[i],numFilas)
+  Tratamiento=c(Tratamiento,replicasNivel)
+} 
+
+
+datos = data.frame(Tratamiento, Respuesta)
+dim(datos)
+colFactor = 1
+
+#########################################
+# ANALISIS DE LOS DATOS
+# No es necesario cambiar nada de aqui para abajo.
+#########################################
+
+# Renombramos las columnas del data.frame
+if(colFactor==1){
+  colnames(datos) = c("Tratamiento","Respuesta")
+}else{
+  colnames(datos) = c("Respuesta","Tratamiento")
+}
+colnames(datos)
+
+# Etiquetas de los niveles del factor.
+
+(niveles=levels(datos$Tratamiento))
+
+# El numero total de observaciones.
+
+(N=nrow(datos))
+
+# Calculamos el numero de niveles del factor
+
+(k=length(niveles))
+
+# Y traducimos los niveles en numeros para facilitar su manejo.
+numeroNivel = as.numeric(datos$Tratamiento)
+
+
+#######################################
+# TABLA ANOVA
+# Usando las funciones lm y anova
+#########################################
+
+datos.lm = lm(datos$Respuesta ~ datos$Tratamiento)
+
+anovaOutput <- anova(datos.lm)
+
+
+(pvalue = anovaOutput$Pr[1])
+
+signifDig = 4
+
+(sol = signif(pvalue, digits = signifDig))
+
+ns = sample(c(.1, .05, .01), size = 1)
+
+(sol_test = if(ns < sol){"no se rechaza H0"} 
+ else if(ns > sol){"se rechaza H0"}
+  )
+
+## QUESTION/ANSWER GENERATION
+
+if(language=='en'){
+  question=paste0("To be traslated"
+                )
+  
+  answer=paste0("To be traslated")
+
+}else if(language=='es'){
+  question=paste0(
+    "Se consideran ", ntreat," muestras independientes de ", ndata," individuos cada una. 
+    A cada una de ellas se le administra un tratamiento diferente, y se mide el valor 
+    de la variable respuesta. Los datos son los que aparecen en la tabla. 
+    
+    Decide, con un nivel de significaci\\'on $\\alpha = ", ns,"$ si la respuesta media 
+    es o no la misma en en todos los tratamiento, es decir, contrasta 
+    la hip\\'otesis 
+    \\[H_0:\\,\\left\\{\\mu_i=\\mu_j\\right\\}\\qquad i \\neq j,\\,i,j=1,\\cdots,", ntreat," \\]
+    Utiliza ", signifDig," cifras significativas"
+ )
+
+   answer=paste0(" El p-valor es ", sol," y, por tanto, ", sol_test,".")
+
+
+}
+
+cat(question)
+
+
+@ 
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+\vspace{.1cm}
+
+Tabla de valores
+
+\vspace{.1cm}
+
+<<echo=False, results=tex, strip.white=false>>=
+library(knitr)
+kable(the_table_df, digits=2, format = "latex")
+@
+
+\end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.0001}

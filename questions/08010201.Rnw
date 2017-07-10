@@ -1,0 +1,92 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Chi Square test (independency): p-value
+## table 2 x 2
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+## DATA GENERATION
+# set the contingency table
+col1 = sample(10:60, size = 2)
+col2 = sample(90:120, size = 2)
+
+(the_table <- matrix(c(col1, col2), nrow = 2, byrow = FALSE))
+
+chisq_test <- chisq.test(the_table, correct = TRUE)
+
+# choose row and column
+
+(pvalue = chisq_test$p.value)
+signifDig = 4
+
+(sol = signif(pvalue, digits = signifDig))
+
+ns = sample(c(.1, .05, .01), size = 1)
+
+(sol_test = if(ns < sol){"no se rechaza H0"} 
+ else if(ns > sol){"se rechaza H0"}
+  )
+
+
+## QUESTION/ANSWER GENERATION
+
+if(language=='en'){
+  question=paste0(" "
+                )
+  
+  answer=paste0(" ")
+
+}else if(language=='es'){
+  question=paste0(
+    "Considera la tabla de contingencia para dos factores con 2 niveles cada uno. 
+
+    \\begin{tabular}{|c|c|}\\hline
+",the_table[1,1]," & ",the_table[1,2]," \\\\\\hline
+",the_table[2,1]," & ",the_table[2,2]," \\\\\\hline
+\\end{tabular}
+
+    Contrasta la hip\\'otesis nula 
+      \\[H_0:\\,\\left\\{\\text{Los dos factores son independientes} \\right\\}\\]
+    para un nivel de significaci\\'on $\\alpha = ", ns,"$. Para ello, calcula el p-valor 
+ (con la opci\\'on correct = TRUE) con 
+    ", signifDig," cifras significativas"
+ )
+
+  answer=paste0(" El p-valor es ", sol," y, por tanto, ", sol_test,".")
+
+}
+
+cat(question)
+
+
+@ 
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+\end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.0001}

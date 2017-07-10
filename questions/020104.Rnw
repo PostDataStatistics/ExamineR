@@ -1,0 +1,67 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## DATA GENERATION
+##  French roulette
+
+signifDig = 4  
+
+# Set probabilities
+n=sample(1:36,1)
+
+## QUESTION/ANSWER GENERATION
+(sol=signif(1-(n+1)/37,signifDig))
+
+
+
+## QUESTION STATEMENT GENERATION
+if(language=='en'){
+  question=paste0("The French roulette is numbered from $0$ to $36$. Calculate the probability that the ball falls 
+                  in a pocket with a number greater than $",n,"$. 
+Use ",signifDig," significant digits.
+")
+  
+  answer=paste0("The answer is ", sol)
+  
+}else if(language=='es'){
+    question=paste0("La ruleta francesa tiene casillas numeradas del $0$ al $36$. 
+                    Calcular la probabilidad de, en una jugada, obtener un n\\'umero mayor que $",n,"$. 
+Utiliza ",signifDig," cifras significativas en tu respuesta.
+")
+  
+
+  
+  answer=paste0("La respuesta es $\\frac{",36-n,"}{37}$=", sol)
+
+
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}
+

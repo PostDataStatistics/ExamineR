@@ -1,0 +1,96 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## DATA GENERATION
+
+# Generic continous random variable, probability of an interval, affine-like density function function 
+
+library(MASS)
+
+signifDig = 4
+
+(a=sample(2:9,1))
+(b=sample(1:5,1))
+
+if(b<0){
+    sign_b = paste("-",abs(b),sep="")
+}else{
+    sign_b = paste("+",abs(b),sep="")
+}
+sign_b
+(g=function(x){a*x+b})
+(c=sample(1:6,1))
+(d=c+sample(2:5,1))
+
+(k = fractions(integrate(g,lower = c,upper = d)$value))
+(k = fractions((-1/2)*(c-d)*(2*b + a*(c+d))))
+
+(numK = as.integer(strsplit(attr(k,"fracs"),"/")[[1]][1]))
+(denomK = as.integer(strsplit(attr(k,"fracs"),"/")[[1]][2]))
+if(is.na(denomK)){denomK=1}
+
+(f = function(x){g(x)/k})
+
+(check = fractions(integrate(f,lower = c,upper = d)$value))
+
+(c1 = sample(seq(from = c + 0.1, to = d - 0.3, by = 0.1), 1))
+(d1 = sample(seq(from = c1 + 0.1, to = d - 0.1, by = 0.1), 1))
+
+
+(sol  =  signif(integrate(f,lower = c1, upper = d1)$value,digits = 4))
+
+
+(sol = signif(sol, 4))
+
+
+## QUESTION
+
+(questionString01 = if(numK==1){
+  paste0(denomK,"")
+} else {
+  paste0("\\frac{",denomK,"}{",numK,"}",collapse = "")
+}   
+   )
+
+if(language=='en'){
+  question=paste0("The density function $f(x)$ of the continuous random variable $X$ is equal to $$", questionString01, "\\cdot\\left(", a,"\\, x", sign_b, "\\right)$$ if $$", c, "\\leq x\\leq", d, "$$ and is equal to $0$ otherwise (you don't need to check that $f$ is a density function. Find the probability $$P(",c1," < X <", d1,")$$ where $X$ is the random variable  defined by $f$. Use  ", signifDig, " significant digits in your answer."  )
+  
+  answer=paste0("The answer is ", sol)
+  
+}else if(language=='es'){
+  question=paste0("La funci\\'on de densidad $f(x)$ de la variable aleatoria continua $X$ es igual a $$", questionString01, "\\cdot\\left(", a,"\\, x", sign_b, "\\right)$$ si $$", c, "\\leq x\\leq", d, "$$ y es igual a $0$ en otro caso  (no es necesario que compruebes que $f$ es una funci\\'on de densidad). Calcula la probabilidad $$P(",c1," < X <", d1,")$$ donde $X$  es la variable aleatoria definida por $f$. Usa  ", signifDig, " cifras significativas en tu respuesta.")  
+  
+  answer=paste0("La respuesta es ", sol)
+  
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

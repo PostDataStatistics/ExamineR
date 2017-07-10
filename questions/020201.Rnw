@@ -1,0 +1,81 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## DATA GENERATION
+##  Independent events
+
+signifDig = 4  
+
+# Set probabilities
+
+n=sample(5:8,1)
+numPA = c(sample(1:4,1))
+denPA=c(sample(n+1:n+4,1))
+numPB = c(sample(1:4,1))
+denPB=c(sample(n+1:n+4,1))
+PA=numPA/denPA
+PB=numPB/denPB
+
+
+## QUESTION/ANSWER GENERATION
+(sol=signif(PA, signifDig))
+
+
+
+## QUESTION STATEMENT GENERATION
+if(language=='en'){
+  question=paste0("The events $A$ and $B$ verify that 
+\\[
+P(A)=\\left(\\frac{",numPA,"}{",denPA,"}\\right) \\qquad
+P(B)=\\left(\\frac{",numPB,"}{",denPB,"}\\right) 
+\\]
+Assume that $A$ and $B$ are independent and calculate $P(A | B)$ with ",signifDig," significant digits.
+")
+  
+  answer=paste0("The answer is  $\\frac{",numPA,"}{",denPA,"}$=", sol)
+  
+}else if(language=='es'){
+    question=paste0("Los sucesos $A$ y $B$, cumplen:
+\\[
+P(A)=\\left(\\frac{",numPA,"}{",denPA,"}\\right) \\qquad
+P(B)=\\left(\\frac{",numPB,"}{",denPB,"}\\right) 
+\\]
+Calcula el valor de $P(A| B)$ cuando los sucesos $A$ y $B$ son independientes. Utiliza ",signifDig," cifras significativas en tu respuesta.
+")
+  
+
+  
+  answer=paste0("La respuesta es $\\frac{",numPA,"}{",denPA,"}$=", sol)
+
+
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}
+

@@ -1,0 +1,105 @@
+<<echo=FALSE, results=hide>>=
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+## Set the null/alternative hypotheses: the mean's difference
+
+## DATA GENERATION & ANSWER GENERATION
+# set which hypothesis we ask for
+(hypothesis <- sample(c("nula", "alternativa"), size = 1))
+
+# set comparison parameters
+side = sample(c(1,2), size = 1)
+if(side == 1){
+(type <-sample( c("es mayor que", "es m\\'as grande que"), size = 1))     
+}else{(type <-sample( c("es menor que", "es m\\'as peque\\~na que"), size = 1))}
+
+poblacion = c("primera", "segunda")
+(pb = sample(poblacion) )
+
+if(poblacion[1] == pb[1]){props = c("\\mu_1", "\\mu_2")}else{props = c("\\mu_2", "\\mu_1")}
+
+means = c("\\mu_1", "\\mu_2")
+signifDig = 4
+barX1 = sample(c(-1, 1), size = 1) * signif(runif(n = 1, min = 100, max = 150), digits = signifDig)
+barX2 = barX1
+
+if(hypothesis == "nula"){
+     if(pb[1] == "primera"){
+          if(side == 1){
+               sol = paste("$H_0:\\, \\mu_1 \\leq \\mu_2$")
+               barX2 = signif(barX1 - sample(seq(from = 3, to = 10, by = .05), size = 1), digits = signifDig) 
+          }else{
+               sol = paste("$H_0:\\, \\mu_1 \\geq \\mu_2$")
+               barX2 = signif(barX1 + sample(seq(from = 3, to = 10, by = .05), size = 1), digits = signifDig) 
+          }
+     }else{
+          if(side == 1){
+               sol = paste("$H_0:\\, \\mu_1 \\geq \\mu_2$")
+               barX2 = signif(barX1 + sample(seq(from = 3, to = 10, by = .05), size = 1), digits = signifDig)                
+          }else{
+               sol = paste("$H_0:\\, \\mu_1 \\leq \\mu_2$")
+               barX2 = signif(barX1 - sample(seq(from = 3, to = 10, by = .05), size = 1), digits = signifDig) 
+          }
+     }
+}else{
+     if(pb[1] == "primera"){
+          if(side == 1){
+               sol = paste("$H_1:\\, \\mu_1 > \\mu_2$")
+               barX2 = signif(barX1 - sample(seq(from = 3, to = 10, by = .05), size = 1), digits = signifDig) 
+          }else{
+               sol = paste("$H_1:\\, \\mu_1 < \\mu_2$")
+               barX2 = signif(barX1 + sample(seq(from = 3, to = 10, by = .05), size = 1), digits = signifDig) 
+          }
+     }else{
+          if(side == 1){
+               sol = paste("$H_1:\\, \\mu_1 < \\mu_2$")
+               barX2 = signif(barX1 + sample(seq(from = 3, to = 10, by = .05), size = 1), digits = signifDig) 
+          }else{
+               sol = paste("$H_1:\\, \\mu_1 > \\mu_2$")
+               barX2 = signif(barX1 - sample(seq(from = 3, to = 10, by = .05), size = 1), digits = signifDig) 
+          }
+     }
+}
+
+if(poblacion[1] == pb[1]){barXs = c(barX1, barX2)}else{barXs = c(barX2, barX1)}
+if(poblacion[1] == pb[1]){bXs = c("\\bar X_1", "\\bar X_2")}else{bXs = c("\\bar X_2", "\\bar X_1")}
+
+## QUESTION STATEMENT GENERATION
+if(language=='en'){
+  question=paste0("To be traslated.")
+  answer=paste0("To be traslated.")
+}else
+     if(language=='es'){
+  question=paste0("Dadas dos poblaciones, se quiere comprobar si la media de la ",pb[1],"  ", type," en la ",pb[2],". 
+                  Se toman sendas muestras y obtienen las medias muestrales $",bXs[1]," = ",barXs[1],"$ y 
+                  $",bXs[2],"= ",barXs[2],"$. \\textquestiondown Cu\\'al es la hip\\'otesis ", hypothesis ,"?")
+  answer=paste0("La respuesta es ", sol, " y se contrasta a partir de los valores muestrales $ ",bXs[1]," = $",barX[1]," y $",bXs[2]," = $",barX[2],"")  
+   answer=paste0(" ", sol,". La hip\\'otesis se hace sobre las medias poblacionales 
+$",means[1],"$ y $",means[2],"$, que son desconocidas, y se contrasta a partir de los valores muestrales $",bXs[1],"$ y $",bXs[2],"$ (conocidas).") 
+}
+cat(question)
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+
+  \end{solution}
+%% META-INFORMATION
+%% \extype{string}
+%% \exstring{\Sexpr{sol}}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+

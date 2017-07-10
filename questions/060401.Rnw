@@ -1,0 +1,116 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Hypothesis test for sample variance, X ~ N(0,1), sample size n>30 
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+## DATA GENERATION
+
+library(MASS)
+signifDig = 4
+sDigits=3
+# (xbar=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
+(s=signif(sample(seq(0.1,10,length.out=50),1), digits=signifDig))
+(n=sample(3:70,1))
+k=n-1
+
+
+sol=0
+while((abs(sol)<0.00001)|(abs(sol)>999)){
+  
+    TestType=1 # 1 to test H1: sigma > sigma0, 2 to test H1: sigma < sigma0, 3 to test H1: sigma = sigma0
+    
+    if(TestType==1){
+      symbol=sanitizeLatexS("\\leq")
+      (sigma0=signif(s/runif(1,min=1.02,max=1.08),digits=signifDig))      
+      (statistic=(n-1)*s^2/sigma0^2)  
+      (pValue=1-pchisq(statistic,df=k))
+    }
+    if(TestType==2){
+      symbol=sanitizeLatexS("\\geq")
+      (sigma0=signif(s/runif(1,min=0.92,max=0.98),digits=signifDig))
+      (statistic=(n-1)*s^2/sigma0^2)  
+      (pValue=pchisq(statistic,df=k))
+    }
+    if(TestType==3){
+      symbol="="
+      (sigma0=signif(s/runif(1,min=0.92,max=1.08),digits=signifDig))
+      (statistic=(n-1)*s^2/sigma0^2)  
+      if(s>sigma0)(pValue=2*(1-pchisq(statistic,df=k)))else(pValue=2*(pchisq(statistic,df=k)))
+    }
+  if(1>2)(2)else(3) 
+    
+  sol = signif(pValue, digits=signifDig)
+}
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(sol, 4))
+
+
+if(language=='en'){
+question=paste0("$X$ is a normal random variable. 
+                A random sample of size $n=", n,"$, produces a sample variance   
+                $\\sigma^2=", signif(s^2, digits = sDigits), "$. 
+              Test the null hypothesis:
+             $$H_0:\\sigma_X ", symbol, " \\sigma_0$$
+where  $\\sigma_0=", sigma0,"$. Find the p-value.
+Use 4 significant digits."
+                )
+  
+  answer=paste0(" The value of the test-statistics is  $(n-1)\\frac{s^2}{\\sigma_0^2}=
+                ",signif( statistic,digits=signifDig),"$. The solution is p-value$ =", sol,"$.")
+  
+}else if(language=='es'){
+  question=paste0("La variable aleatoria $X$ es normal. 
+                Se ha obtenido una muestra de tama\\~no $n=", n,"$, 
+                con cuasivarianza (o varianza muestral) $\\sigma^2=", signif(s^2, digits = sDigits), "$. 
+              Se desea contrastar la hipotesis nula:
+              $$H_0:\\sigma_X ", symbol, " \\sigma_0$$
+siendo $\\sigma_0=", sigma0,"$. Hallar el p-valor de este contraste.
+Utiliza 4 cifras significativas en tu respuesta."
+ )
+
+
+  answer=paste0(" El estad\\'istico es $(n-1)\\frac{s^2}{\\sigma_0^2}=
+                ",signif( statistic,digits=signifDig),"$.  La soluci\\'on  es  p-valor$ =", sol,"$.")
+
+
+}
+
+cat(question)
+
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

@@ -1,0 +1,70 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## DATA GENERATION
+## working with significant figures. Round large numbers with between 3 up to 6 digits
+
+(k=sample(3:6,1))
+((k1=sample(1:10^(k-1),1)))
+(k2=sample(0:9,1,prob=c(rep(1,9),5)))
+(number=10000*k1+10*k2+sample(1:1000,1))
+(magnitOrder=round(log(number,10),0))
+(number=number/10^sample(0:magnitOrder,1))
+
+sol = (signif(number, digits=k))
+
+######QUESTION / ANSWER
+if(language=='en'){
+  question=paste0(
+"Round the number ",
+    number,
+    " to ",
+    k, " significant digits."  
+  )  
+  
+  answer=paste0("The answer is ",
+    sol
+  )  
+}else if(language=='es'){
+  question=paste0(
+    "Redondea el n\\'umero ",
+    number,
+    " con ",
+    k, " cifras significativas."
+    )
+  answer=paste0("La respuesta es ",
+    sol
+    )
+}
+
+@
+
+
+\begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+cat(paste(question,collapse=""))
+@
+
+
+\end{question}
+ 
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+cat(paste(answer,collapse=""))
+@
+\end{solution}
+
+
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{BinomialPtual}
+%% \extol{0.00001}

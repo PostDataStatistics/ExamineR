@@ -1,0 +1,150 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Hypothesis test for sample proportions difference (two populations) sample size n1>30, n2>30 
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+
+## DATA GENERATION
+
+library(MASS)
+signifDig = 4
+
+
+(n1=sample(31:100,1))
+(n2=sample(31:100,1))
+(alpha = sample(c(0.1, 0.05, 0.01), size = 1))
+
+sol=0
+
+s1 = 1
+s2 = 2
+type1 = c("mayor que", "menor que", "diferente de")    
+type2 = c(">", "<", "\\neq")    
+
+    TestType=1 # Ha: 1 to test p1 > p2, 2 to test p1 < p2, 3 to test p1 = p2
+    
+    if(TestType==1){
+       symbol=sanitizeLatexS("\\leq")
+      (phat1=signif(runif(1,min=0.3,max=0.7), digits=2))
+      (phat2=signif(phat1-runif(1,min=0.01,max=phat1/2), digits=2))
+      (pSample = (n1 * phat1 + n2 * phat2) / (n1 + n2) ) 
+      (qSample = 1- pSample)
+      (sol = qnorm(alpha, mean=0, sd=sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) , lower.tail = FALSE))
+    }
+    if(TestType==2){
+      symbol=sanitizeLatexS("\\geq")
+      (phat1=signif(runif(1,min=0.3,max=0.7), digits=2))
+      (phat2=signif(phat1+runif(1,min=0.01,max=phat1/2), digits=2))
+      (pSample = (n1 * phat1 + n2 * phat2) / (n1 + n2) ) 
+      (qSample = 1- pSample)
+      (sol = qnorm(alpha, mean=0, sd=sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) , lower.tail = TRUE))
+    }
+    if(TestType==3){
+       symbol="="
+      (phat1=signif(runif(1,min=0.3,max=0.7), digits=2))
+      (phat2=signif(phat1+sample(c(-1,1),1)*runif(1,min=0.01,max=phat1/2), digits=2))
+      (pSample = (n1 * phat1 + n2 * phat2) / (n1 + n2) ) 
+      (qSample = 1- pSample)
+     (sol = qnorm(alpha/2, mean=0, sd=sqrt( pSample * qSample * ((1/n1) + (1/n2)) ) , lower.tail = FALSE))
+    }
+
+    
+  sol = signif(sol, digits=signifDig)
+
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(sol, signifDig))
+
+
+if(language=='en'){
+  question=paste0("To be traslated")
+  
+  answer=paste0("To be traslated")
+
+}else if(language=='es'){
+  question=paste0(
+    "Dadas las variables aleatorias $X_1$ y $X_2$, 
+    nos preguntamos sobre las proporciones de observaciones de cada variable que cumplen una determinada propiedad. 
+    Para ello, se han obtenido muestras de tama\\~nos $n_1=", n1,"$ y $n_2=", n2,"$, respectivemente, 
+    con proporciones muestrales $\\hat{p}_1=", phat1," $ y $\\hat{p}_2=",phat2,"$. 
+    Se desea contrastar la hip\\'otesis nula:
+             $$H_0: p_1 ", symbol, " p_2$$
+En las unidades del problema y con un nivel de significaci\\'on $\\alpha=",alpha," $ \\textquestiondown en cu\\'anto deben diferir, al menos, las proporciones muestrales para rechazar $H_0$? 
+Utiliza 4 cifras significativas en tu respuesta."
+ )
+
+
+  answer=paste0(" 
+Si $H_0$ es cierta, se cumple que 
+\\begin{equation}
+\\frac{\\hat p_1-\\hat p_2}
+{\\sqrt{\\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)
+\\hat p \\hat q}}
+\\sim N(0,1) \\quad \\text{donde} \\quad
+\\hat p = \\frac{n_1\\hat{p}_1+n_2\\hat{p}_2}{n_1+n_2},
+\\quad 
+\\hat q = 1-\\hat p
+\\end{equation}
+Se rechaza $H_0$ cuando $\\frac{\\hat p_1-\\hat p_2}
+{\\sqrt{\\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)
+\\hat p \\hat q}}$ sea significativamente 
+",type1[TestType]," $z_{",alpha,"}$, es decir, 
+$$
+\\hat{p}_1-\\hat{p}_2 
+",type2[TestType],"
+z_{",alpha,"}\\sqrt{\\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)
+\\hat p \\hat q} = 
+$$
+$$
+{\\tt 
+qnorm(",alpha,", mean = 0, 
+sd = \\sqrt{\\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)
+\\hat p \\hat q}, lower.tail = FALSE)=
+}
+$$
+$$
+", sol,"
+$$
+Es importante entender la \\'ultima cadena de igualdades
+ y su relaci\\'on con (1).")
+
+
+}
+
+cat(question)
+
+
+@ 
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

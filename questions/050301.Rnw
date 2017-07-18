@@ -1,0 +1,91 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Confidence interval (bottom) for the proportion, normal population, sample size > 30
+
+## DATA GENERATION
+
+signifDig = 4  
+
+(p_hat=signif(sample(seq(0.1,.9,length.out=1000),1), digits=2))
+(n=sample(50:250,1))
+(cl=sample(c(0.9,0.95,0.99),1))
+(alpha=1-cl)
+
+sol=0
+while((abs(sol)<0.00001)|(abs(sol)>999)){
+  
+  # calculate the critical value
+  (z_alpha2= qnorm(1-alpha/2))
+  
+  # calculate q_hat 
+  q_hat=1-p_hat 
+  
+  # calculate the halfway of the confidence interval 
+  halfway=z_alpha2*sqrt(p_hat*q_hat)/sqrt(n)
+  
+  # the confidence interval is
+  #bottom
+  (a=p_hat-halfway)
+  
+  #top
+  (b=p_hat+halfway)
+  
+  sol = signif(a, digits=signifDig)
+}
+
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(sol, 4))
+
+
+## QUESTION STATEMENT GENERATION
+
+#(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
+
+if(language=='en'){
+  question=paste0("$X$ is a normal ramdom variable (unknown variance).  
+                    Given a random sample of length $", n,"$ with sample propotion $\\hat p=",p_hat,"$.   Calculate the {\\bf bottom} $a$  of the confidence interval $(a,b)$ for the {\\bf proportion} $p$, with a confidence level $",100*cl,"$\\%. 
+Use ", signifDig, "  significant digits in your answer.")
+  
+  answer=paste0("The answer is ", sol)
+  
+}else if(language=='es'){
+    question=paste0("Se desea estimar la proporci\\'on $p$ de individuos de una poblaci\\'on que tienen determinada  caracter\\'istica. Se ha obtenido una muestra de tama\\~no $",n,"$, en la que la proporci\\'on de individuos con esa caracter\\'istica es $\\hat p=",p_hat,"$. 
+Calcula el {\\bf extremo inferior } $a$ de un intervalo de confianza $(a,b)$ para la 
+{\\bf proporci\\'on} $p$, con un nivel de confianza del $",100*cl,"$\\%. Utiliza ",signifDig," cifras significativas en tu respuesta.")
+  
+  answer=paste0("La respuesta es ", sol)
+  
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}
+

@@ -1,0 +1,71 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+# Give p\in (0,1), calculate x;  P(X < x) = q, for X a normal distribution of type N(mu, sigma).
+
+## DATA GENERATION
+  
+library(MASS)
+
+signifDig = 4  
+
+sol=1
+while((sol<0.00001)|(sol>0.9999)){
+  mu <- sample(-5:5, 1)
+  sigma <- sample(1:10,1)/10
+  q=sample(1:9,1)/10
+  sol = qnorm(q,mean=mu,sd=sigma)
+}
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(sol, 4))
+
+
+## QUESTION STATEMENT GENERATION
+
+#(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
+
+if(language=='en'){
+  question=paste0("$X$ is a normal random variable of type $N(", mu, ", ", sigma,").$ Find value x such that 
+                  $$P(X < x )= ", q,".$$ Use  ", signifDig, " significant digits in your answer.")
+  
+  answer=paste0("The answer is ", sol)
+  
+}else if(language=='es'){
+    question=paste0("La variable aleatoria $X$ es normal de tipo $N(", mu, ", ", sigma,")$. Calcula el valor x tal que  $$P(X < x )= ", q,".$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
+  
+  answer=paste0("La respuesta es ", sol)
+  
+}
+
+cat(question)
+
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

@@ -1,0 +1,95 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Linear regression: test hypothesis H0: beta1 = 0 
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+## DATA GENERATION
+sol=0
+
+n = sample(9:11, size = 1, replace = TRUE)
+
+#x <- round(runif(n, min = 10, max = 20), digits = 1)
+beta1 = sample(c(-4:1,1:4)/4, size = 1)
+beta0 = sample(c(-4:1,1:4), size = 1)
+
+x = sample(10:20, size = n, replace = TRUE)
+
+y=c()
+for(i in 1:n){
+     y = c(y, beta1*x[i]+beta0 + rnorm(n = 1, mean = 0,sd = .3))
+}
+y = signif(y, digits = 2)
+lmXY = summary(lm(y ~ x))
+
+dataStringX = paste(x, collapse=", ")
+dataStringX = paste("X: ", dataStringX, sep = "")
+
+dataStringY = paste(y, collapse=", ")
+dataStringY = paste("Y: ", dataStringY, sep = "")
+nc = sample(c(.9, .95, .99), size = 1)
+nc1 = nc*100
+lmXY.ci <-confint(lm(y ~ x), level=nc)
+
+lmXY = summary(lm(y ~ x))
+(EC = sum((lmXY$residuals)^2))
+(ECM = EC/(n-1))
+(tt = as.double(lmXY$coefficients[2,1])/sqrt(ECM/((n-2)*var(x))))
+(pvalue = 2*pt(abs(tt), df = n-2, lower.tail = FALSE))
+
+
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(c(pvalue), 4))
+
+
+if(language=='en'){
+  question=paste0(" "
+                )
+  
+  answer=paste0(" ")
+
+}else if(language=='es'){
+  question=paste0(
+    "Considera las $n=", n,"$  medidas simultaneas de las  variables aleatorias $x$ e $y$ que aparecen a continuaci\\'on: 
+$$", dataStringX ,"$$
+$$", dataStringY ,"$$
+    Si $y=\\beta_0+\\beta_1 x$ es la recta de regresi\\'on te\\'orica, 
+    determina el p-valor del contraste 
+    \\[H_0:\\,\\,\\beta_1 = 0\\]
+    Utiliza 4 cifras significativas en tu respuesta."
+ )
+
+}
+
+@ 
+
+\begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+\end{question}
+
+
+\begin{solution}
+El p-valor es \Sexpr{sol}
+\end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.0001}

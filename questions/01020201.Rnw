@@ -1,0 +1,64 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+# population standard deviation
+
+## DATA GENERATION
+signifDig <- 4
+
+(n <- sample(8:13, 1))
+(data <- c(sample(0:12, n, replace=TRUE)))
+
+## QUESTION/ANSWER GENERATION
+sol <- signif(sqrt(n-1) * sd(data) / sqrt(n), digits = signifDig)
+
+(dataString = paste(data, collapse=", "))
+
+
+if(language=='en'){
+  question=paste0(
+"Find the \\textbf{(population) standard deviation} of this set of numbers:\\begin{center}",
+    dataString,
+    ".\\end{center} Round the result  to ", signifDig, " significant digits."
+  )
+
+  answer=paste0("The answer is ",
+    sol
+  )
+}else if(language=='es'){
+  question=paste0(
+    "Calcula la \\textbf{deviaci\\'on est\\'andar (poblacional)} de este conjunto de n\\'umeros:\\begin{center}",
+    dataString,
+    ".\\end{center}Redondea el resultado con ",
+    signifDig, " cifras significativas."
+    )
+  answer=paste0("La respuesta es ",
+    sol
+    )
+}
+
+@
+
+\begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+cat(paste(question,collapse=""))
+@
+\end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+cat(paste(answer,collapse=""))
+@
+\end{solution}
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.00001}

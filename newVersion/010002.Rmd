@@ -1,0 +1,84 @@
+
+
+```{r 010002setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 010002 Absolute frequencies from csv file.
+```
+
+
+```{r echo=FALSE, results='hide'}
+## DATA GENERATION
+signifDig <- 4
+
+n = sample(100:500, 1)
+data = c(sample(1:30, n, replace=TRUE))
+(dataDF = data.frame(x=data))
+
+(fileName = paste0("data", paste0(sample(c(LETTERS, 0:9), 10), collapse = ""), ".csv", collapse = ""))
+write.table(dataDF, file = fileName, sep = " ", row.names = FALSE)
+
+(frequencies = as.vector(table(data)))
+(orderedUniqueValues = sort(unique(data)))
+frecTableForQuestion = cbind(orderedUniqueValues, frequencies)
+
+(chooseValue = sample(data, 1))
+
+## QUESTION/ANSWER GENERATION
+(sol = unname(frecTableForQuestion[orderedUniqueValues == chooseValue, ][2]))
+
+(sol = signif(sol, 4))
+```
+
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("Construct the **absolute frequency** table of the set of numbers in the attached file, and find the **absolute frequency** of the value ", chooseValue, ".")
+
+answer=paste0("The answer is ",
+  sol
+)
+
+```
+
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question = paste0(
+"Construye la tabla de **frecuencias absolutas** del conjunto de números del fichero adjunto y responde cuál es la **frecuencia absoluta** del número ", chooseValue, ".")
+
+answer=paste0("La respuesta es ", sol)
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+```{r results='asis', echo=FALSE}
+cat(attachfile(fileName))
+```
+
+
+Solution
+=========
+
+```{r results='asis', echo=FALSE}
+cat(paste(answer,collapse=""))
+```
+
+Meta-information
+================
+extype: num
+exsolution: `r fmt(abs(sol), 3)`
+exname: 050201
+extol: 0.01
+
+

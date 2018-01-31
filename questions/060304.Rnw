@@ -1,6 +1,6 @@
 <<echo=FALSE, results=hide>>=
 
-## Hypothesis test for sample proportion, X ~ N(0,1), sample size n>30 
+## Rejection region for the proportion, X ~ N(mu, sigma), sample size n>30
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
 # Adds slashes to LaTeX special characters, which results in single-slash in tex output
@@ -20,7 +20,7 @@ signifDig = 4
 # (p0 = p0Num/n)
 (p0 = sample(seq(4, 6, by = .5), size = 1)/10)
 (alpha = sample(c(0.1, 0.05, 0.01), size = 1))
-(nhat = floor(n * (p0 + sample(c(-1, 1), size = 1) * sample(1:3, size = 1)/10 )))
+(nhat = floor(n * (p0 + sample(1:3, size = 1)/10 )))
 (phat = nhat/n)
 (qhat = 1 - phat)
 sol=0
@@ -59,7 +59,7 @@ Se repite un experimento de tipo Bernoull\\'i $n=", n,"$ veces
  la proporci\\'on muestral de  \\'exitos es $\\hat{p}=\\frac{", nhat, "}{", n, "}$. 
               Se quiere contrastar la hipotesis nula:
               $$H_0:\\,p  ", symbol, " p_0$$
-donde $p_0=", p0,"$. Determina la menor proporci\\'on muestral que se debe observar para rechazar $H_0$. 
+donde $p_0=", p0,"$. Determina la menor proporci\\'on muestral, al nivel de significaci\\'on $\\alpha =$ ",alpha, ", que se debe observar para rechazar $H_0$. 
 Utiliza 4 cifras significativas en tu respuesta.
 "
  )

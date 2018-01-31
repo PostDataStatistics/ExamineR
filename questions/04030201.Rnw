@@ -33,13 +33,13 @@ while((sol<0.00001)|(sol>0.9999)){
 #(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
 
 if(language=='en'){
-  question=paste0("$X$ is a normal random variable of type $N(", mu, ", ", sigma,").$ Find value x such that 
-                  $$P(X < x )= ", q,".$$ Use  ", signifDig, " significant digits in your answer.")
+  question=paste0("$X$ is a normal random variable of type $N(", mu, ", ", sigma,").$ Find value $x_*$ such that 
+                  $$P(X < x_$ )= ", q,".$$ Use  ", signifDig, " significant digits in your answer.")
   
   answer=paste0("The answer is ", sol)
   
 }else if(language=='es'){
-    question=paste0("La variable aleatoria $X$ es normal de tipo $N(", mu, ", ", sigma,")$. Calcula el valor x tal que  $$P(X < x )= ", q,".$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
+    question=paste0("La variable aleatoria $X$ es normal de tipo $N(", mu, ", ", sigma,")$. Calcula el valor $x_*$ tal que  $$P(X < x_* )= ", q,".$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
   
   answer=paste0("La respuesta es ", sol)
   

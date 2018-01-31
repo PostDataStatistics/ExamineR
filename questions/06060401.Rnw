@@ -21,6 +21,7 @@ sanitizeLatexS <- function(str) {
 ## DATA GENERATION
 
 library(MASS)
+library(TeachingDemos)
 signifDig = 4
 
 
@@ -37,27 +38,61 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
       (xbar2=signif(xbar1-abs(rnorm(1,mean=1, sd=3)),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
-      (s2=signif(s1*sample(c(runif(1,0.3,0.4),runif(1,1.6,1.9)),1),digits=signifDig))
+      muestra1 = mvrnorm(n = n1, mu= xbar1, Sigma = s1^2, empirical = TRUE)[,1]
+sigmaTest = sigma.test(muestra1, sigmasq = s1^2, alternative = "two.sided", conf.level = 0.95)
+
+ICs1 = sigmaTest$conf.int
+
+a = sqrt(ICs1[1])
+b = sqrt(ICs1[2])
+
+elegirLado = sample(0:1, 1)
+s2 = ifelse(elegirLado == 0, 
+         yes = runif(1, 0.3 * a, 0.5 * a), 
+         no = runif(1, 1.5 * b, 2 * b))
+
       (Statistic = (xbar1 - xbar2) / sqrt(s1^2 / n1 + s2^2 / n2) )
       (k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
       (pValue = 1-pt(Statistic, df = k))
     }
     if(TestType==2){
-          symbol=sanitizeLatexS("\\geq")
+      symbol=sanitizeLatexS("\\geq")
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
       (xbar2=signif(xbar1+abs(rnorm(1,mean=1, sd=3)),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
-      (s2=signif(s1*sample(c(runif(1,0.3,0.4),runif(1,1.6,1.9)),1),digits=signifDig))
+      muestra1 = mvrnorm(n = n1, mu= xbar1, Sigma = s1^2, empirical = TRUE)[,1]
+      sigmaTest = sigma.test(muestra1, sigmasq = s1^2, alternative = "two.sided", conf.level = 0.95)
+
+      ICs1 = sigmaTest$conf.int
+
+      a = sqrt(ICs1[1])
+      b = sqrt(ICs1[2])
+
+      elegirLado = sample(0:1, 1)
+      s2 = ifelse(elegirLado == 0, 
+         yes = runif(1, 0.3 * a, 0.5 * a), 
+         no = runif(1, 1.5 * b, 2 * b))
       (Statistic = (xbar1 - xbar2) / sqrt(s1^2 / n1 + s2^2 / n2) )
        (k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
       (pValue=pt(Statistic, df = k))
     }
     if(TestType==3){
-     symbol="="
-      (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
-       (xbar2=signif(xbar1+rnorm(1,mean=1, sd=3),digits=signifDig))
+     symbol = "="
+       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
+      (xbar2=signif(xbar1+rnorm(1,mean=1, sd=3),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
-      (s2=signif(s1*sample(c(runif(1,0.3,0.4),runif(1,1.6,1.9)),1),digits=signifDig))
+      muestra1 = mvrnorm(n = n1, mu= xbar1, Sigma = s1^2, empirical = TRUE)[,1]
+sigmaTest = sigma.test(muestra1, sigmasq = s1^2, alternative = "two.sided", conf.level = 0.95)
+
+ICs1 = sigmaTest$conf.int
+
+a = sqrt(ICs1[1])
+b = sqrt(ICs1[2])
+
+elegirLado = sample(0:1, 1)
+s2 = ifelse(elegirLado == 0, 
+         yes = runif(1, 0.3 * a, 0.5 * a), 
+         no = runif(1, 1.5 * b, 2 * b))
       (Statistic = (xbar1 - xbar2) / sqrt(s1^2 / n1 + s2^2 / n2) )
       (k = (s1^2/n1 + s2^2/n2)^2 / ((s1^4/(n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1)))))
       (pValue=2*(1-pt(abs(Statistic),df=k)))
@@ -85,8 +120,7 @@ Find the p-value. Use 4 significant digits."
   
   answer=paste0(" The value of the test-statistics is  
                 $\\frac{\\bar X_1-\\bar X_2}
- {\\sqrt{\\left(\\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\\right)
- \\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)}}=
+ {\\sqrt{\\frac{s_1^2}{n_1}+\\frac{s_2^2}{n_2}}}=
                 ",signif( Statistic,digits=signifDig),"$.\\ The solution is p-value$ =", sol,"$.")
 
 }else if(language=='es'){
@@ -105,8 +139,7 @@ Utiliza 4 cifras significativas en tu respuesta."
 
 
   answer=paste0(" El estad\\'istico es $\\frac{\\bar X_1-\\bar X_2}
- {\\sqrt{\\left(\\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\\right)
- \\left(\\frac{1}{n_1}+\\frac{1}{n_2}\\right)}}=
+ {\\sqrt{\\frac{s_1^2}{n_1}+\\frac{s_2^2}{n_2}}}=
                 ",signif( Statistic,digits=signifDig),"$. \\newline La soluci\\'on  es  p-valor$ =", sol,"$.")
 
 

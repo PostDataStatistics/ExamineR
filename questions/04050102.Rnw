@@ -17,9 +17,9 @@ signifDig = 4
 
 sol=1
 while((sol<0.00001)|(sol>0.9999)){
-  n =sample(5:15,1)
-  b=sample(4:7,1)/2
-  sol = pchisq(b, df = n)
+  n = sample(5:15,1)
+  a = sample(4:7,1)/2
+  sol = pchisq(a, df = n)
 }
 
 ## QUESTION/ANSWER GENERATION
@@ -33,12 +33,12 @@ while((sol<0.00001)|(sol>0.9999)){
 
 if(language=='en'){
   question=paste0("$X$ is a chi square random variable with ",n," degrees of freedom. Find the probability 
-                  $$P(X < ", b," ).$$ Use  ", signifDig, " significant digits in your answer.")
+                  $$P(X < ", a," ).$$ Use  ", signifDig, " significant digits in your answer.")
   
   answer=paste0("The answer is ", sol)
   
 }else if(language=='es'){
-    question=paste0("$X$ es una variable aleatoria que sigue una distribuci\\'on chi cuadrado con ", n," grados de libertad. Calcula la probabilidad $$P(X < ", b," ).$$  Escribe tu respuesta con ", signifDig, " cifras significativas." )
+    question=paste0("$X$ es una variable aleatoria que sigue una distribuci\\'on chi cuadrado con ", n," grados de libertad. Calcula la probabilidad $$P(X < ", a," ).$$  Escribe tu respuesta con ", signifDig, " cifras significativas." )
   
   answer=paste0("La respuesta es ", sol)
   

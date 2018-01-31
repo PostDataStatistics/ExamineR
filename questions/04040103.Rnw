@@ -1,5 +1,4 @@
 <<echo=FALSE, results=hide>>=
-
 ################################################################################
 # PostData Statistics: 
 # Fernando San Segundo, Marcos Marva
@@ -9,20 +8,19 @@
 
 ## DATA GENERATION
 
-# Poisson, P(a<X<=b)
+# t Student, P(X<b)
   
 library(MASS)
 
-signifDig = 4
+signifDig = 4  
+
+# P(X < a) for X a t Student distribution
 
 
-sol=0
-while(is.na(sol)|(abs(sol)<0.00001)|(abs(sol)>0.999)|(b>n)){
-  lambda <- sample(3:7,1)
-  a <- sample(2:4,1)
-  b = a+sample(2:4,1)
-  sol = signif(ppois(b, lambda)-ppois(a, lambda), digits=4)
-}
+  a = signif(runif(n = 1, -2,2), digits = 2)
+  degrees = sample(5:15, size = 1)
+  sol = pt(a, df = degrees)
+
 
 ## QUESTION/ANSWER GENERATION
 
@@ -31,16 +29,16 @@ while(is.na(sol)|(abs(sol)<0.00001)|(abs(sol)>0.999)|(b>n)){
 
 ## QUESTION STATEMENT GENERATION
 
-#(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
 
 if(language=='en'){
-  question=paste0("$X$ is a Poisson random variable with parameter  $\\lambda = ", lambda,"$. Find the probability $$P(", a," < X \\leq ", b,").$$ Use  ", signifDig, " significant digits in your answer."
-  )
+  question=paste0("$X$ is a t Student random variable of type $t_{", degrees, "}.$ Find the probability 
+                  $$P(X<", a," ).$$ Use  ", signifDig, " significant digits in your answer.")
   
   answer=paste0("The answer is ", sol)
-    
+  
 }else if(language=='es'){
-  question=paste0("La variable aleatoria $X$ es Poisson, de par\\'ametro $\\lambda = ", lambda,"$. Calcula la probabilidad $$P(", a," < X \\leq ", b,").$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
+    question=paste0("La variable aleatoria $X$ es una t de Student de tipo $t_{", degrees, "}$. Calcula la probabilidad 
+                    $$P(X<", a," ).$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
   
   answer=paste0("La respuesta es ", sol)
   
@@ -54,12 +52,14 @@ cat(question)
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 

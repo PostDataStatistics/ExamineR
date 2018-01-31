@@ -16,10 +16,15 @@ sanitizeLatexS <- function(str) {
 }
 
 ## DATA GENERATION
-
+(n = 14) 
+# Cuasidesviacion tipica muestral 
+(s = sqrt(2.29))
+# Valor a contrastar de la DESVIACION TIPICA que aparece en la hipotesis nula.
+# CUIDADO: NO INTRODUZCAS LA VARIANZA POR ERROR
+(sigma0 =  1.547)
 library(MASS)
 signifDig = 4
-sDigits=3
+sDigits=4
 # (xbar=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
 (s=signif(sample(seq(0.1,10,length.out=50),1), digits=signifDig))
 (n=sample(3:70,1))
@@ -49,7 +54,7 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
       (statistic=(n-1)*s^2/sigma0^2)  
       if(s>sigma0)(pValue=2*(1-pchisq(statistic,df=k)))else(pValue=2*(pchisq(statistic,df=k)))
     }
-  if(1>2)(2)else(3) 
+  
     
   sol = signif(pValue, digits=signifDig)
 }
@@ -62,9 +67,9 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
 if(language=='en'){
 question=paste0("$X$ is a normal random variable. 
                 A random sample of size $n=", n,"$, produces a sample variance   
-                $\\sigma^2=", signif(s^2, digits = sDigits), "$. 
+                $s^2=", signif(s^2, digits = sDigits), "$. 
               Test the null hypothesis:
-             $$H_0:\\sigma_X ", symbol, " \\sigma_0$$
+             $$H_0:\\sigma_X^2 ", symbol, " \\sigma_0^2$$
 where  $\\sigma_0=", sigma0,"$. Find the p-value.
 Use 4 significant digits."
                 )
@@ -75,7 +80,7 @@ Use 4 significant digits."
 }else if(language=='es'){
   question=paste0("La variable aleatoria $X$ es normal. 
                 Se ha obtenido una muestra de tama\\~no $n=", n,"$, 
-                con cuasivarianza (o varianza muestral) $\\sigma^2=", signif(s^2, digits = sDigits), "$. 
+                con varianza muestral $s^2=", signif(s^2, digits = sDigits), "$. 
               Se desea contrastar la hipotesis nula:
               $$H_0:\\sigma_X ", symbol, " \\sigma_0$$
 siendo $\\sigma_0=", sigma0,"$. Hallar el p-valor de este contraste.

@@ -21,6 +21,7 @@ sanitizeLatexS <- function(str) {
 ## DATA GENERATION
 
 library(MASS)
+library(TeachingDemos)
 signifDig = 4
 
 
@@ -37,16 +38,34 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
       (xbar2=signif(xbar1-abs(rnorm(1,mean=1, sd=3)),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
-      (s2=signif(s1*sample(c(runif(1,0.8,0.9),runif(1,1.1,1.2)),1),digits=signifDig))
-      (Statistic=( xbar1 - xbar2 ) / sqrt( (((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))*((1/n1) + (1/n2) )) )
-      (pValue=1-pt(Statistic,df=n1+n2-2))
+      muestra1 = mvrnorm(n = n1, mu= xbar1, Sigma = s1^2, empirical = TRUE)[,1]
+      sigmaTest = sigma.test(muestra1, sigmasq = s1^2, alternative = "two.sided", conf.level = 0.95)
+
+      ICs1 = sigmaTest$conf.int
+
+      a = sqrt(ICs1[1])
+      b = sqrt(ICs1[2])
+
+      (s2 = runif(1, 1.2 * a, 0.8 * b))
+    (Statistic=( xbar1 - xbar2 ) / sqrt( (((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))*((1/n1) + (1/n2) )) )
+    (pValue=1-pt(Statistic,df=n1+n2-2))
     }
     if(TestType==2){
       symbol=sanitizeLatexS("\\geq")
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
       (xbar2=signif(xbar1+abs(rnorm(1,mean=1, sd=3)),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
-      (s2=signif(s1*sample(c(runif(1,0.8,0.9),runif(1,1.1,1.2)),1),digits=signifDig))
+  muestra1 = mvrnorm(n = n1, mu= xbar1, Sigma = s1^2, empirical = TRUE)[,1]
+      sigmaTest = sigma.test(muestra1, sigmasq = s1^2, alternative = "two.sided", conf.level = 0.95)
+
+      ICs1 = sigmaTest$conf.int
+
+      a = sqrt(ICs1[1])
+      b = sqrt(ICs1[2])
+
+      (s2 = runif(1, 1.2 * a, 0.8 * b))
+    (Statistic=( xbar1 - xbar2 ) / sqrt( (((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))*((1/n1) + (1/n2) )) )
+    (pValue=1-pt(Statistic,df=n1+n2-2))
       (Statistic=( xbar1 - xbar2 ) / sqrt( (((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))*((1/n1) + (1/n2) )) )
       (pValue=pt(Statistic,df=n1+n2-2))
     }
@@ -55,7 +74,17 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
        (xbar2=signif(xbar1+rnorm(1,mean=1, sd=3),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
-      (s2=signif(s1*sample(c(runif(1,0.8,0.9),runif(1,1.1,1.2)),1),digits=signifDig))
+       muestra1 = mvrnorm(n = n1, mu= xbar1, Sigma = s1^2, empirical = TRUE)[,1]
+      sigmaTest = sigma.test(muestra1, sigmasq = s1^2, alternative = "two.sided", conf.level = 0.95)
+
+      ICs1 = sigmaTest$conf.int
+
+      a = sqrt(ICs1[1])
+      b = sqrt(ICs1[2])
+
+      (s2 = runif(1, 1.2 * a, 0.8 * b))
+    (Statistic=( xbar1 - xbar2 ) / sqrt( (((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))*((1/n1) + (1/n2) )) )
+    (pValue=1-pt(Statistic,df=n1+n2-2))
       (Statistic=( xbar1 - xbar2 ) / sqrt( (((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2))*((1/n1) + (1/n2) ) ))
       (pValue=2*(1-pt(abs(Statistic),df=n1+n2-2)))
     }

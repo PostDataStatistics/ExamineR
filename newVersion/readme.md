@@ -1,0 +1,1 @@
+This folder will contain the 2018 update of the repository. The questions are being transformed to Rmarkdown (and in some cases, completely rewritten).

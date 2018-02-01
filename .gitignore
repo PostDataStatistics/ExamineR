@@ -208,7 +208,7 @@ TSWLatexianTemp*
 *-Ex.R
 
 # RStudio files
-.Rproj
+*.Rproj
 .Rproj.user/
 
 # produced vignettes

@@ -54,7 +54,7 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
 if(language=='en'){
 question=paste0("$X$ is a normal random variable. 
                 A random sample of size $n=", n,"$, produces a sample variance   
-                $\\sigma^2=", signif(s^2, digits = sDigits), "$. 
+                $s^2=", signif(s^2, digits = sDigits), "$. 
               Test the null hypothesis:
              $$H_0:\\sigma_X ", symbol, " \\sigma_0$$
 where  $\\sigma_0=", sigma0,"$. Find the p-value.
@@ -67,7 +67,7 @@ Use 4 significant digits."
 }else if(language=='es'){
   question=paste0("La variable aleatoria $X$ es normal. 
                 Se ha obtenido una muestra de tama\\~no $n=", n,"$, 
-                con cuasivarianza (o varianza muestral) $\\sigma^2=", signif(s^2, digits = sDigits), "$. 
+                con varianza muestral $s^2=", signif(s^2, digits = sDigits), "$. 
               Se desea contrastar la hipotesis nula:
               $$H_0:\\sigma_X ", symbol, " \\sigma_0$$
 siendo $\\sigma_0=", sigma0,"$. Hallar el p-valor de este contraste.

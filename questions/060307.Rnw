@@ -1,6 +1,6 @@
 <<echo=FALSE, results=hide>>=
 
-## Hypothesis test for sample proportion, X ~ N(0,1), sample size n>30 
+## Rejection region for the proportion, X ~ N(mu, sigma), sample size n>30
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
 # Adds slashes to LaTeX special characters, which results in single-slash in tex output
@@ -20,7 +20,7 @@ signifDig = 4
 # (p0 = p0Num/n)
 (p0 = sample(seq(4, 6, by = .5), size = 1)/10)
 (alpha = sample(c(0.1, 0.05, 0.01), size = 1))
-(nhat = floor(n * (p0 + sample(c(-1, 1), size = 1) * sample(1:3, size = 1)/10 )))
+(nhat = floor(n * (p0 + sample(1:3, size = 1)/10 )))
 (phat = nhat/n)
 (qhat = 1 - phat)
 sol=0
@@ -57,7 +57,7 @@ Se repite un experimento de tipo Bernoull\\'i $n=", n,"$ veces
  la proporci\\'on muestral de  \\'exitos es $\\hat{p}=\\frac{", nhat, "}{", n, "}$. 
               Se quiere contrastar la hipotesis nula:
               $$H_0:\\,p  ", symbol, " p_0$$
-donde $p_0=", p0,"$. Determina la mayor proporci\\'on muestral que se debe observar para rechazar $H_0$. 
+donde $p_0=", p0,"$. Determina, al nivel de significaci\\'on $\\alpha =$ ",alpha, ", la menor proporci\\'on muestral (de entre las mayores que $p_0$) que se debe observar para rechazar $H_0$. 
 Utiliza 4 cifras significativas en tu respuesta.
 "
  )
@@ -66,15 +66,15 @@ Utiliza 4 cifras significativas en tu respuesta.
 La teor\\'ia dice que 
 $$\\frac{\\hat p-p_0}{\\sqrt{\\frac{\\hat p \\hat q}{n}}}\\sim N(0,1)$$ 
 al destipificar se deduce que el valor umbral (el mayor valor) de la proporci\\'on muestral que permite rechazar $H_0$ en las unidades del problema es
-\\begin{equation}\\label{1} 
+\\begin{equation} 
 p_0 + z_{", alpha/2, "} \\sqrt{\\frac{\\hat p \\hat q}{n}}
 \\end{equation}
 que es la frontera de la regi\\'on de rechazo y se puede calcular como 
-\\begin{equation}\\label{2}
+\\begin{equation}
 {\\tt qnorm(",alpha/2,", mean = ", p0,", sd = \\sqrt{\\hat p \\hat q / ",n,"}), lower.tail = FALSE)}
 \\end{equation}
 $$ = ",signif( sol,digits=signifDig),"$$
-Es importante entender la equivalencia entre las expresiones (1) y (2).
+Es importante entender la equivalencia entre las expresiones te\\'orica y la orden de R para calcular el extremo de la regi\\'on de rechazo.
 ")
 
 }

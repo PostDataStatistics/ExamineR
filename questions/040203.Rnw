@@ -15,17 +15,13 @@ library(MASS)
 
 signifDig = 4
 
-# P(X = a) for X a Poisson distribution of type B(n, p).
-
 sol=0
-b = 2
-n = 1
+
 while(is.na(sol)|(abs(sol)<0.00001)|(abs(sol)>0.999)|b>n){
-  n <- sample(5:15, 1)
   lambda <- sample(3:7,1)
   a <- sample(2:4,1)
-  c = a+sample(1:3,1)
-  sol = signif(ppois(c-1, lambda)-ppois(a-1, lambda), digits=4)
+  b = a+sample(2:4,1)
+  sol = signif(ppois(b-1, lambda)-ppois(a-1, lambda), digits=4)
 }
 
 ## QUESTION/ANSWER GENERATION

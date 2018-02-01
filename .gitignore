@@ -208,6 +208,7 @@ TSWLatexianTemp*
 *-Ex.R
 
 # RStudio files
+.Rproj
 .Rproj.user/
 *.Rproj
 

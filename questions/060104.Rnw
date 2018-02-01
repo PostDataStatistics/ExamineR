@@ -67,15 +67,13 @@ null hypothesis, at the confidence level $\\alpha = $",alpha," ? Use 4 significa
   
   answer=paste0("The null hypothesis $H_0$ is rejected whenever $\\bar X$ is significantly larger than  $\\mu_0$: the threshold (the lowest) value of the sample mean to reject $H_0$ using the problem's units is given by 
 \\begin{equation}\\label{1}
- \\mu_0 + z_{", alpha, "} \\frac{s}{\\sqrt{n}}
+ \\mu_0 + z_{", alpha, "} 
 \\end{equation}
 also known as the boundary of the rejection region. Using the data above, it can be straightly calculated as 
-\\begin{equation}\\label{2}
+\\begin{equation}
 {\\tt qnorm(",alpha,", mean = ", mu0,", sd = ",s,"/sqrt(",n,"), lower.tail = FALSE)}
 \\end{equation}
-$$ = ",signif( sol,digits=signifDig),"$$
-It is important to understand why both the expression (1) and (2) 
-are equivalent."
+$$ = ",signif( sol,digits=signifDig),"$$"
 )
   
 }else if(language=='es'){
@@ -91,15 +89,15 @@ Utiliza 4 cifras significativas en tu respuesta."
  )
   
   answer=paste0("Se rechaza $H_0$ cuando $\\bar X$ es significativamente mayor que $\\mu_0$: 
-el valor umbral (el menor valor) de la media muestral a partir del que se rechazar $H_0$ en las unidades del problema viene dada por \\begin{equation}\\label{1} 
+el valor umbral (el menor valor) de la media muestral a partir del que se rechazar $H_0$ en las unidades del problema viene dada por 
+\\begin{equation}
 \\mu_0 + z_{", alpha, "} \\frac{s}{\\sqrt{n}}
 \\end{equation}
 es decir, es la frontera de la regi\\'on de rechazo, que se calcula 
-\\begin{equation}\\label{2}
+\\begin{equation}
 {\\tt qnorm(",alpha,", mean = ", mu0,", sd = ",s,"/sqrt(",n,"), lower.tail = FALSE)}
 \\end{equation}
-$$ = ",signif( sol,digits=signifDig),"$$
-Es importante entender porqu\\'e las expresiones (1) y (2) son an\\'alogas."
+$$ = ",signif( sol,digits=signifDig),"$$"
 )
 }
 

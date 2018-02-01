@@ -41,13 +41,12 @@ b=2
     }
     if(TestType==3){
       symbol="="
-      (mu0=signif(xbar+sample(c(-1,1),1)*runif(1,min=1,max=4)*(s/sqrt(n)),digits=signifDig))
+      (mu0=signif(xbar-runif(1,min=1,max=4)*(s/sqrt(n)),digits=signifDig))
     }
   
 #}
 
 ## QUESTION/ANSWER GENERATION
-
 (threshold = mu0 + qt(alpha/2, df = n, lower.tail = FALSE) * s/sqrt(n))
 sol = signif(threshold, digits=signifDig)
 

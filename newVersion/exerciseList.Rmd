@@ -1,0 +1,19 @@
+---
+title: "ExamineR Project. Exercise List, 2018 version."
+author: "Fernando San Segundo."
+date: 'Last update: `r format(Sys.time(), "%Y-%m-%d")`'
+output:
+  html_document:
+    toc: yes
+    toc_depth: 2
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+---
+
+
+
++ 010002 ->- Absolute frequencies from csv file.
++ 050101 ->- Confidence interval for the mean, normal population, large sample size >100 (uses normal Z distribution).
++ 050201 ->- Confidence interval for the mean, normal population, small sample size < 30 (uses Student t distribution).
++ 050301 ->- Confidence interval for the standard deviation, sample from a normal population.

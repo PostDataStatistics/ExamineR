@@ -1,5 +1,5 @@
 
-```{r 010002setup, include=FALSE}
+```{r 010001setup, include=FALSE}
 
 ################################################################################
 # PostData Statistics: 
@@ -8,7 +8,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## 010002 Absolute frequencies from csv file.
+## 010001 Absolute frequencies from a list of integers.
 ```
 
 
@@ -16,12 +16,9 @@
 ## DATA GENERATION
 signifDig <- 4
 
-n = sample(100:500, 1)
-data = c(sample(1:30, n, replace=TRUE))
-(dataDF = data.frame(x=data))
+n = sample(15:20, 1)
 
-(fileName = paste0("data", paste0(sample(c(LETTERS, 0:9), 10), collapse = ""), ".csv", collapse = ""))
-write.table(dataDF, file = fileName, sep = " ", row.names = FALSE)
+data = c(sample(1:10, n, replace=TRUE))
 
 (frequencies = as.vector(table(data)))
 (orderedUniqueValues = sort(unique(data)))
@@ -37,7 +34,7 @@ frecTableForQuestion = cbind(orderedUniqueValues, frequencies)
 
 
 ```{r eval=(language == "en"), echo=FALSE, results='hide'}
-question=paste0("Construct the **absolute frequency** table of the set of numbers in the attached file, and find the **absolute frequency** of the value ", chooseValue, ".")
+question=paste0("Given the set of values $$", paste0(data, collapse = ", "),"$$ construct their **absolute frequency** table, and find the **absolute frequency** of the value ", chooseValue, ".")
 
 answer=paste0("The answer is ",
   sol
@@ -48,7 +45,7 @@ answer=paste0("The answer is ",
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
 question = paste0(
-"Construye la tabla de **frecuencias absolutas** del conjunto de números del fichero adjunto y responde cuál es la **frecuencia absoluta** del número ", chooseValue, ".")
+"Dados los valores  $$", paste0(data, collapse = ", "),"$$ construye su tabla de **frecuencias absolutas** y responde cuál es la **frecuencia absoluta** del número ", chooseValue, ".")
 
 answer=paste0("La respuesta es ", sol)
 ```
@@ -61,11 +58,6 @@ Question
 cat(paste(question,collapse=""))
 ```
 
-```{r results='asis', echo=FALSE}
-cat(attachfile(fileName))
-```
-
-
 Solution
 =========
 
@@ -77,7 +69,7 @@ Meta-information
 ================
 extype: num
 exsolution: `r fmt(sol, signifDig)`
-exname: 010002
+exname: 010001
 extol: 0.01
 
 

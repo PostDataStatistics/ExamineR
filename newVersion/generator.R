@@ -5,7 +5,9 @@ library("exams")
 
 language="es"
 seedValue = 2018
-exercises = c("010002.Rmd",  
+exercises = c("010001.Rmd", "010002.Rmd",  
+              "010101.Rmd", "010102.Rmd", 
+              "010201.Rmd", "010202.Rmd",
               "050101.Rmd",  "050201.Rmd", "050301.Rmd")
 
 source("attachFile.R")

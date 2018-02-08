@@ -1,6 +1,8 @@
+require(base64enc, quietly = TRUE)
+
 embedFile = function(filename = stop("'filename' must be specified"), filePath = "./", textHTML = "Link to file: "){
-  require(base64enc, quietly = TRUE)
-  (divname = paste(sample(LETTERS), collapse=""))
+  #(divname = paste(sample(LETTERS), collapse=""))
+  (divname = paste(filename, collapse=""))
   (uri = dataURI(file = paste0(filePath, filename, collapse = "") ))
   cat("<a style='text-decoration: none' id='",divname,"'></a>
       <script>

@@ -1,5 +1,5 @@
 
-```{r 010101setup, include=FALSE}
+```{r 01000001setup, include=FALSE}
 
 ################################################################################
 # PostData Statistics: 
@@ -8,7 +8,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## 010101 Relative frequencies from a list of integers.
+## 01000001 Absolute frequencies from a list of integers.
 ```
 
 
@@ -20,9 +20,9 @@ n = sample(15:20, 1)
 
 data = c(sample(1:10, n, replace=TRUE))
 
-(relFrequencies = unname(signif(table(data) / n, 4)))
+(frequencies = as.vector(table(data)))
 (orderedUniqueValues = sort(unique(data)))
-frecTableForQuestion = cbind(orderedUniqueValues, relFrequencies)
+frecTableForQuestion = cbind(orderedUniqueValues, frequencies)
 
 (chooseValue = sample(data, 1))
 
@@ -34,7 +34,7 @@ frecTableForQuestion = cbind(orderedUniqueValues, relFrequencies)
 
 
 ```{r eval=(language == "en"), echo=FALSE, results='hide'}
-question=paste0("Given the set of values $$", paste0(data, collapse = ", "),"$$ construct their **relative frequency** table, and find the **relative frequency** of the value ", chooseValue, ".")
+question=paste0("Given the set of values $$", paste0(data, collapse = ", "),"$$ construct their **absolute frequency** table, and find the **absolute frequency** of the value ", chooseValue, ".")
 
 answer=paste0("The answer is ",
   sol
@@ -45,7 +45,7 @@ answer=paste0("The answer is ",
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
 question = paste0(
-"Dados los valores  $$", paste0(data, collapse = ", "),"$$ construye su tabla de **frecuencias relativas** y responde cuál es la **frecuencia relativa** del número ", chooseValue, ".")
+"Dados los valores  $$", paste0(data, collapse = ", "),"$$ construye su tabla de **frecuencias absolutas** y responde cuál es la **frecuencia absoluta** del número ", chooseValue, ".")
 
 answer=paste0("La respuesta es ", sol)
 ```
@@ -69,7 +69,7 @@ Meta-information
 ================
 extype: num
 exsolution: `r fmt(sol, signifDig)`
-exname: 010101
+exname: 01000001
 extol: 0.01
 
 

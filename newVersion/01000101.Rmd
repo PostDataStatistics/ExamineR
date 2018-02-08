@@ -1,6 +1,5 @@
 
-
-```{r 010102setup, include=FALSE}
+```{r 01000101setup, include=FALSE}
 
 ################################################################################
 # PostData Statistics: 
@@ -9,7 +8,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## 010102 Relative frequencies from csv file.
+## 01000101 Relative frequencies from a list of integers.
 ```
 
 
@@ -17,16 +16,13 @@
 ## DATA GENERATION
 signifDig <- 4
 
-n = sample(100:500, 1)
-data = c(sample(1:30, n, replace=TRUE))
-(dataDF = data.frame(x=data))
+n = sample(15:20, 1)
 
-(fileName = paste0("data", paste0(sample(c(LETTERS, 0:9), 10), collapse = ""), ".csv", collapse = ""))
-write.table(dataDF, file = fileName, sep = " ", row.names = FALSE)
+data = c(sample(1:10, n, replace=TRUE))
 
-(frequencies = as.vector(table(data)))
+(relFrequencies = unname(signif(table(data) / n, 4)))
 (orderedUniqueValues = sort(unique(data)))
-frecTableForQuestion = cbind(orderedUniqueValues, signif(frequencies/n, digits = 4))
+frecTableForQuestion = cbind(orderedUniqueValues, relFrequencies)
 
 (chooseValue = sample(data, 1))
 
@@ -38,7 +34,7 @@ frecTableForQuestion = cbind(orderedUniqueValues, signif(frequencies/n, digits =
 
 
 ```{r eval=(language == "en"), echo=FALSE, results='hide'}
-question=paste0("Construct the **relative frequency** table of the set of numbers in the attached file, and find the **relative frequency** of the value ", chooseValue, ".")
+question=paste0("Given the set of values $$", paste0(data, collapse = ", "),"$$ construct their **relative frequency** table, and find the **relative frequency** of the value ", chooseValue, ".")
 
 answer=paste0("The answer is ",
   sol
@@ -49,7 +45,7 @@ answer=paste0("The answer is ",
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
 question = paste0(
-"Construye la tabla de **frecuencias relativas** del conjunto de números del fichero adjunto y responde cuál es la **frecuencia relativa** del número ", chooseValue, ".")
+"Dados los valores  $$", paste0(data, collapse = ", "),"$$ construye su tabla de **frecuencias relativas** y responde cuál es la **frecuencia relativa** del número ", chooseValue, ".")
 
 answer=paste0("La respuesta es ", sol)
 ```
@@ -62,11 +58,6 @@ Question
 cat(paste(question,collapse=""))
 ```
 
-```{r results='asis', echo=FALSE}
-cat(attachfile(fileName))
-```
-
-
 Solution
 =========
 
@@ -78,7 +69,7 @@ Meta-information
 ================
 extype: num
 exsolution: `r fmt(sol, signifDig)`
-exname: 010102
+exname: 01000101
 extol: 0.01
 
 

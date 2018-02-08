@@ -1,5 +1,6 @@
 
-```{r 010201setup, include=FALSE}
+
+```{r 01000202setup, include=FALSE}
 
 ################################################################################
 # PostData Statistics: 
@@ -8,7 +9,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## 010201 Cumulative Frequencies from a list of integers.
+## 01000202 Cumulative frequencies from csv file.
 ```
 
 
@@ -16,13 +17,16 @@
 ## DATA GENERATION
 signifDig <- 4
 
-n = sample(15:20, 1)
+n = sample(100:500, 1)
+data = c(sample(1:30, n, replace=TRUE))
+(dataDF = data.frame(x=data))
 
-data = c(sample(1:10, n, replace=TRUE))
+(fileName = paste0("data", paste0(sample(c(LETTERS, 0:9), 10), collapse = ""), ".csv", collapse = ""))
+write.table(dataDF, file = fileName, sep = " ", row.names = FALSE)
 
-(cumFrequencies = cumsum(table(data)))
+(cumfrequencies = cumsum(table(data)))
 (orderedUniqueValues = sort(unique(data)))
-frecTableForQuestion = cbind(orderedUniqueValues, cumFrequencies)
+frecTableForQuestion = cbind(orderedUniqueValues, signif(cumfrequencies, digits = 4))
 
 (chooseValue = sample(data, 1))
 
@@ -34,7 +38,7 @@ frecTableForQuestion = cbind(orderedUniqueValues, cumFrequencies)
 
 
 ```{r eval=(language == "en"), echo=FALSE, results='hide'}
-question=paste0("Given the set of values $$", paste0(data, collapse = ", "),"$$ construct their **cumulative frequency** table, and find the **cumulative frequency** of the value ", chooseValue, ".")
+question=paste0("Construct the **cumulative frequency** table of the set of numbers in the attached file, and find the **cumulative frequency** of the value ", chooseValue, ".")
 
 answer=paste0("The answer is ",
   sol
@@ -45,7 +49,7 @@ answer=paste0("The answer is ",
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
 question = paste0(
-"Dados los valores  $$", paste0(data, collapse = ", "),"$$ construye su tabla de **frecuencias acumuladas** y responde cuál es la **frecuencia acumulada** del número ", chooseValue, ".")
+"Construye la tabla de **frecuencias acumuladas** del conjunto de números del fichero adjunto y responde cuál es la **frecuencia acumulada** del número ", chooseValue, ".")
 
 answer=paste0("La respuesta es ", sol)
 ```
@@ -58,6 +62,11 @@ Question
 cat(paste(question,collapse=""))
 ```
 
+```{r results='asis', echo=FALSE}
+cat(attachfile(fileName))
+```
+
+
 Solution
 =========
 
@@ -69,7 +78,7 @@ Meta-information
 ================
 extype: num
 exsolution: `r fmt(sol, signifDig)`
-exname: 010201
+exname: 01000202
 extol: 0.01
 
 

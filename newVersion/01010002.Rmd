@@ -1,0 +1,77 @@
+
+```{r 01010002setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 01010002 Absolute frequencies from csv file.
+```
+
+
+```{r echo=FALSE, results='hide'}
+## DATA GENERATION
+signifDig <- 4
+
+n = sample(100:500, 1)
+data = c(sample(1:30, n, replace=TRUE))
+(dataDF = data.frame(x=data))
+
+(fileName = paste0("data", paste0(sample(c(LETTERS, 0:9), 10), collapse = ""), ".csv", collapse = ""))
+write.table(dataDF, file = fileName, sep = " ", row.names = FALSE)
+
+## QUESTION/ANSWER GENERATION
+(sol = mean(data))
+
+(sol = signif(sol, signifDig))
+```
+
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("Find the **arithmetic mean** of the set of numbers in the attached file.")
+
+answer=paste0("The answer is ",
+  sol
+)
+
+```
+
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question = paste0(
+"Calcula la **media aritmética** del conjunto de números del fichero adjunto.")
+
+answer=paste0("La respuesta es ", sol)
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+```{r results='asis', echo=FALSE}
+cat(attachfile(fileName))
+```
+
+
+Solution
+=========
+
+```{r results='asis', echo=FALSE}
+cat(paste(answer,collapse=""))
+```
+
+Meta-information
+================
+extype: num
+exsolution: `r fmt(sol, signifDig)`
+exname: 01010002
+extol: 0.01
+
+

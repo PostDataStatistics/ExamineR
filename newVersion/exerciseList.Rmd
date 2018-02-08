@@ -12,12 +12,17 @@ output:
 ---
 
 
-+ 010001 ->- Absolute frequencies from set of integer values.
-+ 010002 ->- Absolute frequencies from csv file.
-+ 010101 ->- Relative frequencies from set of integer values.
-+ 010102 ->- Relative frequencies from csv file.
-+ 010201 ->- Cumulative frequencies from set of integer values.
-+ 010202 ->- Cumulative frequencies from csv file.
++ 01000001 ->- Absolute frequencies from set of integer values.
++ 01000002 ->- Absolute frequencies from csv file.
++ 01000101 ->- Relative frequencies from set of integer values.
++ 01000102 ->- Relative frequencies from csv file.
++ 01000201 ->- Cumulative frequencies from set of integer values.
++ 01000202 ->- Cumulative frequencies from csv file.
+
++ 01010001 ->- Arithmetic mean for a set of integer values.
++ 01010002 ->- Arithmetic mean for a csv file of integer values.
+
+
 + 050101 ->- Confidence interval for the mean, normal population, large sample size >100 (uses normal Z distribution).
 + 050201 ->- Confidence interval for the mean, normal population, small sample size < 30 (uses Student t distribution).
 + 050301 ->- Confidence interval for the standard deviation, sample from a normal population.

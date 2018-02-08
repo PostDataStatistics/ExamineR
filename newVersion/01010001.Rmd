@@ -1,0 +1,70 @@
+
+```{r 01010001setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 01010001 Arithmetic mean of a list of integers.
+```
+
+
+```{r echo=FALSE, results='hide'}
+## DATA GENERATION
+signifDig <- 4
+
+n = sample(15:20, 1)
+
+data = c(sample(1:10, n, replace=TRUE))
+
+
+## QUESTION/ANSWER GENERATION
+(sol = mean(data))
+
+(sol = signif(sol, signifDig))
+```
+
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("Given the set of values $$", paste0(data, collapse = ", "),"$$ find their **arithmetic mean**.")
+
+answer=paste0("The answer is ",
+  sol
+)
+
+```
+
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question = paste0(
+"Dados los valores  $$", paste0(data, collapse = ", "),"$$ calcula su **media airtmética**.")
+
+answer=paste0("La respuesta es ", sol)
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+Solution
+=========
+
+```{r results='asis', echo=FALSE}
+cat(paste(answer,collapse=""))
+```
+
+Meta-information
+================
+extype: num
+exsolution: `r fmt(sol, signifDig)`
+exname: 01010001
+extol: 0.01
+
+

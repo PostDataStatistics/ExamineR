@@ -1,0 +1,75 @@
+
+```{r 01010101setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 01010101 Arithmetic mean from a table of absolute frequencies.
+```
+
+
+```{r echo=FALSE, results='hide'}
+## DATA GENERATION
+signifDig <- 4
+
+n = sample(15:20, 1)
+
+data = c(sample(1:10, n, replace=TRUE))
+
+(frequencies = as.vector(table(data)))
+(orderedUniqueValues = sort(unique(data)))
+(frecTableForQuestion = cbind(orderedUniqueValues, frequencies))
+
+(chooseValue = sample(data, 1))
+
+## QUESTION/ANSWER GENERATION
+(sol = mean(data))
+
+(sol = signif(sol, signifDig))
+```
+
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("Given the set of unique values $$", paste0(orderedUniqueValues, collapse = ", "),"$$ and their absolute frequencies  $$", paste0(frequencies, collapse = ", "),"$$ find the **arithmetic mean** of this data set.")
+
+answer=paste0("The answer is ",
+  sol
+)
+
+```
+
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question=paste0("Dados los valores $$", paste0(orderedUniqueValues, collapse = ", "),"$$ y sus frecuencias absolutas  $$", paste0(frequencies, collapse = ", "),"$$ calcular la **media aritmética** de este conjunto de datos.")
+
+
+answer=paste0("La respuesta es ", sol)
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+Solution
+=========
+
+```{r results='asis', echo=FALSE}
+cat(paste(answer,collapse=""))
+```
+
+Meta-information
+================
+extype: num
+exsolution: `r fmt(sol, signifDig)`
+exname: 01010101
+extol: 0.01
+
+

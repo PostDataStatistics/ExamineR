@@ -21,7 +21,7 @@ output:
 
 + 01010001 ->- Arithmetic mean for a set of integer values.
 + 01010002 ->- Arithmetic mean for a csv file of integer values.
-
++ 01010101 ->- Arithmetic mean from a frequency table.
 
 + 050101 ->- Confidence interval for the mean, normal population, large sample size >100 (uses normal Z distribution).
 + 050201 ->- Confidence interval for the mean, normal population, small sample size < 30 (uses Student t distribution).

@@ -18,6 +18,7 @@ output:
 + 01000102 ->- Relative frequencies from csv file.
 + 01000201 ->- Cumulative frequencies from set of integer values.
 + 01000202 ->- Cumulative frequencies from csv file.
++ 01000301 ->- Multiple choice, properties of absolute, relative, cumulative frequencies..
 
 + 01010001 ->- Arithmetic mean for a set of integer values.
 + 01010002 ->- Arithmetic mean for a csv file of integer values.

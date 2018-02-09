@@ -1,0 +1,145 @@
+
+```{r 01000301setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 01000301 Multiple choice, properties of absolute, relative, cumulative frequencies.
+```
+
+
+
+```{r echo=FALSE, results='hide'}
+## DATA GENERATION
+
+questionsAbs = character()
+answersAbs = logical()
+questionsRel = character()
+answersRel = logical()
+questionsCumul = character()
+answersCumul = logical()
+
+
+if(language == "en"){
+  questionsAbs[1] = "The sum of all the absolute frequencies of a data set is always equal to $n$, the number 
+  of data values in the set."
+  answersAbs[1] = TRUE
+  questionsAbs[2] = "The sum of all the absolute frequencies of a data set is always equal to $1$."
+  answersAbs[2] = FALSE
+  
+  questionsRel[1] = "The sum of all the relative frequencies of a data set is always equal to $n$, the number 
+  of data values in the set."
+  answersRel[1] = FALSE
+  questionsRel[2] = "The sum of all the relative frequencies of a data set is always equal to $1$."
+  answersRel[2] = TRUE
+
+  questionsCumul[1] = "The sum of all the cumulative frequencies of a data set is always equal to $n$, the number 
+  of data values in the set."
+  answersCumul[1] = FALSE
+  questionsCumul[2] = "The sum of all the cumulative frequencies of a data set is always equal to $1$."
+  answersCumul[2] = FALSE
+
+}
+
+
+if(language == "es"){
+  questionsAbs[1] = "La suma de todas las frecuencias absolutas de un conjunto de datos es siempre igual a $n$, el número de datos en ese conjunto."
+  answersAbs[1] = TRUE
+  questionsAbs[2] = "La suma de todas las frecuencias absolutas de un conjunto de datos es siempre igual a  $1$."
+  answersAbs[2] = FALSE
+  
+  questionsRel[1] = "La suma de todas las frecuencias relativas de un conjunto de datos es siempre igual a $n$, el número de datos en ese conjunto."
+  answersRel[1] = FALSE
+  questionsRel[2] = "La suma de todas las frecuencias relativas de un conjunto de datos es siempre igual a $1$."
+  answersRel[2] = TRUE
+
+  questionsCumul[1] = "La suma de todas las frecuencias acumuladas de un conjunto de datos es siempre igual a $n$, el número de datos en ese conjunto."
+  answersCumul[1] = FALSE
+  questionsCumul[2] = "La suma de todas las frecuencias acumuladas de un conjunto de datos es siempre igual a $1$."
+  answersCumul[2] = FALSE
+
+}
+
+
+## QUESTION/ANSWER GENERATION
+
+(selection = sample(1:2, 3, replace = T))
+
+# class(answersAbs[1])
+# as.integer(answersAbs[1])
+
+(solution = paste0(
+  as.integer(answersAbs[selection[1]]), 
+  as.integer(answersRel[selection[2]]), 
+  as.integer(answersCumul[selection[3]])))
+
+```
+
+
+
+
+Question
+========
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("Select all true statements.")
+```
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question=paste0("Selecciona todas las afirmaciones ciertas.")
+```
+
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+Answerlist
+----------
+
+```{r results='asis', echo=FALSE}
+cat(paste("* ", questionsAbs[selection[1]], collapse=""), fill = 1)
+cat(paste("* ", questionsRel[selection[2]], collapse=""), fill = 1)
+cat(paste("* ", questionsCumul[selection[3]], collapse=""), fill = 1)
+```
+
+
+Solution
+========
+
+Answerlist
+----------
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+answersAbs = ifelse(answersAbs, "Cierto", "Falso")
+answersRel = ifelse(answersRel, "Cierto", "Falso")
+answersCumul = ifelse(answersCumul, "Cierto", "Falso")
+```
+
+
+
+```{r results='asis', echo=FALSE}
+cat(paste("* ", answersAbs[selection[1]], collapse=""), fill = 1)
+cat(paste("* ", answersRel[selection[2]], collapse=""), fill = 1)
+cat(paste("* ", answersCumul[selection[3]], collapse=""), fill = 1)
+```
+
+
+Meta-information
+================
+
+```{r results='asis', echo=FALSE}
+cat("exname: 01000301", fill = 1)
+cat("extype: mchoice", fill = 1)
+cat(paste0("exsolution: ", solution, collapse = ""), fill = 1)
+cat("exshuffle: TRUE", fill = 1)
+```
+
+
+
+
+

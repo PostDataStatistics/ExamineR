@@ -11,6 +11,14 @@ output:
     toc_depth: '2'
 ---
 
+```{r echo=FALSE, eval=FALSE}
+https://github.com/PostDataStatistics/ExamineR/tree/RmdExams2
+git push origin RmdExams2
+```
+
+
+
+
 
 + 01000001 ->- Absolute frequencies from set of integer values.
 + 01000002 ->- Absolute frequencies from csv file.

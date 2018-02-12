@@ -1,5 +1,5 @@
 
-```{r 01010002setup, include=FALSE}
+```{r 01020101setup, include=FALSE}
 
 ################################################################################
 # PostData Statistics: 
@@ -8,7 +8,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## 01010002 ->- Arithmetic mean for a csv file of integer values.
+## 01020101 ->- Population variance for a set of integer values.
 ```
 
 
@@ -16,22 +16,21 @@
 ## DATA GENERATION
 signifDig <- 4
 
-n = sample(100:500, 1)
-data = c(sample(1:30, n, replace=TRUE))
-(dataDF = data.frame(x=data))
+n = sample(15:20, 1)
 
-(fileName = paste0("data", paste0(sample(c(LETTERS, 0:9), 10), collapse = ""), ".csv", collapse = ""))
-write.table(dataDF, file = fileName, sep = " ", row.names = FALSE)
+data = c(sample(1:10, n, replace=TRUE))
+
 
 ## QUESTION/ANSWER GENERATION
-(sol = mean(data))
+
+(sol = (n - 1) * var(data) / n)
 
 (sol = signif(sol, signifDig))
 ```
 
 
 ```{r eval=(language == "en"), echo=FALSE, results='hide'}
-question=paste0("Find the **arithmetic mean** of the set of numbers in the attached file.")
+question=paste0("Given the set of values $$", paste0(data, collapse = ", "),"$$ find their **population variance**.")
 
 answer=paste0("The answer is ",
   sol
@@ -42,7 +41,7 @@ answer=paste0("The answer is ",
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
 question = paste0(
-"Calcula la **media aritmética** del conjunto de números del fichero adjunto.")
+"Dados los valores  $$", paste0(data, collapse = ", "),"$$ calcula su **varianza poblacional**.")
 
 answer=paste0("La respuesta es ", sol)
 ```
@@ -55,11 +54,6 @@ Question
 cat(paste(question,collapse=""))
 ```
 
-```{r results='asis', echo=FALSE}
-cat(attachfile(fileName))
-```
-
-
 Solution
 =========
 
@@ -71,7 +65,7 @@ Meta-information
 ================
 extype: num
 exsolution: `r fmt(sol, signifDig)`
-exname: 01010002
+exname: 01020101
 extol: 0.01
 
 

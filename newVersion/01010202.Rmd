@@ -1,5 +1,5 @@
 
-```{r 01010002setup, include=FALSE}
+```{r 01010202setup, include=FALSE}
 
 ################################################################################
 # PostData Statistics: 
@@ -8,7 +8,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## 01010002 ->- Arithmetic mean for a csv file of integer values.
+## 01010202 Median from csv file.
 ```
 
 
@@ -24,14 +24,14 @@ data = c(sample(1:30, n, replace=TRUE))
 write.table(dataDF, file = fileName, sep = " ", row.names = FALSE)
 
 ## QUESTION/ANSWER GENERATION
-(sol = mean(data))
+(sol = median(data))
 
 (sol = signif(sol, signifDig))
 ```
 
 
 ```{r eval=(language == "en"), echo=FALSE, results='hide'}
-question=paste0("Find the **arithmetic mean** of the set of numbers in the attached file.")
+question=paste0("Find the **median** of the set of numbers in the attached file.")
 
 answer=paste0("The answer is ",
   sol
@@ -42,7 +42,7 @@ answer=paste0("The answer is ",
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
 question = paste0(
-"Calcula la **media aritmética** del conjunto de números del fichero adjunto.")
+"Calcula la **mediana** del conjunto de números del fichero adjunto.")
 
 answer=paste0("La respuesta es ", sol)
 ```
@@ -71,7 +71,7 @@ Meta-information
 ================
 extype: num
 exsolution: `r fmt(sol, signifDig)`
-exname: 01010002
+exname: 01010202
 extol: 0.01
 
 

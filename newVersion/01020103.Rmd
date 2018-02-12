@@ -1,5 +1,5 @@
 
-```{r 01010002setup, include=FALSE}
+```{r 01020103setup, include=FALSE}
 
 ################################################################################
 # PostData Statistics: 
@@ -8,7 +8,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## 01010002 ->- Arithmetic mean for a csv file of integer values.
+## 01020103 Population variance from a table of absolute frequencies.
 ```
 
 
@@ -16,22 +16,27 @@
 ## DATA GENERATION
 signifDig <- 4
 
-n = sample(100:500, 1)
-data = c(sample(1:30, n, replace=TRUE))
-(dataDF = data.frame(x=data))
+(k = sample(8:10, 1))
 
-(fileName = paste0("data", paste0(sample(c(LETTERS, 0:9), 10), collapse = ""), ".csv", collapse = ""))
-write.table(dataDF, file = fileName, sep = " ", row.names = FALSE)
+(values = c(sample(-10:20, k)))
+
+(frequencies = c(sample(1:15, k)))
+
+(data = rep(values, frequencies))
+
+n = length(data)
+
+(frecTableForQuestion = table(data))
 
 ## QUESTION/ANSWER GENERATION
-(sol = mean(data))
+(sol = (n - 1) * var(data) / n)
 
 (sol = signif(sol, signifDig))
 ```
 
 
 ```{r eval=(language == "en"), echo=FALSE, results='hide'}
-question=paste0("Find the **arithmetic mean** of the set of numbers in the attached file.")
+question=paste0("Given the set of unique values $$", paste0(names(frecTableForQuestion), collapse = ", "),"$$ and their absolute frequencies  $$", paste0(frecTableForQuestion, collapse = ", "),"$$ find the **population variance** of this data set.")
 
 answer=paste0("The answer is ",
   sol
@@ -41,8 +46,7 @@ answer=paste0("The answer is ",
 
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
-question = paste0(
-"Calcula la **media aritmética** del conjunto de números del fichero adjunto.")
+question=paste0("Dado este conjunto de valores $$", paste0(names(frecTableForQuestion), collapse = ", "),"$$ y sus frecuencias absolutas  $$", paste0(frecTableForQuestion, collapse = ", "),"$$ calcular la **varianza poblacional** de este conjunto de datos.")
 
 answer=paste0("La respuesta es ", sol)
 ```
@@ -55,11 +59,6 @@ Question
 cat(paste(question,collapse=""))
 ```
 
-```{r results='asis', echo=FALSE}
-cat(attachfile(fileName))
-```
-
-
 Solution
 =========
 
@@ -71,7 +70,7 @@ Meta-information
 ================
 extype: num
 exsolution: `r fmt(sol, signifDig)`
-exname: 01010002
+exname: 01020103
 extol: 0.01
 
 

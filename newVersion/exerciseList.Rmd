@@ -22,7 +22,22 @@ output:
 
 + 01010001 ->- Arithmetic mean for a set of integer values.
 + 01010002 ->- Arithmetic mean for a csv file of integer values.
-+ 01010101 ->- Arithmetic mean from a frequency table.
+
++ 01010101 ->- Arithmetic mean from a table of absolute frequencies.
+
++ 01010201 ->- Median of a set of integer values.
++ 01010202  ->- Median from csv file.
+
++ 01020101 ->- Population variance for a set of integer values.
++ 01020102 ->- Population variance for a csv file of integer values. 
+
++ 01020103 ->- Population variance from a table of absolute frequencies.
+
+
+
+
+
+
 
 + 050101 ->- Confidence interval for the mean, normal population, large sample size >100 (uses normal Z distribution).
 + 050201 ->- Confidence interval for the mean, normal population, small sample size < 30 (uses Student t distribution).

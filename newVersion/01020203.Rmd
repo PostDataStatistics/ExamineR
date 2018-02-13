@@ -1,5 +1,5 @@
 
-```{r 01010101setup, include=FALSE}
+```{r 01020203setup, include=FALSE}
 
 ################################################################################
 # PostData Statistics: 
@@ -8,7 +8,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## 01010101 Arithmetic mean from a table of absolute frequencies.
+## 01020203 Population standard deviation from a table of absolute frequencies.
 ```
 
 
@@ -16,25 +16,27 @@
 ## DATA GENERATION
 signifDig <- 4
 
-n = sample(15:20, 1)
+(k = sample(8:10, 1))
 
-data = c(sample(-10:10, n, replace=TRUE))
+(values = sort(c(sample(-10:20, k))))
 
-(frequencies = as.vector(table(data)))
-(orderedUniqueValues = sort(unique(data)))
-(frecTableForQuestion = cbind(orderedUniqueValues, frequencies))
+(frequencies = c(sample(1:15, k)))
 
-(chooseValue = sample(data, 1))
+(data = rep(values, frequencies))
+
+n = length(data)
+
+(frecTableForQuestion = table(data))
 
 ## QUESTION/ANSWER GENERATION
-(sol = mean(data))
+(sol = sqrt((n - 1) * var(data) / n))
 
 (sol = signif(sol, signifDig))
 ```
 
 
 ```{r eval=(language == "en"), echo=FALSE, results='hide'}
-question=paste0("Given the set of unique values $$", paste0(orderedUniqueValues, collapse = ", "),"$$ and their absolute frequencies  $$", paste0(frequencies, collapse = ", "),"$$ find the **arithmetic mean** of this data set.")
+question=paste0("Given the set of unique values $$", paste0(values, collapse = ", "),"$$ and their corresponding absolute frequencies  $$", paste0(frecTableForQuestion, collapse = ", "),"$$ find the **population standard deviation** of this data set.")
 
 answer=paste0("The answer is ",
   sol
@@ -44,8 +46,7 @@ answer=paste0("The answer is ",
 
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
-question=paste0("Dados los valores $$", paste0(orderedUniqueValues, collapse = ", "),"$$ y sus frecuencias absolutas  $$", paste0(frequencies, collapse = ", "),"$$ calcular la **media aritmética** de este conjunto de datos.")
-
+question=paste0("Dado este conjunto de valores $$", paste0(values, collapse = ", "),"$$ y sus correspondientes frecuencias absolutas  $$", paste0(frecTableForQuestion, collapse = ", "),"$$ calcular la **desviación típica poblacional** de este conjunto de datos.")
 
 answer=paste0("La respuesta es ", sol)
 ```
@@ -69,7 +70,7 @@ Meta-information
 ================
 extype: num
 exsolution: `r fmt(sol, signifDig)`
-exname: 01010101
+exname: 01020203
 extol: 0.01
 
 

@@ -1,5 +1,5 @@
 
-```{r 01010101setup, include=FALSE}
+```{r 01020201setup, include=FALSE}
 
 ################################################################################
 # PostData Statistics: 
@@ -8,7 +8,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## 01010101 Arithmetic mean from a table of absolute frequencies.
+## 01020201 ->- Population standard deviation for a set of integer values.
 ```
 
 
@@ -18,23 +18,19 @@ signifDig <- 4
 
 n = sample(15:20, 1)
 
-data = c(sample(-10:10, n, replace=TRUE))
+data = c(sample(1:10, n, replace=TRUE))
 
-(frequencies = as.vector(table(data)))
-(orderedUniqueValues = sort(unique(data)))
-(frecTableForQuestion = cbind(orderedUniqueValues, frequencies))
-
-(chooseValue = sample(data, 1))
 
 ## QUESTION/ANSWER GENERATION
-(sol = mean(data))
+
+(sol = sqrt((n - 1) * var(data) / n))
 
 (sol = signif(sol, signifDig))
 ```
 
 
 ```{r eval=(language == "en"), echo=FALSE, results='hide'}
-question=paste0("Given the set of unique values $$", paste0(orderedUniqueValues, collapse = ", "),"$$ and their absolute frequencies  $$", paste0(frequencies, collapse = ", "),"$$ find the **arithmetic mean** of this data set.")
+question=paste0("Given the set of values $$", paste0(data, collapse = ", "),"$$ find their **population standard deviation**.")
 
 answer=paste0("The answer is ",
   sol
@@ -44,8 +40,8 @@ answer=paste0("The answer is ",
 
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
-question=paste0("Dados los valores $$", paste0(orderedUniqueValues, collapse = ", "),"$$ y sus frecuencias absolutas  $$", paste0(frequencies, collapse = ", "),"$$ calcular la **media aritmética** de este conjunto de datos.")
-
+question = paste0(
+"Dados los valores  $$", paste0(data, collapse = ", "),"$$ calcula su **desviación típica poblacional**.")
 
 answer=paste0("La respuesta es ", sol)
 ```
@@ -69,7 +65,7 @@ Meta-information
 ================
 extype: num
 exsolution: `r fmt(sol, signifDig)`
-exname: 01010101
+exname: 01020201
 extol: 0.01
 
 

@@ -1,5 +1,5 @@
 
-```{r 01020103setup, include=FALSE}
+```{r 01020104setup, include=FALSE}
 
 ################################################################################
 # PostData Statistics: 
@@ -8,7 +8,7 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## 01020103 Population variance from a table of absolute frequencies.
+## 01020104 Population variance from a table of relative frequencies.
 ```
 
 
@@ -24,19 +24,26 @@ signifDig <- 4
 
 (data = rep(values, frequencies))
 
-n = length(data)
+(n = length(data))
+
+sum(frequencies)
 
 (frecTableForQuestion = table(data))
 
+(RelfrecTableForQuestion = signif(table(data)/ n, 4))
+
 ## QUESTION/ANSWER GENERATION
 (sol = (n - 1) * var(data) / n)
+
+# (xbar = mean(data))
+# (sol2 = sum((values - xbar)^2 * RelfrecTableForQuestion))
 
 (sol = signif(sol, signifDig))
 ```
 
 
 ```{r eval=(language == "en"), echo=FALSE, results='hide'}
-question=paste0("Given the set of unique values $$", paste0(values, collapse = ", "),"$$ and their corresponding absolute frequencies  $$", paste0(frecTableForQuestion, collapse = ", "),"$$ find the **population variance** of this data set.")
+question=paste0("Given the set of unique values $$", paste0(values, collapse = ", "),"$$ and their corresponding relative frequencies  $$", paste0(RelfrecTableForQuestion, collapse = ", "),"$$ find the **population variance** of this data set.")
 
 answer=paste0("The answer is ",
   sol
@@ -46,7 +53,7 @@ answer=paste0("The answer is ",
 
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
-question=paste0("Dado este conjunto de valores $$", paste0(values, collapse = ", "),"$$ y sus correspondientes frecuencias absolutas  $$", paste0(frecTableForQuestion, collapse = ", "),"$$ calcular la **varianza poblacional** de este conjunto de datos.")
+question=paste0("Dado este conjunto de valores $$", paste0(values, collapse = ", "),"$$ y sus correspondientes frecuencias relativas  $$", paste0(RelfrecTableForQuestion, collapse = ", "),"$$ calcular la **varianza poblacional** de este conjunto de datos.")
 
 answer=paste0("La respuesta es ", sol)
 ```
@@ -70,7 +77,7 @@ Meta-information
 ================
 extype: num
 exsolution: `r fmt(sol, signifDig)`
-exname: 01020103
+exname: 01020104
 extol: 0.01
 
 

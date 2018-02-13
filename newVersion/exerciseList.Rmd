@@ -16,9 +16,9 @@ https://github.com/PostDataStatistics/ExamineR/tree/RmdExams2
 git push origin RmdExams2
 ```
 
+# 01 Descriptive statistics
 
-
-
+## 0100 Frequency tables.
 
 + 01000001 ->- Absolute frequencies from set of integer values.
 + 01000002 ->- Absolute frequencies from csv file.
@@ -28,24 +28,33 @@ git push origin RmdExams2
 + 01000202 ->- Cumulative frequencies from csv file.
 + 01000301 ->- Multiple choice, properties of absolute, relative, cumulative frequencies..
 
+## 0101 Central Values.
+
 + 01010001 ->- Arithmetic mean for a set of integer values.
 + 01010002 ->- Arithmetic mean for a csv file of integer values.
 
 + 01010101 ->- Arithmetic mean from a table of absolute frequencies.
++ 01010102 ->- Arithmetic mean from a table of relative frequencies.
 
 + 01010201 ->- Median of a set of integer values.
 + 01010202  ->- Median from csv file.
 
+## 0102 Dispersal. Variances and Standard Deviations for population and Sample.
+
 + 01020101 ->- Population variance for a set of integer values.
 + 01020102 ->- Population variance for a csv file of integer values. 
-
 + 01020103 ->- Population variance from a table of absolute frequencies.
++ 01020104 ->- Population variance from a table of relative frequencies.
+
++ 01020201 ->- Population standard deviation for a set of integer values.
++ 01020202 ->- Population standard deviation for a csv file of integer values. 
++ 01020203 ->- Population standard deviation from a table of absolute frequencies.
++ 01020204 ->- Population standard deviation from a table of relative frequencies.
 
 
+# 05 Confidence Intervals.
 
-
-
-
+## 0501 CI for the Mean, Normal Population.
 
 + 050101 ->- Confidence interval for the mean, normal population, large sample size >100 (uses normal Z distribution).
 + 050201 ->- Confidence interval for the mean, normal population, small sample size < 30 (uses Student t distribution).

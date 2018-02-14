@@ -1,5 +1,8 @@
 ## Temporal exclusions
 
+# html file for experiments
+
+newVersion/plain_es1.html
 
 ## Exclude folder
 
@@ -225,10 +228,4 @@ vignettes/*.pdf
 # media folder created for csv attachments
 
 media/
-
-############################################################################
-# html file for experiments
-
-newVersion/plain_es1.html
-
 

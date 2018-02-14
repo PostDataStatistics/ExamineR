@@ -4,7 +4,9 @@ library("exams")
 #                writer = c("exams2html", "exams2pdf", "exams2moodle"))
 
 language="es"
+includeSolution = TRUE
 seedValue = 2018
+
 exercises = c("01000001.Rmd", "01000002.Rmd",  
               "01000101.Rmd", "01000102.Rmd", 
               "01000201.Rmd", "01000202.Rmd",
@@ -24,15 +26,24 @@ set.seed(seedValue)
 
 if(language == "en"){
   exams2pdf(file = exercises,
-            solution=TRUE, 
+            solution = includeSolution, 
             template = c("plain.tex", "solution.tex"))
 } else if(language == "es")  {
   exams2pdf(file = exercises, 
-            solution=TRUE, 
+            solution = includeSolution, 
             template = c("plain_es.tex", "solution_es.tex"))
 }
 
 set.seed(seedValue)
 
-exams2html(file = exercises, mathjax = TRUE, solution = TRUE, dir = ".",
-           template = c("plain_es.html"))
+if(language == "en"){
+  exams2html(file = exercises, mathjax = TRUE, 
+             solution = ifelse(includeSolution, "<h4>Solution</h4>", FALSE), 
+             dir = ".")
+} else if(language == "es")  {
+  exams2html(file = exercises, mathjax = TRUE, 
+             question = "<h4>Pregunta</h4>", 
+             solution = ifelse(includeSolution, "<h4>Respuesta</h4>", FALSE), 
+             dir = ".", template = c("plain_es.html"))
+}
+

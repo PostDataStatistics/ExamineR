@@ -43,7 +43,7 @@ if(language == "en"){
 } else if(language == "es")  {
   exams2html(file = exercises, mathjax = TRUE, 
              question = "<h4>Pregunta</h4>", 
-             solution = ifelse(includeSolution, "<h4>Respuesta</h4>", FALSE), 
+             solution = ifelse(includeSolution, "<h4>Respuesta:</h4>", FALSE), 
              dir = ".", template = c("plain_es.html"))
 }
 

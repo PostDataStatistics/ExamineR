@@ -51,6 +51,16 @@ git push origin RmdExams2
 + 01020203 ->- Population standard deviation from a table of absolute frequencies.
 + 01020204 ->- Population standard deviation from a table of relative frequencies.
 
++ 01020301 ->- Sample variance for a set of integer values.
++ 01020302 ->- Sample variance for a csv file of integer values. 
++ 01020303 ->- Sample variance from a table of absolute frequencies.
++ 01020304 ->- Sample variance from a table of relative frequencies.
+
++ 01020401 ->- Sample standard deviation for a set of integer values.
++ 01020402 ->- Sample standard deviation for a csv file of integer values. 
++ 01020403 ->- Sample standard deviation from a table of absolute frequencies.
++ 01020404 ->- Sample standard deviation from a table of relative frequencies.
+
 
 # 05 Confidence Intervals.
 

@@ -1,0 +1,76 @@
+
+```{r 01020403setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 01020403 Sample standard deviation from a table of absolute frequencies.
+```
+
+
+```{r echo=FALSE, results='hide'}
+## DATA GENERATION
+signifDig <- 4
+
+(k = sample(8:10, 1))
+
+(values = sort(c(sample(-10:20, k))))
+
+(frequencies = c(sample(1:15, k)))
+
+(data = rep(values, frequencies))
+
+n = length(data)
+
+(frecTableForQuestion = table(data))
+
+## QUESTION/ANSWER GENERATION
+(sol = sd(data))
+
+(sol = signif(sol, signifDig))
+```
+
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("Given the set of unique values $$", paste0(values, collapse = ", "),"$$ and their corresponding absolute frequencies  $$", paste0(frecTableForQuestion, collapse = ", "),"$$ find the **sample standard deviation** of this data set.")
+
+answer=paste0("The answer is ",
+  sol
+)
+
+```
+
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question=paste0("Dado este conjunto de valores $$", paste0(values, collapse = ", "),"$$ y sus correspondientes frecuencias absolutas  $$", paste0(frecTableForQuestion, collapse = ", "),"$$ calcular la **(cuasi)desviación típica muestral** de este conjunto de datos.")
+
+answer=paste0("La respuesta es ", sol)
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+Solution
+=========
+
+```{r results='asis', echo=FALSE}
+cat(paste(answer,collapse=""))
+```
+
+Meta-information
+================
+extype: num
+exsolution: `r fmt(sol, signifDig)`
+exname: 01020403
+extol: 0.01
+
+

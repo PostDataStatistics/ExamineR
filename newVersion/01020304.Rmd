@@ -1,0 +1,83 @@
+
+```{r 01020304setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 01020304 Sample variance from a table of relative frequencies.
+```
+
+
+```{r echo=FALSE, results='hide'}
+## DATA GENERATION
+signifDig <- 4
+
+(k = sample(8:10, 1))
+
+(values = sort(c(sample(-10:20, k))))
+
+(frequencies = c(sample(1:15, k)))
+
+(data = rep(values, frequencies))
+
+(n = length(data))
+
+sum(frequencies)
+
+(frecTableForQuestion = table(data))
+
+(RelfrecTableForQuestion = signif(table(data)/ n, 4))
+
+## QUESTION/ANSWER GENERATION
+(sol = var(data))
+
+# (xbar = mean(data))
+# (sol2 = sum((values - xbar)^2 * RelfrecTableForQuestion))
+
+(sol = signif(sol, signifDig))
+```
+
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("Given the set of unique values $$", paste0(values, collapse = ", "),"$$ and their corresponding relative frequencies  $$", paste0(RelfrecTableForQuestion, collapse = ", "),"$$ find the **sample variance** of this data set.")
+
+answer=paste0("The answer is ",
+  sol
+)
+
+```
+
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question=paste0("Dado este conjunto de valores $$", paste0(values, collapse = ", "),"$$ y sus correspondientes frecuencias relativas  $$", paste0(RelfrecTableForQuestion, collapse = ", "),"$$ calcular la **(cuasi)varianza muestral** de este conjunto de datos.")
+
+answer=paste0("La respuesta es ", sol)
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+Solution
+=========
+
+```{r results='asis', echo=FALSE}
+cat(paste(answer,collapse=""))
+```
+
+Meta-information
+================
+extype: num
+exsolution: `r fmt(sol, signifDig)`
+exname: 01020304
+extol: 0.01
+
+

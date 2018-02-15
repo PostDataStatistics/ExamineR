@@ -40,7 +40,7 @@ answer=paste0("The answer is ",
 
 ```{r eval=(language == "es"), echo=FALSE, results='hide'}
 question = paste0(
-"Dados los valores  $$", paste0(data, collapse = ", "),"$$ calcula su **media airtmética**.")
+"Dados los valores  $$", paste0(data, collapse = ", "),"$$ calcula su **media aritmética**.")
 
 answer=paste0("La respuesta es ", sol)
 ```

@@ -61,6 +61,12 @@ git push origin RmdExams2
 + 01020403 ->- Sample standard deviation from a table of absolute frequencies.
 + 01020404 ->- Sample standard deviation from a table of relative frequencies.
 
+## 0103 Exploratory Graphics. 
+
++ 01030401 ->- Find the boxplot that best describes the data in a given histogram.
+
+
+
 
 # 05 Confidence Intervals.
 

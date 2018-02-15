@@ -1,0 +1,114 @@
+
+```{r 01030401setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 01030401 Find the boxplot that beter describes the data in a given histogram.
+```
+
+
+```{r echo=FALSE, results='hide'}
+## DATA GENERATION
+language = "es"
+sample1=c(0,20,runif(50, 0,20),runif(50,1,5))
+sample2=c(0,20,runif(30, 0,20), runif(35, 0,4),runif(35,16,20))
+sample3=c(0,20,runif(50, 0,20),runif(50,7,13))
+
+sampleList = list(sample1, sample2, sample3) 
+
+## QUESTION/ANSWER GENERATION
+
+sol = sample(1:3, 1)
+solData = sampleList[[sol]]
+
+k = 3 # Number of boxplots
+
+solutions = rep(F, k)
+solutions[sol] = T
+
+if(language=='en'){
+  boxplotLabels = paste0("Sample ", 1:3)
+  histYlabel = "Frequency"
+  question = paste0("The histrogram describes the same data as one of the following boxplots. Choose the right boxplot.")
+  } else if(language=='es'){
+    boxplotLabels = paste0("Muestra ", 1:3)
+    histYlabel = "Frecuencia"
+    question=paste0("El histograma describe los mismos datos que uno de los diagramas de caja y bigotes (boxplot). Elige el boxplot correcto.")
+  }
+
+
+(binarySolution = paste0(as.numeric(solutions), collapse = ""))
+
+
+
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question, collapse=""))
+```
+
+
+```{r boxplot, echo = FALSE, results = "hide", fig.height = 6, fig.width = 6, fig.path = "", fig.cap = ""}
+par(mfrow=c(2,2))
+hist(solData, main = "", xlab = "", ylab = histYlabel, xlim=c(min(solData), max(solData)))
+boxplot(sample1, xlab = "", main=boxplotLabels[1],  horizontal = TRUE) 
+boxplot(sample2, xlab = "", main=boxplotLabels[2],  horizontal = TRUE)
+boxplot(sample3, xlab = "", main=boxplotLabels[3],  horizontal = TRUE)
+par(mfrow=c(1,1))
+```
+
+
+Answerlist
+----------
+
+```{r results='asis', echo=FALSE}
+cat(paste("* ", boxplotLabels[1], collapse=""), fill = 1)
+cat(paste("* ", boxplotLabels[2], collapse=""), fill = 1)
+cat(paste("* ", boxplotLabels[3], collapse=""), fill = 1)
+```
+
+
+
+
+Solution
+========
+
+Answerlist
+----------
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+solutions = ifelse(solutions, "Cierto", "Falso")
+```
+
+
+
+```{r results='asis', echo=FALSE}
+cat(paste("* ", solutions[1], collapse=""), fill = 1)
+cat(paste("* ", solutions[2], collapse=""), fill = 1)
+cat(paste("* ", solutions[3], collapse=""), fill = 1)
+```
+
+
+Meta-information
+================
+
+```{r results='asis', echo=FALSE}
+cat("exname: 01030401", fill = 1)
+cat("extype: mchoice", fill = 1)
+cat(paste0("exsolution: ", binarySolution, collapse = ""), fill = 1)
+cat("exshuffle: TRUE", fill = 1)
+```
+
+
+
+
+

@@ -1,0 +1,95 @@
+
+```{r 01030301setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 01030301 ->- Identify outliers in the data from a csv file. 
+```
+
+
+```{r echo=FALSE, results='hide'}
+## DATA GENERATION
+signifDig <- 4
+
+numOut = 1
+while(numOut != 3){
+  data = runif(200, min = -10, max = 10)
+  summary(data)
+  bp = boxplot(data, plot = F)
+  numOut = length(bp$out)
+  
+  outlierMax = quantile(data, probs = 0.75) + runif(1, min = 2.5, max = 3) * IQR(data)
+  outlierMin = quantile(data, probs = 0.25) - runif(1, min = 2.5, max = 3) * IQR(data)
+  (solSide = sample(c(T, F), 1))
+  (boxSide = quantile(data, probs = ifelse(solSide, 0.25, 0.75)))
+  sol = boxSide + ifelse(solSide, -1, 1) * runif(1, min = 1.7, max = 2) * IQR(data)
+  
+  data = c(data, outlierMin, outlierMax, sol)
+  bp = boxplot(data, plot = FALSE)
+  numOut = length(unique(bp$out))
+  
+}
+
+data = data[sample(1:length(data))]
+(outLierValues = sort(bp$out))
+(outLierPositions = which(data %in% outLierValues))
+
+(fileName = paste0("data", paste0(sample(c(LETTERS, 0:9), 10), collapse = ""), ".csv", collapse = ""))
+write.table(data, file = fileName, sep = " ", row.names = FALSE)
+
+## QUESTION/ANSWER GENERATION
+(sol = outLierValues[2])
+
+(sol = signif(sol, signifDig))
+
+```
+
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("The data set in the attached csv file contains an outlier which is **not** the maximum or minimum of the set. Find it.")
+
+answer=paste0("The answer is ", sol)
+
+```
+
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question = paste0(
+"El conjunto de datos adjunto contiene un valor atípico que **no** es el máximo ni el mínimo de ese conjunto. Encuentra ese valor.")
+
+answer=paste0("La respuesta es ", sol)
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+```{r results='asis', echo=FALSE}
+cat(attachfile(fileName))
+```
+
+
+Solution
+=========
+
+```{r results='asis', echo=FALSE}
+cat(paste(answer,collapse=""))
+```
+
+Meta-information
+================
+extype: num
+exsolution: `r fmt(sol, signifDig)`
+exname: 01030301
+extol: 0.01
+
+

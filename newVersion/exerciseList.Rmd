@@ -71,7 +71,19 @@ git push origin RmdExams2
 
 + 01030301 ->- Identify outliers in the data from a csv file. 
 
+# 04 Relevant Families of Random Variables.
 
+## 0401 Binomial 
+
++ 040101 ->- Binomial random variable X ~ B(n, p), find P(X = k). 
++ 040102 ->- Binomial random variable X ~ B(n, p), find P(a < X < b). 
++ 040103 ->- Binomial random variable X ~ B(n, p), find P(a <= X < b).
++ 040104 ->- Binomial random variable X ~ B(n, p), find P(a < X <= b).
++ 040105 ->- Binomial random variable X ~ B(n, p), find P(a <= X <= b).
++ 040106 ->- Binomial random variable X ~ B(n, p), find find P(X > a).
++ 040107 ->- Binomial random variable X ~ B(n, p), find find P(X >= a).
++ 040108 ->- Binomial random variable X ~ B(n, p), find find P(X < b).
++ 040109 ->- Binomial random variable X ~ B(n, p), find find P(X <= b). 
 
 # 05 Confidence Intervals.
 

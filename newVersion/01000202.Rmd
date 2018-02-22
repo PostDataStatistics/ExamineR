@@ -26,7 +26,7 @@ write.table(dataDF, file = fileName, sep = " ", row.names = FALSE)
 
 (cumfrequencies = cumsum(table(data)))
 (orderedUniqueValues = sort(unique(data)))
-frecTableForQuestion = cbind(orderedUniqueValues, signif(cumfrequencies, digits = 4))
+frecTableForQuestion = cbind(orderedUniqueValues, signif(cumfrequencies, digits = signifDig))
 
 (chooseValue = sample(data, 1))
 

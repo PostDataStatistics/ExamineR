@@ -1,0 +1,77 @@
+
+```{r 040103setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 040103 ->- Binomial random variable X ~ B(n, p), find P(a<=X<b). 
+```
+
+
+```{r echo=FALSE, results='hide'}
+library(MASS)
+
+signifDig = 4
+
+sol=0
+b = 2
+n = 1
+while(is.na(sol)|(abs(sol)<0.00001)|(abs(sol)>0.999)|b>n){
+  n <- sample(5:15, 1)
+  p <- sample(3:7,1)/10
+  a <- sample(2:4,1)
+  b = a+sample(1:3,1)
+  sol = signif(pbinom(b-1, n, p)-pbinom(a-1, n, p), digits=signifDig)
+}
+
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(sol, signifDig))
+
+```
+
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("$X$ is a binomial random variable of type $B(", n, ", ", p,")$. Find the probability $$P(", a," \\leq X < ", b,").$$ Use  ", signifDig, " significant digits in your answer."
+  
+answer=paste0("The answer is ", sol)
+
+```
+
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question=paste0("La variable aleatoria $X$ es binomial, de tipo $B(", n, ", ", p,")$. Calcula la probabilidad $$P(", a," \\leq X < ", b,").$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
+  
+answer=paste0("La respuesta es ", sol)
+
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+
+Solution
+=========
+
+```{r results='asis', echo=FALSE}
+cat(paste(answer,collapse=""))
+```
+
+Meta-information
+================
+extype: num
+exsolution: `r fmt(sol, signifDig)`
+exname: 040103
+extol: 0.01
+
+

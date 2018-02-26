@@ -80,12 +80,24 @@ git push origin RmdExams2
 + 040103 ->- Binomial random variable X ~ B(n, p), find P(a <= X < b).
 + 040104 ->- Binomial random variable X ~ B(n, p), find P(a < X <= b).
 + 040105 ->- Binomial random variable X ~ B(n, p), find P(a <= X <= b).
-+ 040106 ->- Binomial random variable X ~ B(n, p), find find P(X > a).
-+ 040107 ->- Binomial random variable X ~ B(n, p), find find P(X >= a).
-+ 040108 ->- Binomial random variable X ~ B(n, p), find find P(X < b).
-+ 040109 ->- Binomial random variable X ~ B(n, p), find find P(X <= b). 
++ 040106 ->- Binomial random variable X ~ B(n, p), find P(X > a).
++ 040107 ->- Binomial random variable X ~ B(n, p), find P(X >= a).
++ 040108 ->- Binomial random variable X ~ B(n, p), find P(X < b).
++ 040109 ->- Binomial random variable X ~ B(n, p), find P(X <= b). 
 
-# 05 Confidence Intervals.
+## 0402 Poisson
+
++ 040201 ->- Poisson random variable X ~ Pois(lambda), find P(X = k)
++ 040202 ->- Poisson random variable X ~ Pois(lambda), find P(a < X < b). 
++ 040203 ->- Poisson random variable X ~ Pois(lambda), find P(a <= X < b).
++ 040204 ->- Poisson random variable X ~ Pois(lambda), find P(a < X <= b).
++ 040205 ->- Poisson random variable X ~ Pois(lambda), find P(a <= X <= b).
++ 040206 ->- Poisson random variable X ~ Pois(lambda), find P(X > a).
++ 040207 ->- Poisson random variable X ~ Pois(lambda), find P(X >= a).
++ 040208 ->- Poisson random variable X ~ Pois(lambda), find P(X < b).
++ 040208 ->- Poisson random variable X ~ Pois(lambda), find P(X <= b).
+
+# 05 Confidence Intervals
 
 ## 0501 CI for the Mean, Normal Population.
 

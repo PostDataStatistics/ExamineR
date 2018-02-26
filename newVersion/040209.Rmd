@@ -1,0 +1,72 @@
+
+```{r 040209setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 040209 ->- Poisson random variable X ~ Pois(lambda), find P(X <= b).
+```
+
+
+```{r echo=FALSE, results='hide'}
+library(MASS)
+
+signifDig = 4
+
+sol=0
+while(is.na(sol) | (abs(sol) < 0.00001) | (abs(sol) > 0.999)){
+  lambda = sample(3:7, 1)
+  b = sample(1:(lambda + 4), 1)
+  sol = signif(ppois(b, lambda), digits=signifDig)
+}
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(sol, signifDig))
+
+```
+
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("$X$ is a Poisson random variable of type $X\\sim\\operatorname{Pois}(\\lambda = ", lambda, ")$. Find the probability $$P(X \\leq ", b,").$$ Use  ", signifDig, " significant digits in your answer.")
+  
+answer=paste0("The answer is ", sol)
+
+```
+
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question=paste0("La variable aleatoria $X$ es de tipo Poisson, con $X\\sim\\operatorname{Pois}(\\lambda = ", lambda, ")$. Calcula la probabilidad $$P(X \\leq ", b,").$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
+  
+answer=paste0("La respuesta es ", sol)
+
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+
+Solution
+=========
+
+```{r results='asis', echo=FALSE}
+cat(paste(answer,collapse=""))
+```
+
+Meta-information
+================
+extype: num
+exsolution: `r fmt(sol, signifDig)`
+exname: 040209
+extol: 0.01
+
+

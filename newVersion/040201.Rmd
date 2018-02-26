@@ -1,0 +1,75 @@
+
+```{r 040201setup, include=FALSE}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## 040201 ->- Poisson random variable X ~ Pois(lambda), find P(X = k).
+```
+
+
+```{r echo=FALSE, results='hide'}
+library(MASS)
+
+signifDig = 4
+
+sol=1
+while((sol<0.00001)|(sol>0.9999)){
+  n <- sample(5:8, 1)
+  lambda <- sample(3:7,1)
+  k <- sample(2:4,1)
+  sol = signif(dpois(k, lambda), digits=signifDig)
+}
+
+
+## QUESTION/ANSWER GENERATION
+
+(sol = signif(sol, signifDig))
+
+```
+
+
+```{r eval=(language == "en"), echo=FALSE, results='hide'}
+question=paste0("$X$ is a Poisson random variable of type $X\\sim\\operatorname{Pois}(\\lambda = ", lambda, ")$. Find the probability $$P( X = ", k,").$$ Use  ", signifDig, " significant digits in your answer.")
+  
+answer=paste0("The answer is ", sol)
+
+```
+
+
+```{r eval=(language == "es"), echo=FALSE, results='hide'}
+question=paste0("La variable aleatoria $X$ es de tipo Poisson, con $X\\sim\\operatorname{Pois}(\\lambda = ", lambda, ")$. Calcula la probabilidad 
+                $$P(X = ", k,").$$ Escribe tu respuesta con ", signifDig, " cifras significativas." )
+  
+answer=paste0("La respuesta es ", sol)
+
+```
+
+
+Question
+========
+
+```{r results='asis', echo=FALSE}
+cat(paste(question,collapse=""))
+```
+
+
+Solution
+=========
+
+```{r results='asis', echo=FALSE}
+cat(paste(answer,collapse=""))
+```
+
+Meta-information
+================
+extype: num
+exsolution: `r fmt(sol, signifDig)`
+exname: 040201
+extol: 0.01
+
+

@@ -1,0 +1,94 @@
+```{r data generation, echo = FALSE, results = "hide"}
+## DATA
+
+sesgo = sample(1:4, size = 1)
+if(sesgo == 1){
+    ## cola izq, densidad dcha
+    right = rchisq(1000, df = sample(x = c(1,2), size = 1))
+    right = right[right <= 10]
+    right = right[right > 0]
+    datos.cont = max(right) - right
+    dataset = sample(x = datos.cont, size = 100, replace = TRUE)
+    return(dataset)
+  } else if(sesgo == 2){
+    ## normal
+    datos.cont = rnorm(1000, mean = 5, sd = 1)
+    datos.cont = datos.cont[datos.cont>0]
+    datos.cont = datos.cont[datos.cont<=10]
+    dataset = sample(x = datos.cont, size = 100, replace = TRUE)
+    return(dataset)
+  } else if (sesgo == 3){
+    ## cola dcha: densidad izq
+    (left = rchisq(1000, df = sample(x = c(1,2), size = 1)))
+    # hist(right)
+    left = left[left <= 10]
+    left = left[left > 0]
+    #(datos.cont = max(left) - left)
+    dataset = sample(x = left, size = 100, replace = TRUE)
+    return(dataset)
+  } else if (sesgo == 4){
+    # U shape
+    right = rchisq(1000, df = sample(x = c(1,2), size = 1))
+    right = right[(right <= 10) & (right > 0)]
+    right = sample(x = right, size = 100, replace = TRUE)
+    dataset = c(right, max(right)-right)
+    return(dataset)
+  }
+
+
+sol = if(sesgo == 1){
+    sol = "La media es menor que la mediana"
+  } else if(sesgo == 2){
+    sol = "La media y la mediana son aproximadamente iguales y están relativamente centradas"
+  } else if (sesgo == 3){
+        sol = "La media es mayor que la mediana"
+  } else if (sesgo == 4){
+    # U shape
+    sol = "La media y la mediana son aproximadamente iguales y están relativamente centradas"
+  }
+
+
+
+if(language=='en'){
+  question=paste0(
+
+  )  
+  
+  answer=paste0("The answer is ",
+    sol
+  )  
+}else if(language=='es'){
+  question=paste0("A la vista de la figura indica, de forma aproximada, la posición relativa de media y mediana"
+    )
+  answer=paste0("La respuesta es: ",
+    sol
+    )
+}
+
+
+
+```
+
+Question
+========
+`r question`
+
+\
+```{r boxplot_hist, echo = FALSE, results = "hide", fig.height = 4.5, fig.width = 9, fig.path = "", fig.cap = ""}
+hist(dataset, freq = FALSE, main = "")
+```
+
+Solution
+========
+
+
+\
+
+`r sol`
+
+
+Meta-information
+================
+extype: string
+exsolution: `r sol`
+exname: R functions

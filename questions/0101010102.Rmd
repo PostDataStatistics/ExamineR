@@ -1,0 +1,41 @@
+```{r data generation, echo = FALSE, results = "hide"}
+
+
+sol = "de momento, nada"
+
+if(language=='en'){
+  question=paste0("To be traslated"
+
+  )  
+  
+  answer=paste0("The answer is ",
+    sol
+  )  
+}else if(language=='es'){
+  question=paste0("Al estudiar los datos sobre temperaturas m\'inimas registradas en una ciudad, se observa que dichos datos son bimodales; los valores para las modas son 1 y 10. En cambio, la media y la mediana coinciden, y el valor de ambas es 5. Curiosamente, en el diagrama de barras, la altura de la barra correspondiente a la media es la menor de todas. Dibuja un diagrama de barras que responda a esta descripci\'on, e indica si crees que esos datos son muy dispersos o poco dispersos, justificando tu respuesta. 
+"
+    )
+  answer=paste0("La respuesta es: ",
+    sol
+    )
+}
+
+
+
+```
+
+Question
+========
+`r question`
+
+
+Solution
+========
+`r answer`
+
+
+Meta-information
+================
+extype: string
+exsolution: `r sol`
+exname: R functions

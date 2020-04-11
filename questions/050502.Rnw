@@ -20,7 +20,7 @@ signifDig = 4
 (alfa=1-cl)
 
 sol=0
-while((abs(sol)<0.00001)|(abs(sol)>999)){
+while((abs(sol)<0.0001)|(abs(sol)>999)){
 
 # calculate the critical values
 chi_halfalpha= qchisq(1-alfa/2,df=(n-1))
@@ -68,11 +68,13 @@ Utiliza cuatro cifras significativas en tu respuesta.")
 cat(question)
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
   \end{question}
 
@@ -81,6 +83,7 @@ cat(question)
   cat(paste(answer,collapse=""))
 @
 
+
   \end{solution}
 
 
@@ -88,5 +91,5 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}
 

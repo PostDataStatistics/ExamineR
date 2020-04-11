@@ -1,0 +1,132 @@
+```{r data generation, echo = FALSE, results = "hide"}
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Anova: Bonferroni, pear comparison
+## 5 treatments
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+## DATA GENERATION
+# function to get normal data
+normal = function(size, mean1, sd1){
+     data = c()
+     while(length(data)< size){
+      x = rnorm(1, mean = mean1, sd = sd1)
+      if( (mean1-3*sd1 < x) & (mean1+3*sd1 > x)){
+           data = c(data,x)
+      }
+     }
+return(data)
+}
+ntreat = 5
+ndata = 25
+treatments = c()
+
+for(k in 1:ntreat ){
+     treatments = c(treatments, paste("treat", k, sep = ""))
+}
+
+means = normal(ntreat, 100, 5)
+
+for(j in 1:ntreat ){
+     x = normal(ndata, means[j], 5)
+     assign(paste("treat", j, sep = ""), x )
+}
+
+
+(datos <- data.frame(treat1, treat2, treat3, treat4, treat5))
+
+datos = stack(datos)
+datos = datos[  ,c(2,1)]
+colnames(datos) <- c("Tratamiento", "Respuesta")
+
+
+(ptt=pairwise.t.test(datos$Respuesta, datos$Tratamiento,
+                     p.adj="bonferroni", pool.sd=FALSE))
+
+(matriz = cbind(c(0,0,0,0), ptt$p.value))
+(matriz = rbind(c(0,0,0,0,0), matriz))
+colnames(matriz)<-c("treat1", "treat2", "treat3", "treat4", "treat5")
+rownames(matriz)<-c("treat1", "treat2", "treat3", "treat4", "treat5")
+matriz
+matriz[2:5, 1] = matriz[2:5, 2]
+matriz[2:5, 2] = matriz[2:5, 3]
+matriz[2:5, 3] = matriz[2:5, 4]
+matriz[2:5, 4] = matriz[2:5, 5]
+matriz
+for(i in 1:5){matriz [i,i]= 1}
+matriz
+matriz[1, 2:5] = matriz[2:5, 1]
+matriz[2, 3:5] = matriz[3:5, 2]
+matriz[3, 4:5] = matriz[4:5, 3]
+matriz[4, 5] = matriz[5, 4]
+
+
+
+library(multcompView)
+multcompLetters(matriz, ) 
+
+
+require(graphics)
+
+summary(fm1 <- aov(breaks ~ wool + tension, data = warpbreaks))
+aa = TukeyHSD(fm1, "tension", ordered = TRUE)
+plot(TukeyHSD(fm1, "tension"))
+multcompLetters(aa)
+
+TukeyHSD
+(levels=names(the_table_df))
+
+(niveles=names(the_table_df))
+
+numCol=ncol(the_table_df)
+
+
+sol = "de momento, nada"
+
+if(language=='en'){
+  question=paste0("To be traslated"
+
+  )  
+  
+  answer=paste0("The answer is ",
+    sol
+  )  
+}else if(language=='es'){
+  question=paste0("Al estudiar los datos sobre temperaturas m\'inimas registradas en una ciudad, se observa que dichos datos son bimodales; los valores para las modas son 1 y 10. En cambio, la media y la mediana coinciden, y el valor de ambas es 5. Curiosamente, en el diagrama de barras, la altura de la barra correspondiente a la media es la menor de todas. Dibuja un diagrama de barras que responda a esta descripci\'on, e indica si crees que esos datos son muy dispersos o poco dispersos, justificando tu respuesta. 
+"
+    )
+  answer=paste0("La respuesta es: ",
+    sol
+    )
+}
+
+
+
+```
+
+Question
+========
+`r question`
+
+
+Solution
+========
+`r answer`
+
+
+Meta-information
+================
+extype: string
+exsolution: `r sol`
+exname: R functions

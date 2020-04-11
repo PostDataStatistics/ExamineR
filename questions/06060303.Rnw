@@ -29,12 +29,13 @@ signifDig = 4
 (n2=sample(10:14,1))
 
 sol=0
-while((abs(sol)<0.00001)|(abs(sol)>999)){
+while((abs(sol)<0.0001)|(abs(sol)>999)){
   
     TestType=3 # Ha: 1 to test mu1 > mu2, 2 to test mu1 < mu2, 3 to test mu1 = mu2
     
     if(TestType==1){
-      symbol=sanitizeLatexS("\\leq")
+      # symbol=sanitizeLatexS("\\leq")
+      symbol="\\leq"
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
       (xbar2=signif(xbar1-abs(rnorm(1,mean=1, sd=3)),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
@@ -51,7 +52,8 @@ while((abs(sol)<0.00001)|(abs(sol)>999)){
     (pValue=1-pt(Statistic,df=n1+n2-2))
     }
     if(TestType==2){
-      symbol=sanitizeLatexS("\\geq")
+      # symbol=sanitizeLatexS("\\geq")
+      symbol="\\geq"
       (xbar1=signif(sample(seq(-50,50,length.out=1000),1), digits=signifDig))
       (xbar2=signif(xbar1+abs(rnorm(1,mean=1, sd=3)),digits=signifDig))
       (s1=signif(sample(seq(0.3,10,length.out=50),1), digits=signifDig))
@@ -140,11 +142,13 @@ cat(question)
 
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
   \end{question}
 
@@ -153,6 +157,7 @@ cat(question)
   cat(paste(answer,collapse=""))
 @
 
+
   \end{solution}
 
 
@@ -160,4 +165,4 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}

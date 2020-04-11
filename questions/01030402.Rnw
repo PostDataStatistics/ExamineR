@@ -49,21 +49,24 @@ if(language=='en'){
 cat(question)
 
 @
+
 \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
 
+
 \begin{figure}[h!]
 \begin{center}
-<<fig=TRUE, height=10, width=10, echo=FALSE, eps=FALSE, results=hide>>=
-par(mfrow=c(2,2))
+<<fig=TRUE, height=2, echo=FALSE, eps=FALSE, results=hide>>=
+par(mfrow=c(1,4), mar = c(3,5,2,1))
 boxplot(unlist(lista[sol]), main="", xlab="", horizontal = TRUE)   
 hist(sample1, xlab = "", main="Sample 1") 
 hist(sample2, xlab = "", main="Sample 2")
 hist(sample3, xlab = "", main="Sample 3")
 par(mfrow=c(1,1))
 @
+
 \end{center}
 \end{figure}
 

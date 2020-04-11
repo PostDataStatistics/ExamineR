@@ -31,6 +31,7 @@ dataMatrix =matrix(data, nrow = level1, byrow = TRUE)
 @
 
 
+
 if(language=='en'){
   question=paste0("$X_1$ and $X_2$ are a normal random variables.Consider  two random samples of sizes 
                   $n_1=", n1,"$ and $n_2=", n2,"$ that produce, respectively, 
@@ -66,11 +67,13 @@ Utiliza 4 cifras significativas en tu respuesta."
 cat(question)
 
 
-@ 
+@
+ 
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
   \end{question}
 
@@ -78,6 +81,7 @@ cat(question)
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
 
   \end{solution}
 

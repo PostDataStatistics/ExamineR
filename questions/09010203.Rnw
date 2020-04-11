@@ -141,11 +141,13 @@ if(language=='en'){
 cat(question)
 
 
-@ 
+@
+ 
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
 \vspace{.1cm}
 
@@ -158,6 +160,7 @@ library(knitr)
 kable(the_table_df, digits=2, format = "latex")
 @
 
+
 \end{question}
 
 \begin{solution}
@@ -165,11 +168,13 @@ kable(the_table_df, digits=2, format = "latex")
   cat(paste(answer,collapse=""))
 @
 
+
 <<echo=False, fig=TRUE>>=
   par(mfrow = c(2,2))
 plot(datos.lm)
   par(mfrow = c(1,1))
 @
+
   \end{solution}
 
 

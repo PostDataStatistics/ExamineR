@@ -1,0 +1,34 @@
+```{r data generation, echo = FALSE, results = "hide"}
+
+# x increases/decreases a given y% and then  decreases/increases z%
+
+(sol = "de momento, nada")
+
+if(language=='en'){
+  (mytype <-sample( c("decreased", "increased")))
+  question=paste0("To be traslated"
+  )  
+  answer=paste0("Less")  
+}else if(language=='es'){
+  (mytype <-sample( c("aumentó", "decreció")))
+  (anpercent <-sample( 19:21, size = 2))
+  question=paste0("¡Cosas de virus! En el año 1980 el número de casos de gripe ",  mytype[1], " un ", anpercent[1], "% respecto del año anterior. Al año siguiente, el número de casos ", mytype[2], " un ", anpercent[2],"%. Entonces, en 1981, ¿hubo más o menos casos que en 1979? Justifica la respuesta.", collapse = "", sep = "")
+  sol = paste0("Menos")
+}
+```
+
+Question
+========
+`r question`
+
+
+Solution
+========
+`r answer`
+
+
+Meta-information
+================
+extype: string
+exsolution: `r sol`
+exname: R functions

@@ -18,7 +18,7 @@ sanitizeLatexS <- function(str) {
 
 ## DATA GENERATION
 sol=0
-#while((abs(sol)<0.00001)|(abs(sol)>999)){
+#while((abs(sol)<0.0001)|(abs(sol)>999)){
 n = sample(8:12, size = 1)
 beta1 = sample(c(-4:1,1:4)/4, size = 1)
 beta0 = sample(c(-4:1,1:4), size = 1)
@@ -64,11 +64,13 @@ if(language=='en'){
 cat(question)
 
 
-@ 
+@
+ 
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
 \vspace{.1cm}
 
@@ -81,6 +83,7 @@ library(knitr)
 kable(dataX, digits=2, format = "latex")
 @
 
+
 \vspace{.1cm}
 
 Medidas de la variable $y$
@@ -92,12 +95,14 @@ library(knitr)
 kable(dataY, digits=2, format = "latex")
 @
 
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
 
   \end{solution}
 

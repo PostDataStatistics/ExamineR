@@ -1,0 +1,84 @@
+<<echo=FALSE, results=hide>>=
+
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+
+## Top of the confidence interval, proortions difference large sample sizes
+
+# Sanitizes variables for displaying within LaTeX via Sexpr
+# Adds slashes to LaTeX special characters, which results in single-slash in tex output
+sanitizeLatexS <- function(str) {
+  gsub('([#$%&~_\\^\\\\{}])', '\\\\\\\\\\1', str, perl = TRUE);
+}
+
+## DATA GENERATION
+library(MASS)
+
+signifDig = 4
+sol=0
+
+(n1=sample(50:150,1))
+(n2=sample(50:150,1))
+
+(phat1=signif(runif(1,min=0.3,max=0.7), digits=2))
+(phat2=signif(phat1+sample(c(-1,1),1)*runif(1,min=0.01,max=phat1/2), digits=2))
+
+
+(cl=sample(c(0.9,0.95,0.99),1))
+
+alpha = 1-cl
+(semianchura =  
+    qnorm(1-alpha/2)*sqrt(phat1*(1-phat1)/n1+
+                          phat2*(1-phat2)/n2)) 
+  
+(sol = phat1-phat2 +c(-1,1) * semianchura)
+b = sol[2]    
+sol = signif(b, digits=signifDig)
+
+
+## QUESTION STATEMENT GENERATION
+
+#(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
+
+if(language=='en'){
+question=paste0("To be done. Use 4 significant digits.")
+  
+  answer=paste0("The solution is $", sol,"$.")
+  
+}else if(language=='es'){
+  question=paste0("Se estudia la presencia de cierta caracter\\'istica en los individuos de dos poblaciones. Se han obtenido muestras independientes de tama\\~nos $n_1=", n1,"$ y $n_2=", n2,"$ con proporciones muestrales $\\hat{p}_1=", phat1, "$ y $\\hat{p}_2=", phat2, "$. Calcula el \\textbf{extremo superior b} del intervalo de confianza $(a,b)$ para la diferencia de proporciones  al nivel de confianza ",nc*100,"\\% con 4 cifras significativas."
+ )
+  
+  answer=paste0("El extremo inferior del intervalo es $", sol,"$.")
+  
+}
+
+cat(question)
+
+@
+
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+
+  \end{solution}
+
+
+%% META-INFORMATION
+%% \extype{num}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+%% \extol{0.0001}

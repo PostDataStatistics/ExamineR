@@ -64,17 +64,20 @@ Calculate the \\textbf{top} $b$ of the confidence interval $(a,b)$ for the ratio
 cat(question)
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 
@@ -82,4 +85,4 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}

@@ -83,11 +83,13 @@ $",means[1],"$ y $",means[2],"$, que son desconocidas, y se contrasta a partir d
 }
 cat(question)
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
   \end{question}
 
@@ -95,6 +97,7 @@ cat(question)
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
 
   \end{solution}
 %% META-INFORMATION

@@ -16,7 +16,7 @@ library(MASS)
 signifDig = 4  
 
 sol=1
-while((sol<0.00001)|(sol>0.9999)){
+while((sol<0.0001)|(sol>0.9999)){
   n =sample(5:15,1)
   a=sample(-3:3,1)/2
   sol = 1-pt(a, df = n)
@@ -47,11 +47,13 @@ if(language=='en'){
 cat(question)
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
   \end{question}
 
@@ -60,6 +62,7 @@ cat(question)
   cat(paste(answer,collapse=""))
 @
 
+
   \end{solution}
 
 
@@ -67,4 +70,4 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}

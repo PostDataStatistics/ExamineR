@@ -40,11 +40,13 @@ if(language=='en'){
 }
 cat(question)
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
   \end{question}
 
@@ -52,6 +54,7 @@ cat(question)
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
 
   \end{solution}
 %% META-INFORMATION

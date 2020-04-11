@@ -25,7 +25,7 @@ signifDig = 4
 (n2=sample(31:100,1))
 
 sol=0
-while((abs(sol)<0.00001)|(abs(sol)>999)){
+while((abs(sol)<0.0001)|(abs(sol)>999)){
   
     TestType=1 # Ha: 1 to test mu1 > mu2, 2 to test mu1 < mu2, 3 to test mu1 = mu2
     
@@ -104,11 +104,13 @@ cat(question)
 
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
   \end{question}
 
@@ -117,6 +119,7 @@ cat(question)
   cat(paste(answer,collapse=""))
 @
 
+
   \end{solution}
 
 
@@ -124,4 +127,4 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}

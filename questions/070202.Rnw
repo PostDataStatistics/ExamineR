@@ -66,11 +66,13 @@ $$", dataStringY ,"$$
 cat(question)
 
 
-@ 
+@
+ 
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
   \end{question}
 

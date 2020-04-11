@@ -1,5 +1,6 @@
 <<echo=FALSE, results=hide>>=
 
+
 ################################################################################
 # PostData Statistics: 
 # Fernando San Segundo, Marcos Marva
@@ -7,33 +8,30 @@
 # Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
 ################################################################################
 
-## Confidence interval (bottom) for the stander deviation, normal population
+## Confidence interval (bottom) for the proportion
 
 ## DATA GENERATION
 
 signifDig = 4  
 
-(xbar=signif(sample(seq(-50,50,length.out=1000),1), digits=3))
-(s=signif(sample(seq(0.1,10,length.out=50),1), digits=3))
-(n=sample(5:40,1))
+(phat=signif(sample(seq(0.25, 0.75,length.out=51),1), digits=2))
+(n=sample(30:50,1))
 (cl=sample(c(0.9,0.95,0.99),1))
 (alfa=1-cl)
 
 sol=0
-while((abs(sol)<0.00001)|(abs(sol)>999)){
+while((abs(sol)<0.0001)|(abs(sol)>999)){
 
 # calculate the critical values
-chi_halfalpha= qchisq(1-alfa/2,df=(n-1))
-chi_oneminushalfalpha= qchisq(alfa/2,df=(n-1))
+z_alfalpha = qnorm(1-alfa/2)
 
 # the confidence interval is
 # bottom
-(a=sqrt((n-1)*s^2/chi_halfalpha))
+(a = phat - z_alfalpha * sqrt(phat*(1-phat)/n))
 
 # top
-(b=sqrt((n-1)*s^2/chi_oneminushalfalpha))
+(b=  phat + z_alfalpha * sqrt(phat*(1-phat)/n))
   
-
 sol = signif(a, digits=signifDig)
 }
 
@@ -48,17 +46,16 @@ sol = signif(a, digits=signifDig)
 #(questionString01 = paste0(sign_a,abs(a),"\\cdot X_1",sign_b,abs(b),"\\cdot X_2"))
 
 if(language=='en'){
-  question=paste0("$X$ is a normal ramdom variable.  
-                    Given a random sample of length $", n,"$ with sample mean $\\bar{X}=",xbar,"$ and 
-                  sample standar deviation $s=",s,"$  calculate the {\\bf bottom} $a$  of the confidence interval $(a,b)$ for the {\\bf standard deviation} $\\sigma_X$, with a confidence level $",100*cl,"$\\%.\\
+  question=paste0("Given a random sample of length $", n,"$ with sample proportion $\\hat{p}=",phat,"$ calculate the {\\bf bottom} $a$  of the confidence  interval $(a,b)$ for the {\\bf proportion} $p$, with a confidence level $",100*cl,"$\\%.\\
 Use ", signifDig, "  significant digits in your answer.")
   
   answer=paste0("The answer is ", sol)
   
 }else if(language=='es'){
-    question=paste0(" La variable aleatoria $X$ es normal. Se ha obtenido una muestra de tama\\~no
-                    $",n,"$, con media muestral $\\bar{X}=",xbar,"$, y cuasidesviaci\\'on t\\'ipica muestral $s=",s,"$. Calcula el {\\bf extremo inferior} $a$ de un intervalo de confianza $(a,b)$ para la 
-{\\bf desviaci\\'on t\\'ipica} $\\sigma_X$, con un nivel de confianza del $",100*cl,"$\\%.\\
+    question=paste0("Se ha obtenido una muestra de tama\\~no
+                    $",n,"$, con proporci\\'on muestral $\\hat p=",phat,"$. 
+Calcula el {\\bf extremo inferior} $a$ de un intervalo de confianza $(a,b)$ para la 
+{\\bf proporci\\'on} $p$, con un nivel de confianza del $",100*cl,"$\\%.\\
 Utiliza cuatro cifras significativas en tu respuesta.")
   
   answer=paste0("La respuesta es ", sol)
@@ -68,11 +65,13 @@ Utiliza cuatro cifras significativas en tu respuesta.")
 cat(question)
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
   \end{question}
 
@@ -81,6 +80,7 @@ cat(question)
   cat(paste(answer,collapse=""))
 @
 
+
   \end{solution}
 
 
@@ -88,5 +88,5 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}
 

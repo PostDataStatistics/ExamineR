@@ -1,0 +1,60 @@
+<<echo=FALSE, results=hide>>=
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+## Set the null/alternative hypotheses: the mean
+
+## DATA GENERATION & ANSWER GENERATION
+(type <-sample( c("es mayor que", "es m\\'as grande que", "vale al menos"), size = 1))
+(hypothesis <- sample(c("nula", "alternativa"), size = 1))
+# (hypothesis <- sample(c("$H\\_0$"), size = 1))
+
+signifDig = 4
+mu0 = signif(runif(n = 1, min = 100, max = 150), digits = signifDig)
+barX = mu0
+
+if(hypothesis == "nula"){ 
+     while(abs(barX - mu0) < 2){barX = signif(mu0 + abs(rnorm(n = 1, mean = 0, sd = 5)), digits = signifDig)} 
+     sol = paste("$H_0:\\, \\mu \\leq", mu0 ,"$")
+}
+
+if(hypothesis == "alternativa"){ 
+     while(abs(barX - mu0) < 2){barX = signif(mu0 + abs(rnorm(n = 1, mean = 0, sd = 5)), digits = signifDig)} 
+     sol = paste("$H_1:\\, \\mu >", mu0 ,"$")
+}
+
+## QUESTION STATEMENT GENERATION
+if(language=='en'){
+  question=paste0("To be traslated.")
+  answer=paste0("To be traslated.")
+}else
+     if(language=='es'){
+  question=paste0("La teor\\'ia establecida dice que la media en cierta poblaci\\'on es ", type,"  ", mu0 ,". Se toma una muestra y se calcula su media, que vale ",barX,". \\textquestiondown Cu\\'al es la hip\\'otesis ", hypothesis ,"?")
+  answer=paste0("La respuesta es ", sol, "")  
+}
+cat(question)
+@
+
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question,collapse=""))
+@
+
+  \end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+
+  \end{solution}
+%% META-INFORMATION
+%% \extype{string}
+%% \exstring{\Sexpr{sol}}
+%% \exsolution{\Sexpr{sol}}
+%% \exname{Prediction}
+

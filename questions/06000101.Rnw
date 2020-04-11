@@ -32,22 +32,25 @@ if(language=='en'){
   answer=paste0("To be traslated.")
 }else
      if(language=='es'){
-  question=paste0("Se quiere comprobar si la media en cierta poblaci\\'on ", type,"  ", mu0 ,". Se toma una muestra y se cualcula su media, que vale ",barX,". \\textquestiondown Cu\\'al es la hip\\'otesis ", hypothesis ,"?")
+  question=paste0("Se quiere comprobar si la media en cierta poblaci\\'on ", type,"  ", mu0 ,". Se toma una muestra y se calcula su media, que vale ",barX,". \\textquestiondown Cu\\'al es la hip\\'otesis ", hypothesis ,"?")
   answer=paste0("La respuesta es ", sol, "")  
 }
 cat(question)
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 %% META-INFORMATION
 %% \extype{string}

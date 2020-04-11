@@ -46,10 +46,12 @@ if(language=='en'){
 @
 
 
+
 \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
 cat(paste(question,collapse=""))
 @
+
 
 
 \end{question}
@@ -58,6 +60,7 @@ cat(paste(question,collapse=""))
 <<echo=False, results=tex, strip.white=false>>=
 cat(paste(answer,collapse=""))
 @
+
 \end{solution}
 
 
@@ -67,4 +70,4 @@ cat(paste(answer,collapse=""))
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{BinomialPtual}
-%% \extol{0.00001}
+%% \extol{0.0001}

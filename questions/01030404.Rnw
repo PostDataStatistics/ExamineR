@@ -1,0 +1,63 @@
+<<echo=FALSE, results=hide>>=
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+## working with significant figures. Round numbers between 0 and 10 with between 3 up to 5 digits
+
+## DATA GENERATION
+
+if(language=='en'){
+  question=paste0("To be traslated.")
+  answer=paste0("To be traslated")
+}else if(language=='es'){
+  question=paste0("Se ha medido una misma variable cuantitativa 100 veces en dos poblaciones. Los resultados se resumen en los siguientes boxplots, \\textquestiondown qu\\'e puedes decir sobre las muestras?", collapse = "", sep = "")
+  answer=paste0("A")  
+}
+cat(question)
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question, '.' , sep = '
+', collapse=""))
+@
+
+\begin{figure}[h!]
+\begin{center}
+<<fig=TRUE, height=2, echo=FALSE, eps=FALSE, results=hide>>=
+muestra1 = c(65, runif(n = 23, 65, 68), 
+             74, 76, runif(n = 23, 80, 84), 
+             84, 86, runif(n = 23, 86, 90), 
+             94, 96, runif(n = 23, 103, 105), 
+             105)
+
+muestra2 = c(65, runif(n = 23, 72, 74), 
+             74, 76, runif(n = 23, 76, 78), 
+             84, 86, runif(n = 23, 92, 94), 
+             94, 96, runif(n = 23, 96, 98), 
+             105)+2
+
+mydata <- data.frame(muestra1, muestra2)
+par(mfrow = c(1,1), mar = c(4,3,1,1))
+boxplot(as.matrix(mydata), main="", ylab="", beside=TRUE, 
+        col=terrain.colors(5), cex.axis = .7)
+par(mfrow = c(1,1))
+@
+\end{center}
+\end{figure}
+
+\end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+%% META-INFORMATION
+%% \extype{string}
+%% \exsolution{"A"}
+
+

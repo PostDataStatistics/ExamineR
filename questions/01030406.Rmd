@@ -1,0 +1,43 @@
+```{r data generation, echo = FALSE, results = "hide"}
+
+# given the relation betwen mean and mediam, plot the histogram
+
+
+if(language=='en'){
+  question=paste0("To be traslated"
+  )  
+  answer=paste0("To be traslated")  
+}else if(language=='es'){
+mytail = sample(c("menor", "mayor"))
+  question=paste0("Dibuja, de forma aproximada, el histograma de uan una muestra cuya media es ", mytail, " que la mediana.", collapse = "")
+  answer = paste0("Por ejemplo, ")
+}
+```
+
+Question
+========
+`r question`
+
+
+Solution
+========
+`r answer`
+
+\
+```{r, echo = FALSE, fig.align='center', fig.height=2}
+
+if(mytail == "menor"){
+  mysample = rpois(1000, lambda = 2)
+  mysample = max(mysample)-mysample
+}else{  
+  mysample = rpois(1000, lambda = 2)
+}
+hist(mysample, breaks = 10, xaxt="n", yaxt = "n", xlab = "", ylab = "", main = "")
+```
+
+
+Meta-information
+================
+extype: string
+exsolution: `r sol`
+exname: R functions

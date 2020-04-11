@@ -72,11 +72,13 @@ if(language=='en'){
 cat(question)
 
 
-@ 
+@
+ 
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
 \vspace{.1cm}
 
@@ -89,6 +91,7 @@ library(knitr)
 kable(dataX, digits=2, format = "latex")
 @
 
+
 \vspace{.1cm}
 
 Medidas de la variable $y$
@@ -99,12 +102,14 @@ Medidas de la variable $y$
 library(knitr)
 kable(dataY, digits=2, format = "latex")
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
 
 \vspace{.2cm}
 
@@ -113,6 +118,7 @@ par(mfrow = c(2,2), mar = c(5,2,3,1))
 plot(lm(y~x))
 par(mfrow = c(1,1))
 @
+
 
   \end{solution}
 

@@ -97,16 +97,19 @@ cat(question)
 
 @
 
+
 \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
 cat(paste(question,collapse=""))
 @
+
 \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
 cat(paste(answer,collapse=""))
 @
+
 \end{solution}
 
 
@@ -114,5 +117,5 @@ cat(paste(answer,collapse=""))
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}
 

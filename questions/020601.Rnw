@@ -12,7 +12,7 @@
 
 signifDig = 4  
 sol=0
-while(is.na(sol)|(abs(sol)<0.00001)|(abs(sol)>0.999)){
+while(is.na(sol)|(abs(sol)<0.0001)|(abs(sol)>0.999)){
 
   (n=sample(3:5,1))
   (event=sample(2:n,1))
@@ -94,17 +94,20 @@ answer=paste0("La respuesta es ", sol)
 cat(question)
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 
@@ -112,4 +115,4 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}

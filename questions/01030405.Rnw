@@ -1,0 +1,42 @@
+<<echo=FALSE, results=hide>>=
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+## working with significant figures. Round numbers between 0 and 10 with between 3 up to 5 digits
+
+## DATA GENERATION
+
+quant = c(10, 20, 80, 90)
+whatq = sample(1:4, 1)
+
+if(language=='en'){
+  question=paste0("To be traslated"
+  )  
+  answer=paste0("To be traslated")  
+}else if(language=='es'){
+  if(whatq<3){howmany = "pocos"}else{howmany = "muchos"}
+  question=paste0("Si nos dijeran que, a nivel mundial, la tasa de obesidad de nuestro pa\\'is est\\'a en el percentil ", quant[whatq] ,", \\textquestiondown significa que en nuestro pa\\'is hay ", howmany, " obesos?", collapse = "")
+  answer = paste0("A")
+}
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question, '.' , sep = '
+', collapse=""))
+@
+\end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+%% META-INFORMATION
+%% \extype{string}
+%% \exsolution{"A"}
+
+

@@ -15,7 +15,7 @@ library(MASS)
 signifDig = 4
 
 sol=0
-while((sol<0.0000001)|(sol>9999)){
+while((sol<0.0.0001)|(sol>9999)){
   (a = sample(1:9,1))
   (b = sample(c(-1,1),1)*sample(1:5,1))
   (f = function(x){a*x+b})
@@ -58,17 +58,20 @@ answer=paste0("The answer is ", sol)
 cat(question)
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 
@@ -76,4 +79,4 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}

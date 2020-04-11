@@ -17,7 +17,7 @@ signifDig = 4
 
 sol=0
 
-while(is.na(sol)|(abs(sol)<0.00001)|(abs(sol)>0.999)|b>n){
+while(is.na(sol)|(abs(sol)<0.0001)|(abs(sol)>0.999)|b>n){
   lambda <- sample(3:7,1)
   a <- sample(2:4,1)
   b = a+sample(2:4,1)
@@ -49,17 +49,20 @@ if(language=='en'){
 cat(question)
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 
@@ -67,4 +70,4 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}

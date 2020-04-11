@@ -75,11 +75,13 @@ if(language=='en'){
 cat(question)
 
 
-@ 
+@
+ 
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
 \vspace{.1cm}
 
@@ -94,6 +96,7 @@ library(MASS)
 value
 @
 
+
 \vspace{.1cm}
 
 Probabilidad de cada valor
@@ -107,6 +110,7 @@ library(MASS)
 probability
 @
 
+
 \vspace{.1cm}
 
 Tabla de valores observados
@@ -118,12 +122,14 @@ library(knitr)
 kable(table2, digits=2, format = "latex")
 @
 
+
 \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 

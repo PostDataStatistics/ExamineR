@@ -9,7 +9,6 @@
 
 ## Hypothesis test for difference sample means X1-X2, Xi ~ N(0,1), sample size n>30 
 
-rm(list=ls())
 
 # Sanitizes variables for displaying within LaTeX via Sexpr
 # Adds slashes to LaTeX special characters, which results in single-slash in tex output
@@ -34,7 +33,7 @@ signifDig = 4
 
 
 sol=0
-while((abs(sol)<0.00001)|(abs(sol)>999)){
+while((abs(sol)<0.0001)|(abs(sol)>999)){
   
     TestType=2 # 1 para Hip. alternativa mu1-mu2 > 0, 2 para mu1-mu2 < 0, 3 para mu1-mu2 <> 0
     
@@ -86,7 +85,8 @@ siendo $\\sigma_0=", sigma0,"$. Hallar el p-valor de este contraste.
 Utiliza 4 cifras significativas en tu respuesta."
                 )
   
-  answer=paste0(" The value of the test-statistics is $\\frac{\bar X_1-\bar X_2}{\\sqrt{\frac{\\hat{s}_1^2}{n_1}+\frac{\\hat{s}_1^2}{n_1}}}=",signif( statistic,digits=4),"$. The solution is $s =", sol,"$.")
+  answer=paste0(" The value of the test-statistics is 
+      $\\frac{\\bar X_1-\\bar X_2}{\\sqrt{\\frac{\\hat{s}_1^2}{n_1}+\\frac{\\hat{s}_1^2}{n_1}}}=",signif( statistic,digits=4),"$. The solution is $s =", sol,"$.")
   
 }else if(language=='es'){
   question=paste0("Las variables aleatorias $X_1$ y $X_2$ son normales (y se desconoce sus varianzas). 
@@ -99,7 +99,8 @@ siendo $\\sigma_0=", sigma0,"$. Hallar el p-valor de este contraste.
 Utiliza 4 cifras significativas en tu respuesta."
  )
 
-  answer=paste0(" El estad\\'istico es $\\frac{\bar X_1-\bar X_2}{\\sqrt{\frac{\\hat{s}_1^2}{n_1}+\frac{\\hat{s}_1^2}{n_1}}}=",signif( statistic,digits=4),"$.  La soluci\\'on  es  $s =", sol,"$.")
+  answer=paste0(" El estad\\'istico es 
+      $\\frac{\\bar X_1-\\bar X_2}{\\sqrt{\\frac{\\hat{s}_1^2}{n_1}+\\frac{\\hat{s}_1^2}{n_1}}}=",signif( statistic,digits=4),"$.  La soluci\\'on  es  $s =", sol,"$.")
 
 }
 
@@ -107,17 +108,20 @@ cat(question)
 
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 
@@ -125,4 +129,4 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}

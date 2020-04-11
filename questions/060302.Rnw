@@ -27,7 +27,7 @@ signifDig = 4
 
 sol=0
 
-while((abs(sol)<0.00001)|(abs(sol)>999)){
+while((abs(sol)<0.0001)|(abs(sol)>999)){
   
     TestType=2 # 1 to test H1: mu > mu0, 2 to test H1: mu < mu0, 3 to test H1: mu = mu0
     (runif(1,min=1,max=4))
@@ -95,11 +95,13 @@ cat(question)
 
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
   \end{question}
 
@@ -108,6 +110,7 @@ cat(question)
   cat(paste(answer,collapse=""))
 @
 
+
   \end{solution}
 
 
@@ -115,5 +118,6 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}
 @
+

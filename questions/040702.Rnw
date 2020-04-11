@@ -16,7 +16,7 @@ library(MASS)
 signifDig = 4  
 
 sol=1
-while((sol<0.00001)|(sol>0.9999)){
+while((sol<0.0001)|(sol>0.9999)){
   lambda = sample(1:4,1)
   b=sample(1:5,1)
   sol = pexp(b, rate = lambda)
@@ -48,17 +48,20 @@ Find the probability
 cat(question)
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 
@@ -66,4 +69,4 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}

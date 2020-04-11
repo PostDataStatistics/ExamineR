@@ -33,7 +33,7 @@ signifDig = 4
 sol=0
 n=1
 b=2
-while(is.na(sol)|(abs(sol)<0.00001)|(abs(sol)>0.999)|(b>n)){
+while(is.na(sol)|(abs(sol)<0.0001)|(abs(sol)>0.999)|(b>n)){
 
   (xbar=signif(sample(seq(-50,50,length.out=1000),1), digits=3))
 (s=signif(sample(seq(0.1,10,length.out=50),1), digits=3))
@@ -88,7 +88,8 @@ where $\\mu_0=", mu0,"$. Find the p-value.
 Use 4 significant digits."
                 )
   
-  answer=paste0(" The value of the test-statistics is $\\frac{\\bar X-\\mu_0}{\\frac{", s,"}{\\sqrt{", n,"}}}=
+  answer=paste0(" The value of the test-statistics is 
+$\\frac{\\bar X-\\mu_0}{\\frac{", s,"}{\\sqrt{", n,"}}}=
                 ",signif( Statistic,digits=4),"$. The solution is $s =", sol,"$.")
   
 }else if(language=='es'){
@@ -110,17 +111,20 @@ Utiliza 4 cifras significativas en tu respuesta."
 cat(question)
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 
@@ -128,4 +132,4 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}

@@ -1,0 +1,44 @@
+<<echo=FALSE, results=hide>>=
+################################################################################
+# PostData Statistics: 
+# Fernando San Segundo, Marcos Marva
+# Web: www.postdata-statistics.com
+# Mail: postdatastatistics@gmail.com        (secondary: marcos.marva@gmail.es)
+################################################################################
+## working with significant figures. Round numbers between 0 and 10 with between 3 up to 5 digits
+
+## DATA GENERATION
+
+
+# given the relation betwen mean and mediam, plot the histogram
+
+
+if(language=='en'){
+  question=paste0("To be traslated"
+  )  
+  answer=paste0("To be traslated")  
+}else if(language=='es'){
+mytail = sample(c("menor", "mayor"))
+whattail = sample(1:2, size = 1)
+  question=paste0("Dibuja, de forma aproximada, el histograma de una muestra cuya media es ", mytail[whattail], " que la mediana.", collapse = "")
+  answer = paste0("Por ejemplo, ")
+}
+@
+  
+  \begin{question}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(question, '.' , sep = '
+', collapse=""))
+@
+\end{question}
+
+\begin{solution}
+<<echo=False, results=tex, strip.white=false>>=
+  cat(paste(answer,collapse=""))
+@
+  \end{solution}
+%% META-INFORMATION
+%% \extype{string}
+%% \exsolution{"A"}
+
+

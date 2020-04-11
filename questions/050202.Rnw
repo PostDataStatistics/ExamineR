@@ -20,7 +20,7 @@ signifDig = 4
 (alfa=1-nc)
 
 sol=0
-while((abs(sol)<0.00001)|(abs(sol)>999)){
+while((abs(sol)<0.0001)|(abs(sol)>999)){
   
   # calculate the critical value
   (z_alfa2= qnorm(1-alfa/2))
@@ -57,7 +57,7 @@ Use ", signifDig, "  significant digits in your answer.")
   answer=paste0("The answer is ", sol)
   
 }else if(language=='es'){
-    question=paste0("Dad una variable aleatoria $X$  cualquiera, se ha obtenido una muestra de tama\\~no $", n,"$, con media muestral $\\bar{X}=",xbar,"$ y cuasidesviaci\\'on t\\'ipica $s=", s,"$. Calcula el {\\bf extremo superior} $b$ del intervalo de confianza $(a,b)$ para la {\\bf media} $\\mu_X$, con un nivel de confianza del $",100*nc,"$\\%.\\
+    question=paste0("Dada una variable aleatoria $X$  cualquiera, se ha obtenido una muestra de tama\\~no $", n,"$, con media muestral $\\bar{X}=",xbar,"$ y cuasidesviaci\\'on t\\'ipica $s=", s,"$. Calcula el {\\bf extremo superior} $b$ del intervalo de confianza $(a,b)$ para la {\\bf media} $\\mu_X$, con un nivel de confianza del $",100*nc,"$\\%.\\
  Utiliza ", signifDig, " cifras significativas en tu respuesta.")
   
   answer=paste0("La respuesta es ", sol)
@@ -67,17 +67,20 @@ Use ", signifDig, "  significant digits in your answer.")
 cat(question)
 
 @
+
   
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
   \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 
@@ -85,5 +88,5 @@ cat(question)
 %% \extype{num}
 %% \exsolution{\Sexpr{sol}}
 %% \exname{Prediction}
-%% \extol{0.00001}
+%% \extol{0.0001}
 

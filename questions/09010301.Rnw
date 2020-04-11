@@ -153,11 +153,13 @@ if(language=='en'){
 cat(question)
 
 
-@ 
+@
+ 
   \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 
 \vspace{.1cm}
 
@@ -170,12 +172,14 @@ library(knitr)
 kable(the_table_df, digits=2, format = "latex")
 @
 
+
 \end{question}
 
 \begin{solution}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(answer,collapse=""))
 @
+
   \end{solution}
 
 

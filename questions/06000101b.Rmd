@@ -1,0 +1,49 @@
+```{r data generation, echo = FALSE, results = "hide"}
+
+(mytype <-sample( c("es mayor que", "es m\\'as grande que", "vale al menos"), size = 1))
+(hypothesis <- sample(c("nula", "alternativa"), size = 1))
+(mu = sample(100:150, size = 1))
+(sol = "de momento, nada")
+
+if(language=='en'){
+  question=paste0("To be traslated"
+
+  )  
+  
+  answer=paste0("The answer is ",
+    sol
+  )  
+}else if(language=='es'){
+  question=paste0("La teor\'ia establecida dice que, para cierta poblaci\'on, la media es ", mytype ,".", "Indica cu\'al debe ser la hip\'otesis", hypothesis , " para poner a prueba dicha afirmaci\'on. 
+"
+    )
+  if(hypotheses = "nula"){
+    sol = paste0("$H_0:\,\mu\geq $", mu)
+  }else{
+    sol = paste0("$H_1:\,\mu< $", mu)
+  }
+    
+  answer=paste0("La respuesta es: ",
+    sol
+    )
+}
+
+
+
+```
+
+Question
+========
+`r question`
+
+
+Solution
+========
+`r answer`
+
+
+Meta-information
+================
+extype: string
+exsolution: `r sol`
+exname: R functions

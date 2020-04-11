@@ -1,0 +1,53 @@
+```{r data generation, echo = FALSE, results = "hide"}
+
+# comment on two boxplots
+
+(sol = "de momento, nada")
+
+if(language=='en'){
+  question=paste0("To be traslated"
+  )  
+  answer=paste0("Less")  
+}else if(language=='es'){
+  question=paste0("Se ha medido una misma variable cuantitativa 100 veces en dos poblaciones. Los resultados se resumen en los siguientes boxplots, ¿qué puedes decir sobre las muestras?")
+  answer = paste0(" ")
+}
+```
+
+Question
+========
+`r question`
+
+\
+```{r, echo = FALSE, fig.align='center', fig.height=2}
+muestra1 = c(65, runif(n = 23, 65, 68), 
+             74, 76, runif(n = 23, 80, 84), 
+             84, 86, runif(n = 23, 86, 90), 
+             94, 96, runif(n = 23, 103, 105), 
+             105)
+
+muestra2 = c(65, runif(n = 23, 72, 74), 
+             74, 76, runif(n = 23, 76, 78), 
+             84, 86, runif(n = 23, 92, 94), 
+             94, 96, runif(n = 23, 96, 98), 
+             105)+2
+
+mydata <- data.frame(muestra1, muestra2)
+par(mfrow = c(1,2))
+boxplot(as.matrix(mydata), main="", ylab="", beside=TRUE, 
+        col=terrain.colors(5), cex.axis = .7)
+par(mfrow = c(1,1))
+
+```
+
+
+Solution
+========
+`r answer`
+
+
+Meta-information
+================
+extype: string
+exsolution: `r sol`
+exname: R functions

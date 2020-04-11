@@ -53,25 +53,24 @@ cat(question)
 
 
 @
+
 \begin{question}
 <<echo=False, results=tex, strip.white=false>>=
   cat(paste(question,collapse=""))
 @
+
 \begin{figure}[h!]
 \begin{center}
-<<fig=TRUE, height=5, width=5, echo=FALSE, eps=FALSE, results=hide>>=
-par(mfrow=c(2,2))
+<<fig=TRUE, height=2, echo=FALSE, eps=FALSE, results=hide>>=
+par(mfrow=c(1,4), mar = c(3,5,2,1))
 hist(unlist(lista[sol]), main = "", xlab = "", xlim=c(min(solData), max(solData)))
 boxplot(sample1, xlab = "", main="Sample 1",  horizontal = TRUE) 
 boxplot(sample2, xlab = "", main="Sample 2",  horizontal = TRUE)
 boxplot(sample3, xlab = "", main="Sample 3",  horizontal = TRUE)
 par(mfrow=c(1,1))
 @
-
 \end{center}
 \end{figure}
-
-
 
 \begin{answerlist}
 \item \Sexpr{questions[1]}

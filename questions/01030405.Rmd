@@ -1,0 +1,46 @@
+```{r data generation, echo = FALSE, results = "hide"}
+
+# 
+
+quant = c(10, 20, 80, 90)
+whatq = sample(1:4, 1)
+
+if(language=='en'){
+  question=paste0("To be traslated"
+  )  
+  answer=paste0("To be traslated")  
+}else if(language=='es'){
+  if(whatq<3){howmany = "pocos"}else{howmany = "muchos"}
+  question=paste0("Si nos dijeran que, a nivel mundial, la tasa de obesidad de nuestro país está en el percentil ", quant[whatq] ,", ¿significa que en nuestro país hay ", howmany, " obesos?", collapse = "")
+  answer = paste0("No. Aunque no correspondiera con tus datos, compara estas dos situaciones sobre la cantidad de obesos en 10 países. En rojo el país que está en el percentil 80.", collapse = "")
+}
+```
+
+Question
+========
+`r question`
+
+
+Solution
+========
+`r answer`
+
+\
+```{r, echo = FALSE, fig.align='center', fig.height=2}
+
+par(mfrow = c(1,2))
+
+barplot(c(15, 15, 17, 20, 21, 21, 22, 23, 97, 110), col = c(rep("gray", 7), "red", "gray", "gray"), xaxt = "n", yaxt = "n", main = "", ylim = c(0, 120), xlab = "Paises")
+
+
+barplot(c(15, 15, 17, 20, 21, 21, 22, 95, 97, 110), col = c(rep("gray", 7), "red", "gray", "gray"), xaxt = "n", yaxt = "n", main = "", ylim = c(0, 120), xlab = "Paises")
+
+par(mfrow = c(1,1))
+```
+
+
+Meta-information
+================
+extype: string
+exsolution: `r sol`
+exname: R functions
